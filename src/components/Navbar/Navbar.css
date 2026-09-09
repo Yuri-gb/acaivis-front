@@ -1,0 +1,955 @@
+/* ========================================
+   NAVBAR
+   ======================================== */
+
+.navbar {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    width: 100%;
+
+    height: 80px;
+
+    padding: 0 55px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #09000f,
+            #1b0028,
+            #09000f
+        );
+
+    font-family: Arial, sans-serif;
+
+    z-index: 100;
+
+}
+
+
+/* ========================================
+   FADE DA NAVBAR PARA O HERO
+   ======================================== */
+
+.navbar::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: -45px;
+
+    height: 45px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(9, 0, 15, 0.95) 0%,
+            rgba(9, 0, 15, 0.65) 30%,
+            rgba(9, 0, 15, 0.30) 65%,
+            rgba(9, 0, 15, 0) 100%
+        );
+
+    pointer-events: none;
+
+    z-index: 0;
+
+}
+
+
+/* ========================================
+   CONTEÚDO DA NAVBAR
+   ======================================== */
+
+.navbar-logo,
+.navbar-links,
+.navbar-actions {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* ========================================
+   LOGO
+   ======================================== */
+
+.navbar-logo img {
+
+    width: 125px;
+
+    display: block;
+
+}
+
+
+/* ========================================
+   LINKS
+   ======================================== */
+
+.navbar-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    transform: translateY(3px);
+
+}
+
+
+.navbar-links a {
+
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    padding: 5px 0;
+
+    transition:
+        color 0.2s ease;
+
+}
+
+
+.navbar-links a:hover {
+
+    color: #c46cff;
+
+}
+
+
+.navbar-links a.active {
+
+    color: white;
+
+}
+
+
+/* ========================================
+   DESTAQUE DO LINK ATIVO
+   ======================================== */
+
+.navbar-links a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -7px;
+
+    width: 30px;
+
+    height: 3px;
+
+    background-color: #a020f0;
+
+    transform: translateX(-50%);
+
+}
+
+
+/* ========================================
+   AÇÕES
+   ======================================== */
+
+.navbar-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+/* ========================================
+   CARRINHO
+   ======================================== */
+
+.cart-button {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease;
+
+}
+
+
+.cart-button:hover {
+
+    transform: scale(1.08);
+
+}
+
+
+/* ========================================
+   ÍCONE DO CARRINHO
+   ======================================== */
+
+.cart-button > svg {
+
+    width: 28px;
+
+    height: 28px;
+
+    color: white;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ========================================
+   CONTADOR
+   ======================================== */
+
+.cart-count {
+
+    position: absolute;
+
+    top: -6px;
+
+    right: -8px;
+
+    width: 16px;
+
+    height: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background-color: #a020f0;
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+/* ========================================
+   WHATSAPP
+   ======================================== */
+
+.whatsapp-button {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    background-color: #a020f0;
+
+    color: white !important;
+
+    text-decoration: none;
+
+    padding: 12px 20px;
+
+    border-radius: 25px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.whatsapp-button:hover {
+
+    background-color: #b83cff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 18px rgba(160, 32, 240, 0.35);
+
+}
+
+
+.whatsapp-button svg {
+
+    width: 18px;
+
+    height: 18px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ========================================
+   MENU MOBILE
+   ======================================== */
+
+.menu-button {
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease;
+
+}
+
+
+.menu-button:hover {
+
+    transform: scale(1.08);
+
+}
+
+
+.menu-button svg {
+
+    width: 28px;
+
+    height: 28px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 1000px) {
+
+    .navbar {
+
+        padding: 0 30px;
+
+    }
+
+
+    .navbar-links {
+
+        gap: 20px;
+
+    }
+
+
+    .navbar-links a {
+
+        font-size: 13px;
+
+    }
+
+
+    .whatsapp-button {
+
+        padding: 10px 16px;
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 792px) {
+
+    .navbar-links,
+    .whatsapp-button {
+
+        display: none;
+
+    }
+
+
+    .menu-button {
+
+        display: flex;
+
+    }
+
+}
+
+
+/* ========================================
+   MENU MOBILE
+   ======================================== */
+
+.mobile-menu {
+
+    position: fixed;
+
+    top: 0;
+
+    right: 0;
+
+    width: 80%;
+
+    max-width: 380px;
+
+    height: 100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #09000f,
+            #1b0028
+        );
+
+    z-index: 1000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 30px;
+
+    gap: 25px;
+
+    overflow-y: auto;
+
+    animation:
+        mobileMenuOpen 0.3s ease-out;
+
+}
+
+
+/* ========================================
+   CABEÇALHO DO MENU
+   ======================================== */
+
+.mobile-menu-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+}
+
+
+.mobile-menu-header img {
+
+    width: 150px;
+
+    display: block;
+
+}
+
+
+/* ========================================
+   BOTÃO FECHAR
+   ======================================== */
+
+.mobile-menu-close {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease;
+
+}
+
+
+.mobile-menu-close:hover {
+
+    transform: scale(1.08);
+
+}
+
+
+.mobile-menu-close svg {
+
+    width: 32px;
+
+    height: 32px;
+
+}
+
+
+/* ========================================
+   ITENS DO MENU
+   ======================================== */
+
+.mobile-menu-item {
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+    padding: 12px 16px;
+
+    border-radius: 25px;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.mobile-menu-item:hover {
+
+    background-color:
+        rgba(160, 32, 240, 0.15);
+
+    transform:
+        translateX(4px);
+
+}
+
+
+/* ========================================
+   ÍCONE PRINCIPAL
+   ======================================== */
+
+.mobile-menu-item > svg:first-child {
+
+    width: 28px;
+
+    height: 28px;
+
+    color: #a020f0;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ========================================
+   TEXTO
+   ======================================== */
+
+.mobile-menu-item span {
+
+    margin-left: 20px;
+
+}
+
+
+/* ========================================
+   SETA
+   ======================================== */
+
+.mobile-menu-item > svg:last-child {
+
+    margin-left: auto;
+
+    width: 18px;
+
+    height: 18px;
+
+    color: #a020f0;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ========================================
+   ITEM ATIVO
+   ======================================== */
+
+.mobile-menu-item.active {
+
+    background:
+        linear-gradient(
+            90deg,
+            #4d0878,
+            #2b0042
+        );
+
+    border:
+        1px solid #a020f0;
+
+    box-shadow:
+        0 0 15px rgba(160, 32, 240, 0.25);
+
+}
+
+
+/* ========================================
+   SEPARADOR
+   ======================================== */
+
+.mobile-menu-divider {
+
+    width: 100%;
+
+    height: 1px;
+
+    background-color:
+        rgba(160, 32, 240, 0.35);
+
+    margin: 5px 0;
+
+}
+
+
+/* ========================================
+   CARRINHO MOBILE
+   ======================================== */
+
+.mobile-menu-cart {
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+    padding: 12px 16px;
+
+    border-radius: 25px;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.mobile-menu-cart:hover {
+
+    background-color:
+        rgba(160, 32, 240, 0.15);
+
+    transform:
+        translateX(4px);
+
+}
+
+
+/* ========================================
+   ÍCONE DO CARRINHO MOBILE
+   ======================================== */
+
+.mobile-menu-cart > svg:first-child {
+
+    width: 28px;
+
+    height: 28px;
+
+    color: #a020f0;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ========================================
+   TEXTO DO CARRINHO
+   ======================================== */
+
+.mobile-menu-cart span {
+
+    margin-left: 20px;
+
+}
+
+
+/* ========================================
+   SETA DO CARRINHO
+   ======================================== */
+
+.mobile-menu-cart > svg:last-child {
+
+    margin-left: auto;
+
+    width: 18px;
+
+    height: 18px;
+
+    color: #a020f0;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ========================================
+   WHATSAPP MOBILE
+   ======================================== */
+
+.mobile-menu-whatsapp {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    background-color: #a020f0;
+
+    color: white !important;
+
+    text-decoration: none;
+
+    padding: 14px 18px;
+
+    border-radius: 25px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.mobile-menu-whatsapp:hover {
+
+    background-color: #b83cff;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 6px 18px rgba(160, 32, 240, 0.35);
+
+}
+
+
+.mobile-menu-whatsapp svg {
+
+    width: 20px;
+
+    height: 20px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ========================================
+   FUNDO ATRÁS DO MENU
+   ======================================== */
+
+.mobile-menu-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.65);
+
+    backdrop-filter:
+        blur(4px);
+
+    z-index: 999;
+
+    animation:
+        mobileOverlayOpen 0.3s ease-out;
+
+}
+
+
+/* ========================================
+   ANIMAÇÕES
+   ======================================== */
+
+
+/* Menu entrando pela direita */
+
+@keyframes mobileMenuOpen {
+
+    from {
+
+        transform:
+            translateX(100%);
+
+    }
+
+    to {
+
+        transform:
+            translateX(0);
+
+    }
+
+}
+
+
+/* Menu saindo para a direita */
+
+@keyframes mobileMenuClose {
+
+    from {
+
+        transform:
+            translateX(0);
+
+    }
+
+    to {
+
+        transform:
+            translateX(100%);
+
+    }
+
+}
+
+
+/* Fundo aparecendo */
+
+@keyframes mobileOverlayOpen {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* Fundo desaparecendo */
+
+@keyframes mobileOverlayClose {
+
+    from {
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* ========================================
+   FECHAMENTO DO MENU
+   ======================================== */
+
+.mobile-menu.closing {
+
+    animation:
+        mobileMenuClose 0.3s ease-in forwards;
+
+}
+
+
+.mobile-menu-overlay.closing {
+
+    animation:
+        mobileOverlayClose 0.3s ease-in forwards;
+
+}

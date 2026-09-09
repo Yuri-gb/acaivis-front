@@ -1,0 +1,1328 @@
+/* ========================================
+   FILTROS
+   ======================================== */
+
+.products-filters {
+    position: relative;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    border-radius: 10px;
+
+    background:
+        rgba(8, 7, 15, 0.55);
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   CABEÇALHO MOBILE
+   ======================================== */
+
+.products-filters-mobile-header {
+    display: none;
+}
+
+
+/* ========================================
+   SEÇÕES
+   ======================================== */
+
+.products-filters-section {
+    padding:
+        18px 16px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+}
+
+.products-filters-section:last-of-type {
+    border-bottom: none;
+}
+
+
+/* ========================================
+   TÍTULO DA SEÇÃO
+   ======================================== */
+
+.products-filters-section-title {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-bottom: 13px;
+}
+
+.products-filters-section-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.products-filters-section-heading svg {
+    width: 17px;
+    height: 17px;
+
+    flex-shrink: 0;
+
+    color:
+        #a020f0;
+}
+
+.products-filters-section h3 {
+    margin: 0;
+
+    color: white;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.products-filters-chevron {
+    width: 12px;
+    height: 12px;
+
+    color:
+        rgba(255, 255, 255, 0.70);
+}
+
+
+/* ========================================
+   CATEGORIAS
+   ======================================== */
+
+.products-filters-category-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.products-filters-category {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    min-height: 28px;
+
+    padding:
+        0 10px;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background:
+        transparent;
+
+    color:
+        rgba(255, 255, 255, 0.68);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 400;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.products-filters-category:hover {
+    background:
+        rgba(160, 32, 240, 0.10);
+
+    color: white;
+}
+
+.products-filters-category.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(93, 0, 184, 0.85),
+            rgba(110, 0, 220, 0.65)
+        );
+
+    color: white;
+}
+
+.products-filters-category span:last-child {
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    font-size: 9px;
+}
+
+.products-filters-category.active span:last-child {
+    color: white;
+}
+
+
+/* ========================================
+   RADIO DAS CATEGORIAS
+   ======================================== */
+
+.products-filters-radio {
+    display: none;
+}
+
+
+/* ========================================
+   CHECKBOX
+   ======================================== */
+
+.products-filters-checkbox {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-height: 27px;
+
+    cursor: pointer;
+}
+
+.products-filters-checkbox input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.products-filters-checkbox-box {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 15px;
+    height: 15px;
+
+    flex-shrink: 0;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.35);
+
+    border-radius: 3px;
+
+    background:
+        rgba(255, 255, 255, 0.02);
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.products-filters-checkbox input:checked
++ .products-filters-checkbox-box {
+    border-color:
+        #a020f0;
+
+    background:
+        #a020f0;
+}
+
+.products-filters-checkbox input:checked
++ .products-filters-checkbox-box::after {
+    content: "";
+
+    width: 4px;
+    height: 7px;
+
+    border:
+        solid white;
+
+    border-width:
+        0 1.5px 1.5px 0;
+
+    transform:
+        rotate(45deg)
+        translate(-1px, -1px);
+}
+
+.products-filters-checkbox-label {
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 400;
+}
+
+.products-filters-checkbox-count {
+    margin-left: auto;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 9px;
+}
+
+
+/* ========================================
+   PREÇO
+   ======================================== */
+
+.products-filters-price {
+    width: 100%;
+}
+
+.products-filters-price-track {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    height: 24px;
+}
+
+
+/* ========================================
+   LINHA DO PREÇO
+   ======================================== */
+
+.products-filters-price-line {
+    position: absolute;
+
+    top: 50%;
+
+    height: 4px;
+
+    border-radius: 999px;
+
+    background:
+        #a020f0;
+
+    transform:
+        translateY(-50%);
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   RANGE
+   ======================================== */
+
+.products-filters-price-range {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 24px;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   TRILHO
+   ======================================== */
+
+.products-filters-price-range::-webkit-slider-runnable-track {
+    width: 100%;
+
+    height: 4px;
+
+    background: transparent;
+
+    border: none;
+}
+
+.products-filters-price-range::-moz-range-track {
+    width: 100%;
+
+    height: 4px;
+
+    background: transparent;
+
+    border: none;
+}
+
+
+/* ========================================
+   BOLINHA - CHROME / EDGE / SAFARI
+   ======================================== */
+
+.products-filters-price-range::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+
+    margin-top: -6px;
+
+    border:
+        2px solid
+        #a020f0;
+
+    border-radius: 50%;
+
+    background:
+        #a020f0;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    pointer-events: auto;
+
+    cursor: pointer;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.products-filters-price-range::-webkit-slider-thumb:hover {
+    box-shadow:
+        0 0 0 5px
+        rgba(160, 32, 240, 0.14);
+}
+
+
+/* ========================================
+   BOLINHA - FIREFOX
+   ======================================== */
+
+.products-filters-price-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+
+    border:
+        2px solid
+        #a020f0;
+
+    border-radius: 50%;
+
+    background:
+        #a020f0;
+
+    pointer-events: auto;
+
+    cursor: pointer;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.products-filters-price-range::-moz-range-thumb:hover {
+    box-shadow:
+        0 0 0 5px
+        rgba(160, 32, 240, 0.14);
+}
+
+
+/* ========================================
+   CAMADAS DOS RANGES
+   ======================================== */
+
+.products-filters-price-range.min {
+    z-index: 2;
+}
+
+.products-filters-price-range.max {
+    z-index: 3;
+}
+
+
+/* ========================================
+   VALORES
+   ======================================== */
+
+.products-filters-price-values {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    color:
+        rgba(255, 255, 255, 0.70);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 9px;
+}
+
+
+/* ========================================
+   MASCOTE AÇAÍVIS
+   ======================================== */
+
+.products-filters-quality {
+    position: relative;
+
+    width: 100%;
+
+    height: 360px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            145deg,
+            #26003d 0%,
+            #160020 48%,
+            #08070f 100%
+        );
+
+    overflow: hidden;
+}
+
+.products-filters-quality img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center bottom;
+
+    pointer-events: none;
+
+    user-select: none;
+}
+
+
+/* ========================================
+   OVERLAY MOBILE
+   ======================================== */
+
+.products-filters-overlay {
+    display: none;
+}
+
+
+/* ========================================
+   BOTÕES MOBILE
+   ======================================== */
+
+.products-filters-mobile-actions {
+    display: none;
+}
+
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 1100px) {
+
+    .products-filters-quality {
+        height: 330px;
+    }
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 792px) {
+
+    /* ====================================
+       OVERLAY
+       ==================================== */
+
+    .products-filters-overlay {
+        position: fixed;
+
+        inset: 0;
+
+        display: block;
+
+        background:
+            rgba(0, 0, 0, 0.68);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        pointer-events: none;
+
+        transition:
+            opacity 0.25s ease,
+            visibility 0.25s ease;
+
+        z-index: 90;
+    }
+
+    .products-filters-overlay.active {
+        opacity: 1;
+
+        visibility: visible;
+
+        pointer-events: auto;
+    }
+
+
+    /* ====================================
+       PAINEL
+       ==================================== */
+
+    .products-filters {
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        width: 100%;
+
+        height: 94vh;
+
+        max-height: 94vh;
+
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.10);
+
+        border-bottom: none;
+
+        border-radius:
+            24px 24px 0 0;
+
+        background:
+            linear-gradient(
+                180deg,
+                #11101d 0%,
+                #090811 100%
+            );
+
+        overflow-y: auto;
+
+        overflow-x: hidden;
+
+        transform:
+            translateY(100%);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        pointer-events: none;
+
+        transition:
+            transform 0.3s ease,
+            opacity 0.25s ease,
+            visibility 0.3s ease;
+
+        z-index: 100;
+
+        scrollbar-width: thin;
+
+        scrollbar-color:
+            #a020f0
+            transparent;
+    }
+
+    .products-filters.mobile-open {
+        transform:
+            translateY(0);
+
+        opacity: 1;
+
+        visibility: visible;
+
+        pointer-events: auto;
+    }
+
+
+    /* ====================================
+       SCROLLBAR
+       ==================================== */
+
+    .products-filters::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .products-filters::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .products-filters::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+
+        background:
+            #a020f0;
+    }
+
+
+    /* ====================================
+       CABEÇALHO
+       ==================================== */
+
+    .products-filters-mobile-header {
+        position: relative;
+
+        display: block;
+
+        padding:
+            16px 20px 20px;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.12);
+
+        background:
+            linear-gradient(
+                180deg,
+                #11101d 0%,
+                #0d0b16 100%
+            );
+    }
+
+
+    /* ====================================
+       BARRINHA SUPERIOR
+       ==================================== */
+
+    .products-filters-mobile-handle {
+        width: 80px;
+
+        height: 5px;
+
+        margin:
+            0 auto 20px;
+
+        border-radius: 999px;
+
+        background:
+            rgba(255, 255, 255, 0.42);
+    }
+
+
+    /* ====================================
+       TÍTULO
+       ==================================== */
+
+    .products-filters-mobile-title {
+        display: flex;
+
+        align-items: flex-start;
+        justify-content: space-between;
+
+        gap: 18px;
+
+        padding-right: 42px;
+    }
+
+    .products-filters-mobile-title h2 {
+        margin: 0;
+
+        color: white;
+
+        font-family:
+            'Poppins',
+            sans-serif;
+
+        font-size: 30px;
+
+        font-weight: 700;
+
+        line-height: 1.15;
+    }
+
+    .products-filters-mobile-title p {
+        max-width: 390px;
+
+        margin:
+            7px 0 0;
+
+        color:
+            rgba(255, 255, 255, 0.58);
+
+        font-family:
+            'Poppins',
+            sans-serif;
+
+        font-size: 14px;
+
+        font-weight: 400;
+
+        line-height: 1.4;
+    }
+
+
+    /* ====================================
+       LIMPAR TUDO
+       ==================================== */
+
+    .products-filters-mobile-clear {
+        flex-shrink: 0;
+
+        margin-top: 30px;
+
+        padding: 0;
+
+        border: none;
+
+        background: transparent;
+
+        color:
+            #c02cff;
+
+        font-family:
+            'Poppins',
+            sans-serif;
+
+        font-size: 14px;
+
+        font-weight: 500;
+
+        text-decoration:
+            underline;
+
+        cursor: pointer;
+    }
+
+
+    /* ====================================
+       BOTÃO FECHAR
+       ==================================== */
+
+    .products-filters-mobile-close {
+        position: absolute;
+
+        top: 48px;
+        right: 20px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 34px;
+        height: 34px;
+
+        padding: 0;
+
+        border: none;
+
+        background: transparent;
+
+        color:
+            rgba(255, 255, 255, 0.90);
+
+        cursor: pointer;
+    }
+
+    .products-filters-mobile-close svg {
+        width: 24px;
+        height: 24px;
+    }
+
+
+    /* ====================================
+       SEÇÕES MOBILE
+       ==================================== */
+
+    .products-filters-section {
+        padding:
+            24px 28px;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.12);
+    }
+
+    .products-filters-section-title {
+        margin-bottom: 18px;
+    }
+
+    .products-filters-section-heading {
+        gap: 15px;
+    }
+
+    .products-filters-section-heading svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .products-filters-section h3 {
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    .products-filters-chevron {
+        width: 18px;
+        height: 18px;
+
+        color:
+            rgba(255, 255, 255, 0.85);
+    }
+
+
+    /* ====================================
+       CATEGORIAS MOBILE
+       ==================================== */
+
+    .products-filters-category-list {
+        gap: 4px;
+    }
+
+    .products-filters-category {
+        position: relative;
+
+        min-height: 48px;
+
+        padding:
+            0 14px;
+
+        border-radius: 10px;
+
+        font-size: 16px;
+
+        color:
+            rgba(255, 255, 255, 0.72);
+    }
+
+    .products-filters-category.active {
+        background:
+            rgba(160, 32, 240, 0.08);
+    }
+
+    .products-filters-category span:nth-child(2) {
+        flex: 1;
+
+        margin-left: 12px;
+    }
+
+    .products-filters-category span:last-child {
+        font-size: 15px;
+
+        color:
+            rgba(255, 255, 255, 0.70);
+    }
+
+    /* radio visível no mobile */
+    .products-filters-radio {
+        display: block;
+
+        width: 22px;
+        height: 22px;
+
+        flex-shrink: 0;
+
+        box-sizing: border-box;
+
+        border:
+            2px solid
+            rgba(255, 255, 255, 0.65);
+
+        border-radius: 50%;
+
+        background: transparent;
+    }
+
+    .products-filters-category.active
+    .products-filters-radio {
+        border:
+            7px solid
+            #a020f0;
+
+        background:
+            transparent;
+    }
+
+
+    /* ====================================
+       CHECKBOX MOBILE
+       ==================================== */
+
+    .products-filters-checkbox {
+        min-height: 56px;
+
+        gap: 14px;
+    }
+
+    .products-filters-checkbox-box {
+        width: 24px;
+        height: 24px;
+
+        border:
+            2px solid
+            rgba(255, 255, 255, 0.42);
+
+        border-radius: 4px;
+    }
+
+    .products-filters-checkbox input:checked
+    + .products-filters-checkbox-box {
+        border-color:
+            #a020f0;
+
+        background:
+            linear-gradient(
+                135deg,
+                #a020f0,
+                #c02cff
+            );
+    }
+
+    .products-filters-checkbox input:checked
+    + .products-filters-checkbox-box::after {
+        width: 7px;
+        height: 12px;
+
+        border-width:
+            0 2px 2px 0;
+
+        transform:
+            rotate(45deg)
+            translate(-1px, -1px);
+    }
+
+    .products-filters-checkbox-label {
+        font-size: 16px;
+
+        color:
+            rgba(255, 255, 255, 0.75);
+    }
+
+    .products-filters-checkbox-count {
+        font-size: 15px;
+
+        color:
+            rgba(255, 255, 255, 0.68);
+    }
+
+
+    /* ====================================
+       PREÇO MOBILE
+       ==================================== */
+
+    .products-filters-price-track {
+        height: 30px;
+    }
+
+    .products-filters-price-line {
+        height: 5px;
+    }
+
+    .products-filters-price-range {
+        height: 30px;
+    }
+
+    .products-filters-price-range::-webkit-slider-runnable-track {
+        height: 5px;
+    }
+
+    .products-filters-price-range::-moz-range-track {
+        height: 5px;
+    }
+
+    .products-filters-price-range::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+
+        margin-top: -9px;
+
+        border:
+            2px solid
+            #a020f0;
+
+        background:
+            #a020f0;
+
+        box-shadow:
+            0 0 0 4px
+            rgba(160, 32, 240, 0.10);
+    }
+
+    .products-filters-price-range::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+
+        border:
+            2px solid
+            #a020f0;
+
+        background:
+            #a020f0;
+
+        box-shadow:
+            0 0 0 4px
+            rgba(160, 32, 240, 0.10);
+    }
+
+    .products-filters-price-values {
+        margin-top: 10px;
+
+        font-size: 15px;
+    }
+
+
+    /* ====================================
+       MASCOTE
+       ==================================== */
+
+    .products-filters-quality {
+        display: none;
+    }
+
+
+    /* ====================================
+       AÇÕES MOBILE
+       ==================================== */
+
+    .products-filters-mobile-actions {
+        position: sticky;
+
+        bottom: 0;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+        gap: 14px;
+
+        padding:
+            18px 20px 24px;
+
+        border-top:
+            1px solid
+            rgba(255, 255, 255, 0.12);
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(9, 8, 17, 0.94),
+                #090811 30%
+            );
+
+        z-index: 5;
+    }
+
+    .products-filters-mobile-actions button {
+        height: 58px;
+
+        padding: 0 18px;
+
+        border-radius: 30px;
+
+        font-family:
+            'Poppins',
+            sans-serif;
+
+        font-size: 16px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+    }
+
+    .products-filters-mobile-cancel {
+        border:
+            2px solid
+            #a020f0;
+
+        background:
+            transparent;
+
+        color:
+            #b82cff;
+    }
+
+    .products-filters-mobile-apply {
+        border:
+            none;
+
+        background:
+            linear-gradient(
+                135deg,
+                #a020f0 0%,
+                #c02cff 100%
+            );
+
+        color: white;
+
+        box-shadow:
+            0 8px 24px
+            rgba(160, 32, 240, 0.24);
+    }
+}
+
+
+/* ========================================
+   MOBILE PEQUENO
+   ======================================== */
+
+@media (max-width: 520px) {
+
+    .products-filters {
+        height: 96vh;
+
+        max-height: 96vh;
+
+        border-radius:
+            20px 20px 0 0;
+    }
+
+    .products-filters-mobile-header {
+        padding:
+            13px 18px 18px;
+    }
+
+    .products-filters-mobile-handle {
+        width: 72px;
+
+        height: 5px;
+
+        margin-bottom: 17px;
+    }
+
+    .products-filters-mobile-title {
+        padding-right: 35px;
+    }
+
+    .products-filters-mobile-title h2 {
+        font-size: 27px;
+    }
+
+    .products-filters-mobile-title p {
+        font-size: 13px;
+    }
+
+    .products-filters-mobile-clear {
+        margin-top: 27px;
+
+        font-size: 13px;
+    }
+
+    .products-filters-mobile-close {
+        top: 43px;
+        right: 15px;
+    }
+
+    .products-filters-mobile-close svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .products-filters-section {
+        padding:
+            21px 22px;
+    }
+
+    .products-filters-section-heading {
+        gap: 12px;
+    }
+
+    .products-filters-section-heading svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .products-filters-section h3 {
+        font-size: 20px;
+    }
+
+    .products-filters-category {
+        min-height: 45px;
+
+        font-size: 15px;
+    }
+
+    .products-filters-radio {
+        width: 21px;
+        height: 21px;
+    }
+
+    .products-filters-checkbox-label {
+        font-size: 15px;
+    }
+
+    .products-filters-checkbox-count {
+        font-size: 14px;
+    }
+
+    .products-filters-mobile-actions {
+        gap: 10px;
+
+        padding:
+            15px 16px 20px;
+    }
+
+    .products-filters-mobile-actions button {
+        height: 54px;
+
+        font-size: 15px;
+    }
+}

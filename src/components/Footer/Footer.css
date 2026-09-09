@@ -1,0 +1,443 @@
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+
+    position: relative;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 28px 6% 14px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #09000f,
+            #1b0028,
+            #09000f
+        );
+
+    border-top: 1px solid rgba(160, 32, 240, 0.12);
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   EFEITO SUPERIOR
+   ======================================== */
+
+.footer::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    top: 0;
+
+    height: 28px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(9, 0, 15, 0.35) 0%,
+            rgba(9, 0, 15, 0) 100%
+        );
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* ========================================
+   CONTEÚDO PRINCIPAL
+   ======================================== */
+
+.footer-main {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    max-width: 1160px;
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   LOGO
+   ======================================== */
+
+.footer-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    width: 90px;
+
+    flex-shrink: 0;
+
+    text-decoration: none;
+}
+
+
+.footer-logo img {
+
+    display: block;
+
+    width: 90px;
+
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* ========================================
+   NAVEGAÇÃO
+   ======================================== */
+
+.footer-navigation {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 23px;
+
+    margin-left: 35px;
+}
+
+
+.footer-navigation a {
+
+    color: rgba(255, 255, 255, 0.78);
+
+    text-decoration: none;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 400;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.footer-navigation a:hover {
+
+    color: #a020f0;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   CONTATOS
+   ======================================== */
+
+.footer-contact {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-left: 30px;
+
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   REDES SOCIAIS
+   ======================================== */
+
+.footer-social {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 20px;
+
+    height: 20px;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.footer-social svg {
+
+    width: 15px;
+
+    height: 15px;
+}
+
+
+.footer-social:hover {
+
+    color: #a020f0;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   LOCALIZAÇÃO
+   ======================================== */
+
+.footer-location {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: rgba(255, 255, 255, 0.58);
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 8px;
+
+    white-space: nowrap;
+}
+
+
+.footer-location svg {
+
+    width: 10px;
+
+    height: 10px;
+
+    color: #a020f0;
+}
+
+
+/* ========================================
+   LINHA INFERIOR
+   ======================================== */
+
+.footer-bottom {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    max-width: 1160px;
+
+    margin: 20px auto 0;
+
+    padding-top: 12px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+/* ========================================
+   FRASE
+   ======================================== */
+
+.footer-bottom p {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 8px;
+
+    font-weight: 400;
+}
+
+
+.footer-bottom p svg {
+
+    width: 8px;
+
+    height: 8px;
+
+    color: #a020f0;
+}
+
+
+/* ========================================
+   DESENVOLVIDO
+   ======================================== */
+
+.footer-developed {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 8px;
+}
+
+
+.footer-developed svg {
+
+    width: 8px;
+
+    height: 8px;
+
+    color: #a020f0;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    .footer-main {
+
+        flex-wrap: wrap;
+
+        gap: 20px;
+    }
+
+
+    .footer-navigation {
+
+        order: 3;
+
+        width: 100%;
+
+        margin-left: 0;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+
+    .footer-contact {
+
+        margin-left: auto;
+    }
+
+}
+
+
+/* ========================================
+   CELULAR
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    .footer {
+
+        padding: 28px 6% 18px;
+    }
+
+
+    .footer-main {
+
+        flex-direction: column;
+
+        gap: 22px;
+    }
+
+
+    .footer-logo {
+
+        width: 80px;
+    }
+
+
+    .footer-logo img {
+
+        width: 80px;
+    }
+
+
+    .footer-navigation {
+
+        gap: 14px 20px;
+    }
+
+
+    .footer-navigation a {
+
+        font-size: 9px;
+    }
+
+
+    .footer-contact {
+
+        margin-left: 0;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+
+    .footer-bottom {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        text-align: center;
+    }
+
+}

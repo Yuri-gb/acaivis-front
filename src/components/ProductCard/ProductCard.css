@@ -1,0 +1,642 @@
+.product-card {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    min-width: 0;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #171326 0%,
+            #120e20 100%
+        );
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(160, 32, 240, 0.45);
+
+    box-shadow:
+        0 12px 28px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+/* ========================================
+   IMAGEM
+   ======================================== */
+
+.product-card-image {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 220px;
+
+    padding: 18px;
+
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(160, 32, 240, 0.14),
+            rgba(8, 7, 15, 0.15) 60%,
+            rgba(8, 7, 15, 0) 100%
+        );
+
+    overflow: hidden;
+}
+
+.product-card-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    border-radius: 25px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.product-card:hover
+.product-card-image img {
+    transform:
+        scale(1.04);
+}
+
+
+/* ========================================
+   BADGE
+   ======================================== */
+
+.product-card-badge {
+    position: absolute;
+
+    top: 24px;
+    left: 24px;
+
+    z-index: 2;
+
+    padding:
+        5px 9px;
+
+    border-radius: 12px;
+
+    background:
+        #a020f0;
+
+    color: white;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 8px;
+    font-weight: 600;
+
+    line-height: 1;
+}
+
+
+/* ========================================
+   FAVORITO
+   ======================================== */
+
+.product-card-favorite {
+    position: absolute;
+
+    top: 23px;
+    right: 23px;
+
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    border-radius: 50%;
+
+    background:
+        rgba(8, 7, 15, 0.65);
+
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(4px);
+
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.product-card-favorite:hover {
+    transform:
+        scale(1.08);
+
+    color:
+        #ff5fa2;
+
+    border-color:
+        rgba(255, 95, 162, 0.45);
+}
+
+.product-card-favorite.active {
+    color:
+        #ff5fa2;
+
+    background:
+        rgba(255, 95, 162, 0.10);
+
+    border-color:
+        rgba(255, 95, 162, 0.35);
+}
+
+.product-card-favorite svg {
+    width: 12px;
+    height: 12px;
+}
+
+
+/* ========================================
+   CONTEÚDO
+   ======================================== */
+
+.product-card-content {
+    display: flex;
+    flex-direction: column;
+
+    padding:
+        16px;
+}
+
+.product-card-content h3 {
+    margin: 0;
+
+    color: white;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    line-height: 1.25;
+}
+
+.product-card-size {
+    margin-top: 3px;
+
+    color:
+        #a020f0;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 9px;
+    font-weight: 500;
+}
+
+.product-card-content p {
+    display: -webkit-box;
+
+    width: 100%;
+    min-height: 32px;
+
+    margin:
+        9px 0 12px;
+
+    overflow: hidden;
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 9px;
+    font-weight: 400;
+
+    line-height: 1.5;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.product-card-price {
+    margin-bottom:
+        12px;
+
+    color: white;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+/* ========================================
+   QUANTIDADE
+   ======================================== */
+
+.product-card-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 34px;
+
+    margin-bottom: 10px;
+
+    padding:
+        3px;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 18px;
+
+    background:
+        rgba(8, 7, 15, 0.45);
+}
+
+.product-card-quantity button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        transparent;
+
+    color:
+        rgba(255, 255, 255, 0.70);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.product-card-quantity button:hover {
+    background:
+        rgba(160, 32, 240, 0.20);
+
+    color: white;
+}
+
+.product-card-quantity button svg {
+    width: 9px;
+    height: 9px;
+}
+
+.product-card-quantity span {
+    color: white;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* ========================================
+   ADICIONAR
+   ======================================== */
+
+.product-card-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    width: 100%;
+    height: 38px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background:
+        #a020f0;
+
+    color: white;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.product-card-add:hover {
+    background:
+        #b83cff;
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 6px 16px
+        rgba(160, 32, 240, 0.28);
+}
+
+.product-card-add svg {
+    width: 12px;
+    height: 12px;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 792px) {
+
+    .product-card {
+        flex-direction: row;
+
+        min-height: 145px;
+
+        border-radius: 15px;
+
+        transform: none;
+    }
+
+    .product-card:hover {
+        transform: none;
+
+        box-shadow:
+            0 8px 20px
+            rgba(0, 0, 0, 0.20);
+    }
+
+
+    /* ----------------------------------------
+       IMAGEM MOBILE
+       ---------------------------------------- */
+
+    .product-card-image {
+        flex-shrink: 0;
+
+        width: 43%;
+        height: auto;
+        min-height: 145px;
+
+        padding: 8px;
+
+        border-radius: 0;
+
+        background:
+            radial-gradient(
+                circle at center,
+                rgba(160, 32, 240, 0.16),
+                rgba(8, 7, 15, 0.12) 65%,
+                rgba(8, 7, 15, 0) 100%
+            );
+    }
+
+    .product-card-image img {
+        width: 100%;
+        height: 100%;
+
+        border-radius: 12px;
+    }
+
+
+    /* ----------------------------------------
+       BADGE MOBILE
+       ---------------------------------------- */
+
+    .product-card-badge {
+        top: 12px;
+        left: 12px;
+
+        padding:
+            5px 7px;
+
+        border-radius: 10px;
+
+        font-size: 7px;
+    }
+
+
+    /* ----------------------------------------
+       FAVORITO MOBILE
+       ---------------------------------------- */
+
+    .product-card-favorite {
+        top: 10px;
+        right: 10px;
+
+        width: 27px;
+        height: 27px;
+    }
+
+    .product-card-favorite svg {
+        width: 11px;
+        height: 11px;
+    }
+
+
+    /* ----------------------------------------
+       CONTEÚDO MOBILE
+       ---------------------------------------- */
+
+    .product-card-content {
+        flex: 1;
+
+        min-width: 0;
+
+        padding:
+            11px 10px 10px;
+    }
+
+    .product-card-content h3 {
+        font-size: 11px;
+
+        line-height: 1.2;
+    }
+
+    .product-card-size {
+        margin-top: 2px;
+
+        font-size: 8px;
+    }
+
+    .product-card-content p {
+        min-height: 0;
+
+        margin:
+            5px 0 7px;
+
+        font-size: 7.5px;
+
+        line-height: 1.35;
+
+        -webkit-line-clamp: 3;
+    }
+
+    .product-card-price {
+        margin-bottom: 7px;
+
+        font-size: 14px;
+    }
+
+
+    /* ----------------------------------------
+       QUANTIDADE MOBILE
+       ---------------------------------------- */
+
+    .product-card-quantity {
+        height: 27px;
+
+        margin-bottom: 6px;
+
+        padding: 2px;
+
+        border-radius: 14px;
+    }
+
+    .product-card-quantity button {
+        width: 22px;
+        height: 22px;
+    }
+
+    .product-card-quantity button svg {
+        width: 7px;
+        height: 7px;
+    }
+
+    .product-card-quantity span {
+        font-size: 8px;
+    }
+
+
+    /* ----------------------------------------
+       BOTÃO MOBILE
+       ---------------------------------------- */
+
+    .product-card-add {
+        height: 29px;
+
+        gap: 5px;
+
+        border-radius: 15px;
+
+        font-size: 8px;
+    }
+
+    .product-card-add svg {
+        width: 9px;
+        height: 9px;
+    }
+}
+
+
+/* ========================================
+   CELULARES PEQUENOS
+   ======================================== */
+
+@media (max-width: 520px) {
+
+    .product-card {
+        min-height: 150px;
+    }
+
+    .product-card-image {
+        width: 42%;
+
+        min-height: 150px;
+
+        padding: 8px;
+    }
+
+    .product-card-content {
+        padding:
+            11px 9px 9px;
+    }
+
+    .product-card-content h3 {
+        font-size: 11px;
+    }
+
+    .product-card-content p {
+        font-size: 7.5px;
+    }
+
+    .product-card-price {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,789 @@
+/* ========================================
+   PRODUCTS BANNER
+   ======================================== */
+
+.products-banner {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 220px;
+
+    padding:
+        28px 4% 0;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            90deg,
+            #08070f 0%,
+            #0d0816 45%,
+            #12081b 100%
+        );
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   BREADCRUMB
+   ======================================== */
+
+.products-banner-breadcrumb {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 12px;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 400;
+}
+
+.products-banner-breadcrumb span:nth-child(2) {
+    color:
+        rgba(255, 255, 255, 0.35);
+}
+
+.products-banner-breadcrumb span:last-child {
+    color:
+        rgba(255, 255, 255, 0.75);
+}
+
+
+/* ========================================
+   CONTEÚDO
+   ======================================== */
+
+.products-banner-content {
+    display: grid;
+
+    grid-template-columns:
+        minmax(300px, 0.95fr)
+        minmax(420px, 1.25fr)
+        180px;
+
+    align-items: end;
+
+    width: 100%;
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   TEXTO
+   ======================================== */
+
+.products-banner-text {
+    position: relative;
+
+    min-width: 0;
+
+    align-self: center;
+
+    padding:
+        10px 0 28px;
+
+    z-index: 3;
+}
+
+.products-banner-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 500;
+
+    letter-spacing: 5px;
+}
+
+.products-banner-text h1 {
+    max-width: 520px;
+
+    margin: 0;
+
+    color: white;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size:
+        clamp(32px, 3vw, 45px);
+
+    font-weight: 800;
+
+    line-height: 1.02;
+}
+
+.products-banner-text h1 span {
+    color:
+        #a020f0;
+}
+
+.products-banner-text p {
+    width:
+        min(100%, 480px);
+
+    margin:
+        14px 0 0;
+
+    color:
+        rgba(255, 255, 255, 0.82);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   IMAGEM
+   ======================================== */
+
+.products-banner-image {
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 230px;
+
+    padding:
+        0 4px;
+
+    box-sizing: border-box;
+
+    z-index: 2;
+
+    overflow: visible;
+}
+
+.products-banner-image img {
+    display: block;
+
+    width: 100%;
+
+    max-width: 680px;
+
+    height: auto;
+
+    max-height: 230px;
+
+    object-fit: contain;
+
+    object-position: center bottom;
+
+    transform: none;
+}
+
+
+/* ========================================
+   BENEFÍCIOS
+   ======================================== */
+
+.products-banner-benefits {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 17px;
+
+    min-width: 0;
+
+    padding:
+        20px 0 28px 22px;
+
+    border-left:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+}
+
+.products-banner-benefit {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+}
+
+.products-banner-benefit-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 34px;
+
+    height: 34px;
+
+    flex-shrink: 0;
+
+    color:
+        #a020f0;
+
+    font-size: 27px;
+}
+
+.products-banner-benefit div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1px;
+
+    min-width: 0;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.3;
+}
+
+.products-banner-benefit strong {
+    color: white;
+
+    font-weight: 600;
+}
+
+.products-banner-benefit div span {
+    color:
+        rgba(255, 255, 255, 0.75);
+
+    font-weight: 400;
+}
+
+
+/* ========================================
+   DESKTOP MENOR
+   ======================================== */
+
+@media (max-width: 1100px) {
+
+    .products-banner {
+        padding:
+            24px 3% 0;
+    }
+
+    .products-banner-content {
+        grid-template-columns:
+            minmax(260px, 0.9fr)
+            minmax(350px, 1.2fr)
+            145px;
+    }
+
+    .products-banner-image {
+        min-height: 210px;
+
+        padding:
+            0 4px;
+    }
+
+    .products-banner-image img {
+        max-width: 600px;
+
+        max-height: 210px;
+    }
+
+    .products-banner-text {
+        padding-bottom: 24px;
+    }
+
+    .products-banner-benefits {
+        gap: 12px;
+
+        padding-left: 14px;
+    }
+
+    .products-banner-benefit {
+        gap: 7px;
+    }
+
+    .products-banner-benefit-icon {
+        width: 28px;
+
+        height: 28px;
+
+        font-size: 23px;
+    }
+
+    .products-banner-benefit div {
+        font-size: 9px;
+    }
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 792px) {
+
+    .products-banner {
+        min-height: 0;
+
+        padding:
+            14px 16px 0;
+
+        background:
+            #100d1d;
+
+        overflow: visible;
+    }
+
+
+    /* ----------------------------------------
+       BREADCRUMB
+       ---------------------------------------- */
+
+    .products-banner-breadcrumb {
+        gap: 7px;
+
+        margin-bottom: 12px;
+
+        padding-left: 2px;
+
+        font-size: 10px;
+    }
+
+
+    /* ----------------------------------------
+       CARD PRINCIPAL
+       ---------------------------------------- */
+
+    .products-banner-content {
+        position: relative;
+
+        display: grid;
+
+        grid-template-columns:
+            1fr;
+
+        grid-template-rows:
+            270px
+            1px
+            94px;
+
+        align-items: stretch;
+
+        width: 100%;
+
+        max-width: none;
+
+        margin: 0;
+
+        padding:
+            0;
+
+        box-sizing: border-box;
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.13);
+
+        border-radius:
+            16px;
+
+        background:
+            #100d1d;
+
+        overflow: hidden;
+    }
+
+
+    /* ----------------------------------------
+       TEXTO
+       ---------------------------------------- */
+
+    .products-banner-text {
+        grid-column: 1;
+
+        grid-row: 1;
+
+        position: relative;
+
+        width: 62%;
+
+        min-width: 0;
+
+        align-self: center;
+
+        padding:
+            18px 0 18px 10px;
+
+        z-index: 4;
+    }
+
+    .products-banner-label {
+        margin-bottom: 8px;
+
+        font-size: 7px;
+
+        letter-spacing: 4px;
+    }
+
+    .products-banner-text h1 {
+        max-width: 100%;
+
+        margin: 0;
+
+        font-size:
+            clamp(29px, 7.5vw, 38px);
+
+        line-height: 1.04;
+
+        letter-spacing: -0.8px;
+    }
+
+    .products-banner-text p {
+        width: 100%;
+
+        max-width: 285px;
+
+        margin-top: 12px;
+
+        font-size: 10px;
+
+        line-height: 1.4;
+    }
+
+
+    /* ----------------------------------------
+       IMAGEM
+       ---------------------------------------- */
+
+    .products-banner-image {
+        position: absolute;
+
+        top: 0;
+
+        right: -9%;
+
+        display: flex;
+
+        align-items: flex-end;
+
+        justify-content: flex-end;
+
+        width: 76%;
+
+        height: 270px;
+
+        min-width: 0;
+
+        min-height: 0;
+
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+        overflow: visible;
+
+        z-index: 2;
+
+        pointer-events: none;
+    }
+
+    .products-banner-image img {
+        display: block;
+
+        width: 100%;
+
+        max-width: none;
+
+        height: auto;
+
+        max-height: none;
+
+        object-fit: contain;
+
+        object-position: right bottom;
+
+        transform: none;
+
+        flex-shrink: 0;
+    }
+
+
+    /* ----------------------------------------
+       LINHA DIVISÓRIA
+       ---------------------------------------- */
+
+    .products-banner-content::after {
+        content: "";
+
+        grid-column: 1;
+
+        grid-row: 2;
+
+        display: block;
+
+        width:
+            calc(100% - 20px);
+
+        height: 1px;
+
+        margin:
+            0 auto;
+
+        background:
+            rgba(255, 255, 255, 0.18);
+
+        z-index: 6;
+    }
+
+
+    /* ----------------------------------------
+       BENEFÍCIOS
+       ---------------------------------------- */
+
+    .products-banner-benefits {
+        grid-column: 1;
+
+        grid-row: 3;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        align-items: center;
+
+        width: 100%;
+
+        min-width: 0;
+
+        height: 100%;
+
+        margin: 0;
+
+        padding:
+            8px 8px 10px;
+
+        border-left: none;
+
+        z-index: 5;
+    }
+
+    .products-banner-benefit {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 5px;
+
+        min-width: 0;
+
+        text-align: center;
+    }
+
+    .products-banner-benefit-icon {
+        width: 30px;
+
+        height: 30px;
+
+        font-size: 25px;
+    }
+
+    .products-banner-benefit div {
+        align-items: center;
+
+        gap: 0;
+
+        font-size: 9px;
+
+        line-height: 1.2;
+
+        text-align: center;
+    }
+
+    .products-banner-benefit strong,
+    .products-banner-benefit div span {
+        display: block;
+    }
+}
+
+
+/* ========================================
+   CELULARES PEQUENOS
+   ======================================== */
+
+@media (max-width: 520px) {
+
+    .products-banner {
+        padding:
+            12px 12px 0;
+    }
+
+
+    /* ----------------------------------------
+       BREADCRUMB
+       ---------------------------------------- */
+
+    .products-banner-breadcrumb {
+        margin-bottom: 10px;
+
+        font-size: 9px;
+    }
+
+
+    /* ----------------------------------------
+       CARD
+       ---------------------------------------- */
+
+    .products-banner-content {
+        grid-template-rows:
+            250px
+            1px
+            88px;
+
+        border-radius:
+            14px;
+    }
+
+
+    /* ----------------------------------------
+       TEXTO
+       ---------------------------------------- */
+
+    .products-banner-text {
+        width: 64%;
+
+        padding:
+            15px 0 16px 8px;
+    }
+
+    .products-banner-label {
+        margin-bottom: 7px;
+
+        font-size: 6px;
+
+        letter-spacing: 3px;
+    }
+
+    .products-banner-text h1 {
+        font-size:
+            clamp(26px, 7.8vw, 33px);
+
+        line-height: 1.04;
+
+        letter-spacing: -0.7px;
+    }
+
+    .products-banner-text p {
+        max-width: 245px;
+
+        margin-top: 10px;
+
+        font-size: 9px;
+
+        line-height: 1.35;
+    }
+
+
+    /* ----------------------------------------
+       IMAGEM
+       ---------------------------------------- */
+
+    .products-banner-image {
+        right: -10%;
+
+        width: 78%;
+
+        height: 250px;
+    }
+
+    .products-banner-image img {
+        width: 100%;
+
+        max-width: none;
+
+        object-position: right bottom;
+    }
+
+
+    /* ----------------------------------------
+       LINHA
+       ---------------------------------------- */
+
+    .products-banner-content::after {
+        width:
+            calc(100% - 14px);
+    }
+
+
+    /* ----------------------------------------
+       BENEFÍCIOS
+       ---------------------------------------- */
+
+    .products-banner-benefits {
+        padding:
+            7px 4px 7px;
+    }
+
+    .products-banner-benefit {
+        gap: 4px;
+    }
+
+    .products-banner-benefit-icon {
+        width: 27px;
+
+        height: 27px;
+
+        font-size: 22px;
+    }
+
+    .products-banner-benefit div {
+        font-size: 8px;
+
+        line-height: 1.2;
+    }
+}
