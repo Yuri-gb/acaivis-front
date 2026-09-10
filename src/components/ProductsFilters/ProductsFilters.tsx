@@ -1,15 +1,11 @@
 import './ProductsFilters.css'
 
 import {
-    FaCrown,
     FaLeaf,
-    FaSnowflake,
     FaDollarSign,
     FaBoxOpen,
     FaChevronUp,
-    FaChevronDown,
     FaTimes,
-    FaTrash
 } from 'react-icons/fa'
 
 import mascotImage
