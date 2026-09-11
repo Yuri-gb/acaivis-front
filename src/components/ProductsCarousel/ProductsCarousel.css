@@ -1,0 +1,393 @@
+/* ========================================
+   WRAPPER
+   ======================================== */
+
+.products-carousel-wrapper {
+
+    width: 100%;
+
+}
+
+
+/* ========================================
+   CARROSSEL
+   ======================================== */
+
+.products-carousel {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    max-width: 1160px;
+
+    margin: 0 auto;
+
+}
+
+
+/* ========================================
+   ÁREA VISÍVEL
+   ======================================== */
+
+.products-carousel-viewport {
+
+    width: 100%;
+
+    overflow: hidden;
+
+}
+
+
+/* ========================================
+   TRACK
+   ======================================== */
+
+.products-carousel-track {
+
+    --carousel-index: 0;
+
+    display: flex;
+
+    gap: 18px;
+
+    width: 100%;
+
+    will-change: transform;
+
+    transform:
+        translateX(
+            calc(
+                var(--carousel-index) *
+                (-25% - 4.5px)
+            )
+        );
+}
+
+
+/* ========================================
+   SLIDE
+   ======================================== */
+
+.products-carousel-slide {
+
+    flex: 0 0
+        calc(
+            (100% - 54px) / 4
+        );
+
+    min-width: 0;
+}
+
+
+/* ========================================
+   BOTÕES
+   ======================================== */
+
+.products-carousel-button {
+
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 38px;
+
+    height: 38px;
+
+    padding: 0;
+
+    border: 1px solid
+        rgba(160, 32, 240, 0.65);
+
+    border-radius: 50%;
+
+    background:
+        rgba(13, 10, 23, 0.95);
+
+    color: white;
+
+    cursor: pointer;
+
+    transform:
+        translateY(-50%);
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.products-carousel-button:hover:not(:disabled) {
+
+    background:
+        #a020f0;
+
+    border-color:
+        #a020f0;
+
+    box-shadow:
+        0 0 18px
+        rgba(160, 32, 240, 0.35);
+
+    transform:
+        translateY(-50%)
+        scale(1.05);
+}
+
+
+.products-carousel-button:disabled {
+
+    opacity: 0.35;
+
+    cursor: default;
+}
+
+
+.products-carousel-button-left {
+
+    left: -42px;
+
+}
+
+
+.products-carousel-button-right {
+
+    right: -42px;
+
+}
+
+
+.products-carousel-button svg {
+
+    width: 13px;
+
+    height: 13px;
+
+}
+
+
+/* ========================================
+   INDICADORES
+   ======================================== */
+
+.products-carousel-dots {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 22px;
+
+}
+
+
+.products-carousel-dot {
+
+    width: 7px;
+
+    height: 7px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.25);
+
+    cursor: pointer;
+
+    transition:
+        width 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+.products-carousel-dot.active {
+
+    width: 22px;
+
+    border-radius: 999px;
+
+    background:
+        #a020f0;
+
+}
+
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 1000px) {
+
+    .products-carousel {
+
+        max-width: 100%;
+
+    }
+
+
+    .products-carousel-track {
+
+        gap: 14px;
+
+        transform:
+            translateX(
+                calc(
+                    var(--carousel-index) *
+                    (-25% - 3.5px)
+                )
+            );
+
+    }
+
+
+    .products-carousel-slide {
+
+        flex-basis:
+            calc(
+                (100% - 42px) / 4
+            );
+
+    }
+
+
+    .products-carousel-button-left {
+
+        left: -32px;
+
+    }
+
+
+    .products-carousel-button-right {
+
+        right: -32px;
+
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 792px) {
+
+    .products-carousel-track {
+
+        gap: 12px;
+
+        transform:
+            translateX(
+                calc(
+                    var(--carousel-index) *
+                    (-50% - 6px)
+                )
+            );
+
+    }
+
+
+    .products-carousel-slide {
+
+        flex: 0 0
+            calc(
+                (100% - 12px) / 2
+            );
+
+    }
+
+
+    .products-carousel-button-left {
+
+        left: -22px;
+
+    }
+
+
+    .products-carousel-button-right {
+
+        right: -22px;
+
+    }
+
+}
+
+
+/* ========================================
+   CELULARES PEQUENOS
+   ======================================== */
+
+@media (max-width: 520px) {
+
+    .products-carousel-button {
+
+        width: 34px;
+
+        height: 34px;
+
+    }
+
+
+    .products-carousel-button-left {
+
+        left: -17px;
+
+    }
+
+
+    .products-carousel-button-right {
+
+        right: -17px;
+
+    }
+
+
+    .products-carousel-button svg {
+
+        width: 11px;
+
+        height: 11px;
+
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .products-carousel-button-left {
+
+        left: -15px;
+
+    }
+
+
+    .products-carousel-button-right {
+
+        right: -15px;
+
+    }
+
+}

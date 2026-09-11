@@ -8,20 +8,16 @@ import AboutSection from './components/AboutSection/AboutSection'
 import Footer from './components/Footer/Footer'
 
 import Products from './pages/Products/Products'
+import Cart from './pages/Cart/Cart'
 
 function Home() {
     return (
         <>
             <Navbar />
-
             <Hero />
-
             <ProductsSection />
-
             <HowItWorks />
-
             <AboutSection />
-
             <Footer />
         </>
     )
@@ -30,9 +26,7 @@ function Home() {
 function App() {
     return (
         <BrowserRouter>
-
             <Routes>
-
                 <Route
                     path="/"
                     element={<Home />}
@@ -43,8 +37,11 @@ function App() {
                     element={<Products />}
                 />
 
+                <Route
+                    path="/carrinho"
+                    element={<Cart />}
+                />
             </Routes>
-
         </BrowserRouter>
     )
 }

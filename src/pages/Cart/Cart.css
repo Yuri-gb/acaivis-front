@@ -1,0 +1,1071 @@
+/* ========================================
+   PÁGINA
+   ======================================== */
+
+.cart-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #100d1d;
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   MAIN
+   ======================================== */
+
+.cart-main {
+    width: 100%;
+    padding: 18px 4% 80px;
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BREADCRUMB
+   ======================================== */
+
+.cart-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto 20px;
+
+    color: rgba(255, 255, 255, 0.48);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+}
+
+
+.cart-breadcrumb a {
+    color: rgba(255, 255, 255, 0.65);
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+
+.cart-breadcrumb a:hover {
+    color: #a020f0;
+}
+
+
+.cart-breadcrumb svg {
+    color: rgba(255, 255, 255, 0.28);
+    font-size: 8px;
+}
+
+
+.cart-breadcrumb span {
+    color: rgba(255, 255, 255, 0.38);
+}
+
+
+/* ========================================
+   CARRINHO VAZIO
+   ======================================== */
+
+.cart-empty {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    max-width: 1400px;
+
+    min-height: 390px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #170b22 0%,
+            #100b18 48%,
+            #08070f 100%
+        );
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   CONTEÚDO
+   ======================================== */
+
+.cart-empty-content {
+    position: relative;
+
+    z-index: 3;
+
+    width: 50%;
+
+    padding:
+        50px 20px 50px 55px;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   TÍTULO
+   ======================================== */
+
+.cart-empty-content h1 {
+    display: block;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: clamp(34px, 4vw, 54px);
+
+    font-weight: 800;
+
+    line-height: 1.02;
+}
+
+
+/* ========================================
+   "ESTÁ VAZIO"
+   ======================================== */
+
+.cart-empty-title-image {
+    display: block;
+
+    width: 300px;
+
+    max-width: 100%;
+
+    height: auto;
+
+    margin-top: 4px;
+}
+
+
+/* ========================================
+   DESCRIÇÃO
+   ======================================== */
+
+.cart-empty-content p {
+    width: min(100%, 460px);
+
+    margin: 18px 0 0;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+    line-height: 1.65;
+}
+
+
+/* ========================================
+   BOTÃO
+   ======================================== */
+
+.cart-empty-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 27px;
+
+    padding:
+        13px 21px;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a020f0,
+            #7b00d4
+        );
+
+    color: #ffffff;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 8px 25px
+        rgba(160, 32, 240, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.cart-empty-button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(160, 32, 240, 0.32);
+}
+
+
+.cart-empty-button svg {
+    font-size: 12px;
+}
+
+
+/* ========================================
+   IMAGEM DO CARRINHO
+   ======================================== */
+
+.cart-empty-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* ========================================
+   TRANSIÇÃO / INVASÃO NO CONTEÚDO
+   ======================================== */
+
+.cart-empty-image::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 0;
+
+    width: 58%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #170b22 0%,
+            rgba(23, 11, 34, 0.92) 20%,
+            rgba(23, 11, 34, 0.65) 42%,
+            rgba(23, 11, 34, 0.22) 68%,
+            rgba(23, 11, 34, 0) 100%
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   IMAGEM
+   ======================================== */
+
+.cart-empty-image img {
+    position: absolute;
+
+    top: 50%;
+    right: 0;
+
+    display: block;
+
+    width: auto;
+    height: 100%;
+
+    max-width: none;
+    max-height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    z-index: 1;
+
+    transform: translateY(-50%);
+}
+
+
+/* ========================================
+   RECOMENDAÇÕES
+   ======================================== */
+
+.cart-recommendations {
+    width: 100%;
+
+    max-width: 1400px;
+
+    margin:
+        65px auto 0;
+}
+
+
+/* ========================================
+   CABEÇALHO
+   ======================================== */
+
+.cart-recommendations-heading {
+    position: relative;
+
+    margin-bottom: 25px;
+}
+
+
+/* ========================================
+   TÍTULO DAS RECOMENDAÇÕES
+   ======================================== */
+
+.cart-recommendations-heading h2 {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    width: fit-content;
+
+    max-width: 100%;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size:
+        clamp(32px, 3.2vw, 48px);
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    letter-spacing:
+        -1.5px;
+}
+
+
+/* ========================================
+   IMAGEM "GOSTAR"
+   ======================================== */
+
+.cart-recommendations-title-image {
+    display: block;
+
+    width:
+        clamp(125px, 11vw, 175px);
+
+    height: auto;
+
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   SUBTÍTULO
+   ======================================== */
+
+.cart-recommendations-heading p {
+    margin:
+        10px 0 0;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 400;
+
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   CARROSSEL
+   ======================================== */
+
+.cart-recommendations .products-carousel-wrapper {
+    width: 100%;
+}
+
+
+.cart-recommendations .products-carousel {
+    max-width: 100%;
+}
+
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    .cart-main {
+        padding:
+            18px 6% 75px;
+    }
+
+
+    .cart-empty {
+        min-height: 360px;
+    }
+
+
+    .cart-empty-content {
+        padding:
+            40px 20px 40px 35px;
+    }
+
+
+    .cart-empty-content {
+        width: 54%;
+    }
+
+
+    .cart-empty-image {
+        min-height: 0;
+    }
+
+
+    .cart-empty-image img {
+        right: 0;
+        height: 100%;
+    }
+
+
+    .cart-empty-image::before {
+        width: 55%;
+    }
+
+
+    .cart-recommendations-heading h2 {
+        font-size:
+            clamp(30px, 4vw, 40px);
+    }
+
+
+    .cart-recommendations-title-image {
+        width:
+            clamp(115px, 14vw, 150px);
+    }
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 792px) {
+
+    .cart-main {
+        padding:
+            12px 20px 50px;
+    }
+
+
+    /* ----------------------------------------
+       BREADCRUMB
+       ---------------------------------------- */
+
+    .cart-breadcrumb {
+        margin-bottom: 16px;
+
+        font-size: 10px;
+    }
+
+
+    /* ----------------------------------------
+       HERO
+       ---------------------------------------- */
+
+    .cart-empty {
+        position: relative;
+
+        display: block;
+
+        width: 100%;
+
+        height: 452px;
+
+        min-height: 452px;
+
+        border-radius: 16px;
+    }
+
+
+    /* ----------------------------------------
+       CONTEÚDO
+       ---------------------------------------- */
+
+    .cart-empty-content {
+        position: relative;
+
+        z-index: 4;
+
+        width: 100%;
+
+        height: 100%;
+
+        padding:
+            70px 32px 30px;
+
+        box-sizing: border-box;
+    }
+
+
+    /* ----------------------------------------
+       TÍTULO
+       ---------------------------------------- */
+
+    .cart-empty-content h1 {
+        font-size:
+            clamp(31px, 7.5vw, 38px);
+
+        line-height: 1;
+
+        max-width: 320px;
+    }
+
+
+    /* ----------------------------------------
+       ESTÁ VAZIO
+       ---------------------------------------- */
+
+    .cart-empty-title-image {
+        width:
+            min(220px, 76%);
+
+        margin-top: 2px;
+    }
+
+
+    /* ----------------------------------------
+       TEXTO
+       ---------------------------------------- */
+
+    .cart-empty-content p {
+        width:
+            min(100%, 305px);
+
+        margin-top: 15px;
+
+        color:
+            rgba(255, 255, 255, 0.86);
+
+        font-size: 12px;
+
+        line-height: 1.55;
+    }
+
+
+    .cart-empty-content p + p {
+        margin-top: 9px;
+    }
+
+
+    /* ----------------------------------------
+       BOTÃO
+       ---------------------------------------- */
+
+    .cart-empty-button {
+        margin-top: 18px;
+
+        padding:
+            12px 19px;
+
+        border-radius: 9px;
+
+        font-size: 11.5px;
+    }
+
+
+    /* ----------------------------------------
+       IMAGEM
+       ---------------------------------------- */
+
+    .cart-empty-image {
+        position: absolute;
+
+        inset: 0;
+
+        z-index: 1;
+
+        width: 100%;
+
+        height: 100%;
+
+        min-height: 0;
+
+        margin: 0;
+
+        overflow: hidden;
+
+        pointer-events: none;
+    }
+
+
+    /* ----------------------------------------
+       TRANSIÇÃO LATERAL MOBILE
+       ---------------------------------------- */
+
+    .cart-empty-image::before {
+        left: 0;
+
+        width: 100%;
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(13, 9, 21, 0.99) 0%,
+                rgba(13, 9, 21, 0.97) 18%,
+                rgba(13, 9, 21, 0.88) 38%,
+                rgba(13, 9, 21, 0.58) 62%,
+                rgba(13, 9, 21, 0.14) 100%
+            );
+
+        z-index: 1;
+    }
+
+
+    /* ----------------------------------------
+       TRANSIÇÃO SUPERIOR MOBILE
+       ---------------------------------------- */
+
+    .cart-empty-image::after {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        right: 0;
+
+        height: 34%;
+
+        background:
+            linear-gradient(
+                to bottom,
+                #0d0915 0%,
+                rgba(13, 9, 21, 0.97) 8%,
+                rgba(13, 9, 21, 0.78) 24%,
+                rgba(13, 9, 21, 0.42) 48%,
+                rgba(13, 9, 21, 0.14) 72%,
+                rgba(13, 9, 21, 0) 100%
+            );
+
+        z-index: 2;
+
+        pointer-events: none;
+    }
+
+
+    /* ----------------------------------------
+       ARTE DO HERO MOBILE
+       ---------------------------------------- */
+
+    .cart-empty-image img {
+        position: absolute;
+
+        top: 50%;
+        right: 0;
+
+        width: auto;
+
+        height: 100%;
+
+        max-width: none;
+        max-height: 100%;
+
+        object-fit: contain;
+
+        object-position: center;
+
+        transform: translateY(-50%);
+    }
+
+
+    /* ----------------------------------------
+       RECOMENDAÇÕES
+       ---------------------------------------- */
+
+    .cart-recommendations {
+        margin-top: 48px;
+    }
+
+
+    .cart-recommendations-heading {
+        margin-bottom: 18px;
+
+        overflow: hidden;
+    }
+
+
+    /* ----------------------------------------
+       TÍTULO
+       ---------------------------------------- */
+
+    .cart-recommendations-heading h2 {
+        display: flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        width: 100%;
+
+        font-size:
+            clamp(26px, 7.3vw, 34px);
+
+        line-height: 1;
+
+        letter-spacing:
+            -1.2px;
+
+        white-space: nowrap;
+    }
+
+
+    /* ----------------------------------------
+       GOSTAR
+       ---------------------------------------- */
+
+    .cart-recommendations-title-image {
+        width:
+            clamp(105px, 28vw, 130px);
+
+        max-width: none;
+    }
+
+
+    /* ----------------------------------------
+       SUBTÍTULO
+       ---------------------------------------- */
+
+    .cart-recommendations-heading p {
+        margin-top: 8px;
+
+        font-size: 10px;
+
+        line-height: 1.5;
+    }
+
+
+    /* ----------------------------------------
+       CARROSSEL
+       ---------------------------------------- */
+
+    .cart-recommendations .products-carousel-wrapper {
+        width: 100%;
+
+        overflow: hidden;
+    }
+
+
+    .cart-recommendations .products-carousel {
+        width: 100%;
+
+        max-width: none;
+    }
+}
+
+
+/* ========================================
+   MOBILE PEQUENO
+   ======================================== */
+
+@media (max-width: 480px) {
+
+    .cart-main {
+        padding:
+            10px 20px 42px;
+    }
+
+
+    /* ----------------------------------------
+       BREADCRUMB
+       ---------------------------------------- */
+
+    .cart-breadcrumb {
+        margin-bottom: 14px;
+
+        padding-left: 1px;
+
+        gap: 7px;
+
+        font-size: 9px;
+    }
+
+
+    /* ----------------------------------------
+       HERO
+       ---------------------------------------- */
+
+    .cart-empty {
+        height: 452px;
+
+        min-height: 452px;
+
+        border-radius: 15px;
+    }
+
+
+    /* ----------------------------------------
+       CONTEÚDO
+       ---------------------------------------- */
+
+    .cart-empty-content {
+        position: relative;
+
+        z-index: 4;
+
+        width: 100%;
+
+        height: 100%;
+
+        padding:
+            70px 32px 30px;
+
+        box-sizing: border-box;
+    }
+
+
+    /* ----------------------------------------
+       TÍTULO
+       ---------------------------------------- */
+
+    .cart-empty-content h1 {
+        font-size: 30px;
+
+        line-height: 1;
+
+        max-width: 290px;
+    }
+
+
+    /* ----------------------------------------
+       ESTÁ VAZIO
+       ---------------------------------------- */
+
+    .cart-empty-title-image {
+        width: 210px;
+
+        max-width: 100%;
+
+        margin-top: 2px;
+    }
+
+
+    /* ----------------------------------------
+       TEXTO
+       ---------------------------------------- */
+
+    .cart-empty-content p {
+        width:
+            min(100%, 275px);
+
+        margin-top: 15px;
+
+        color:
+            rgba(255, 255, 255, 0.86);
+
+        font-size: 11.5px;
+
+        line-height: 1.55;
+    }
+
+
+    .cart-empty-content p + p {
+        margin-top: 9px;
+    }
+
+
+    /* ----------------------------------------
+       BOTÃO
+       ---------------------------------------- */
+
+    .cart-empty-button {
+        margin-top: 17px;
+
+        padding:
+            11px 18px;
+
+        font-size: 11px;
+    }
+
+
+    /* ----------------------------------------
+       IMAGEM
+       ---------------------------------------- */
+
+    .cart-empty-image {
+        height: 100%;
+
+        min-height: 0;
+    }
+
+
+    /* ----------------------------------------
+       TRANSIÇÃO LATERAL MOBILE PEQUENO
+       ---------------------------------------- */
+
+    .cart-empty-image::before {
+        left: 0;
+
+        width: 100%;
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(13, 9, 21, 0.99) 0%,
+                rgba(13, 9, 21, 0.97) 18%,
+                rgba(13, 9, 21, 0.88) 38%,
+                rgba(13, 9, 21, 0.58) 62%,
+                rgba(13, 9, 21, 0.14) 100%
+            );
+
+        z-index: 1;
+    }
+
+
+    /* ----------------------------------------
+       TRANSIÇÃO SUPERIOR MOBILE PEQUENO
+       ---------------------------------------- */
+
+    .cart-empty-image::after {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        right: 0;
+
+        height: 35%;
+
+        background:
+            linear-gradient(
+                to bottom,
+                #0d0915 0%,
+                rgba(13, 9, 21, 0.97) 8%,
+                rgba(13, 9, 21, 0.76) 25%,
+                rgba(13, 9, 21, 0.40) 48%,
+                rgba(13, 9, 21, 0.12) 72%,
+                rgba(13, 9, 21, 0) 100%
+            );
+
+        z-index: 2;
+
+        pointer-events: none;
+    }
+
+
+    /* ----------------------------------------
+       ARTE DO HERO MOBILE PEQUENO
+       ---------------------------------------- */
+
+    .cart-empty-image img {
+        position: absolute;
+
+        top: 50%;
+        right: 0;
+
+        width: auto;
+
+        height: 100%;
+
+        max-width: none;
+        max-height: 100%;
+
+        object-fit: contain;
+
+        object-position: center;
+
+        transform: translateY(-50%);
+    }
+
+
+    /* ----------------------------------------
+       RECOMENDAÇÕES
+       ---------------------------------------- */
+
+    .cart-recommendations {
+        margin-top: 39px;
+    }
+
+
+    .cart-recommendations-heading {
+        margin-bottom: 16px;
+    }
+
+
+    /* ----------------------------------------
+       TÍTULO
+       ---------------------------------------- */
+
+    .cart-recommendations-heading h2 {
+        gap: 5px;
+
+        font-size: 26px;
+
+        letter-spacing: -1px;
+    }
+
+
+    /* ----------------------------------------
+       GOSTAR
+       ---------------------------------------- */
+
+    .cart-recommendations-title-image {
+        width: 105px;
+    }
+
+
+    /* ----------------------------------------
+       SUBTÍTULO
+       ---------------------------------------- */
+
+    .cart-recommendations-heading p {
+        margin-top: 7px;
+
+        font-size: 9px;
+    }
+}

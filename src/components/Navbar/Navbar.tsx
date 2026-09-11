@@ -96,6 +96,9 @@ function Navbar() {
     const isProductsActive =
         location.pathname === '/produtos'
 
+    const isCartActive =
+        location.pathname === '/carrinho'
+
     const isHowItWorksActive =
         location.pathname === '/como-funciona'
 
@@ -220,8 +223,14 @@ function Navbar() {
                     ======================================== */}
 
                 <a
-                    className="cart-button"
-                    href="#carrinho"
+                    className={
+                        `cart-button ${
+                            isCartActive
+                                ? 'active'
+                                : ''
+                        }`
+                    }
+                    href="/carrinho"
                 >
 
                     <FaShoppingCart />
@@ -474,8 +483,14 @@ function Navbar() {
                             ======================================== */}
 
                         <a
-                            className="mobile-menu-cart"
-                            href="#carrinho"
+                            className={
+                                `mobile-menu-cart ${
+                                    isCartActive
+                                        ? 'active'
+                                        : ''
+                                }`
+                            }
+                            href="/carrinho"
                         >
 
                             <FaShoppingCart />
