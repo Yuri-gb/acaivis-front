@@ -51,10 +51,12 @@
     font-weight: 400;
 }
 
+
 .products-banner-breadcrumb span:nth-child(2) {
     color:
         rgba(255, 255, 255, 0.35);
 }
+
 
 .products-banner-breadcrumb span:last-child {
     color:
@@ -101,6 +103,7 @@
     z-index: 3;
 }
 
+
 .products-banner-label {
     display: block;
 
@@ -119,6 +122,7 @@
 
     letter-spacing: 5px;
 }
+
 
 .products-banner-text h1 {
     max-width: 520px;
@@ -139,10 +143,12 @@
     line-height: 1.02;
 }
 
+
 .products-banner-text h1 span {
     color:
         #a020f0;
 }
+
 
 .products-banner-text p {
     width:
@@ -195,6 +201,7 @@
     overflow: visible;
 }
 
+
 .products-banner-image img {
     display: block;
 
@@ -235,6 +242,7 @@
         rgba(255, 255, 255, 0.18);
 }
 
+
 .products-banner-benefit {
     display: flex;
 
@@ -244,6 +252,7 @@
 
     min-width: 0;
 }
+
 
 .products-banner-benefit-icon {
     display: flex;
@@ -264,6 +273,7 @@
     font-size: 27px;
 }
 
+
 .products-banner-benefit div {
     display: flex;
 
@@ -282,11 +292,13 @@
     line-height: 1.3;
 }
 
+
 .products-banner-benefit strong {
     color: white;
 
     font-weight: 600;
 }
+
 
 .products-banner-benefit div span {
     color:
@@ -307,12 +319,14 @@
             24px 3% 0;
     }
 
+
     .products-banner-content {
         grid-template-columns:
             minmax(260px, 0.9fr)
             minmax(350px, 1.2fr)
             145px;
     }
+
 
     .products-banner-image {
         min-height: 210px;
@@ -321,15 +335,18 @@
             0 4px;
     }
 
+
     .products-banner-image img {
         max-width: 600px;
 
         max-height: 210px;
     }
 
+
     .products-banner-text {
         padding-bottom: 24px;
     }
+
 
     .products-banner-benefits {
         gap: 12px;
@@ -337,9 +354,11 @@
         padding-left: 14px;
     }
 
+
     .products-banner-benefit {
         gap: 7px;
     }
+
 
     .products-banner-benefit-icon {
         width: 28px;
@@ -348,6 +367,7 @@
 
         font-size: 23px;
     }
+
 
     .products-banner-benefit div {
         font-size: 9px;
@@ -456,6 +476,7 @@
         z-index: 4;
     }
 
+
     .products-banner-label {
         margin-bottom: 8px;
 
@@ -463,6 +484,7 @@
 
         letter-spacing: 4px;
     }
+
 
     .products-banner-text h1 {
         max-width: 100%;
@@ -476,6 +498,7 @@
 
         letter-spacing: -0.8px;
     }
+
 
     .products-banner-text p {
         width: 100%;
@@ -501,11 +524,7 @@
 
         right: -9%;
 
-        display: flex;
-
-        align-items: flex-end;
-
-        justify-content: flex-end;
+        display: block;
 
         width: 76%;
 
@@ -528,22 +547,30 @@
         pointer-events: none;
     }
 
+
     .products-banner-image img {
+        position: absolute;
+
+        top: 50%;
+
+        right: 0;
+
         display: block;
 
-        width: 100%;
+        width: auto;
+
+        height: 100%;
 
         max-width: none;
 
-        height: auto;
-
-        max-height: none;
+        max-height: 100%;
 
         object-fit: contain;
 
-        object-position: right bottom;
+        object-position: right center;
 
-        transform: none;
+        transform:
+            translateY(-50%);
 
         flex-shrink: 0;
     }
@@ -609,6 +636,7 @@
         z-index: 5;
     }
 
+
     .products-banner-benefit {
         display: flex;
 
@@ -625,6 +653,7 @@
         text-align: center;
     }
 
+
     .products-banner-benefit-icon {
         width: 30px;
 
@@ -632,6 +661,7 @@
 
         font-size: 25px;
     }
+
 
     .products-banner-benefit div {
         align-items: center;
@@ -644,6 +674,7 @@
 
         text-align: center;
     }
+
 
     .products-banner-benefit strong,
     .products-banner-benefit div span {
@@ -701,6 +732,7 @@
             15px 0 16px 8px;
     }
 
+
     .products-banner-label {
         margin-bottom: 7px;
 
@@ -708,6 +740,7 @@
 
         letter-spacing: 3px;
     }
+
 
     .products-banner-text h1 {
         font-size:
@@ -717,6 +750,7 @@
 
         letter-spacing: -0.7px;
     }
+
 
     .products-banner-text p {
         max-width: 245px;
@@ -741,12 +775,28 @@
         height: 250px;
     }
 
+
     .products-banner-image img {
-        width: 100%;
+        position: absolute;
+
+        top: 50%;
+
+        right: 0;
+
+        width: auto;
+
+        height: 100%;
 
         max-width: none;
 
-        object-position: right bottom;
+        max-height: 100%;
+
+        object-fit: contain;
+
+        object-position: right center;
+
+        transform:
+            translateY(-50%);
     }
 
 
@@ -769,9 +819,11 @@
             7px 4px 7px;
     }
 
+
     .products-banner-benefit {
         gap: 4px;
     }
+
 
     .products-banner-benefit-icon {
         width: 27px;
@@ -780,6 +832,7 @@
 
         font-size: 22px;
     }
+
 
     .products-banner-benefit div {
         font-size: 8px;

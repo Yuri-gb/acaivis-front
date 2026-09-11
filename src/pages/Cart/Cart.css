@@ -468,6 +468,7 @@
 
     .cart-empty-image img {
         right: 0;
+
         height: 100%;
     }
 
@@ -539,14 +540,14 @@
     .cart-empty-content {
         position: relative;
 
-        z-index: 4;
+        z-index: 3;
 
-        width: 100%;
+        width: 54%;
 
         height: 100%;
 
         padding:
-            70px 32px 30px;
+            70px 20px 30px 32px;
 
         box-sizing: border-box;
     }
@@ -572,7 +573,7 @@
 
     .cart-empty-title-image {
         width:
-            min(220px, 76%);
+            min(220px, 100%);
 
         margin-top: 2px;
     }
@@ -627,8 +628,6 @@
 
         inset: 0;
 
-        z-index: 1;
-
         width: 100%;
 
         height: 100%;
@@ -640,72 +639,16 @@
         overflow: hidden;
 
         pointer-events: none;
-    }
-
-
-    /* ----------------------------------------
-       TRANSIÇÃO LATERAL MOBILE
-       ---------------------------------------- */
-
-    .cart-empty-image::before {
-        left: 0;
-
-        width: 100%;
-
-        background:
-            linear-gradient(
-                90deg,
-                rgba(13, 9, 21, 0.99) 0%,
-                rgba(13, 9, 21, 0.97) 18%,
-                rgba(13, 9, 21, 0.88) 38%,
-                rgba(13, 9, 21, 0.58) 62%,
-                rgba(13, 9, 21, 0.14) 100%
-            );
 
         z-index: 1;
     }
 
 
-    /* ----------------------------------------
-       TRANSIÇÃO SUPERIOR MOBILE
-       ---------------------------------------- */
-
-    .cart-empty-image::after {
-        content: "";
-
-        position: absolute;
-
-        top: 0;
-        left: 0;
-        right: 0;
-
-        height: 34%;
-
-        background:
-            linear-gradient(
-                to bottom,
-                #0d0915 0%,
-                rgba(13, 9, 21, 0.97) 8%,
-                rgba(13, 9, 21, 0.78) 24%,
-                rgba(13, 9, 21, 0.42) 48%,
-                rgba(13, 9, 21, 0.14) 72%,
-                rgba(13, 9, 21, 0) 100%
-            );
-
-        z-index: 2;
-
-        pointer-events: none;
-    }
-
-
-    /* ----------------------------------------
-       ARTE DO HERO MOBILE
-       ---------------------------------------- */
-
     .cart-empty-image img {
         position: absolute;
 
         top: 50%;
+
         right: 0;
 
         width: auto;
@@ -713,13 +656,22 @@
         height: 100%;
 
         max-width: none;
+
         max-height: 100%;
 
         object-fit: contain;
 
         object-position: center;
 
-        transform: translateY(-50%);
+        transform:
+            translateY(-50%);
+    }
+
+
+    .cart-empty-image::before {
+        display: block;
+
+        width: 55%;
     }
 
 
@@ -735,7 +687,7 @@
     .cart-recommendations-heading {
         margin-bottom: 18px;
 
-        overflow: hidden;
+        overflow: visible;
     }
 
 
@@ -746,11 +698,15 @@
     .cart-recommendations-heading h2 {
         display: flex;
 
+        flex-wrap: nowrap;
+
         align-items: center;
 
         gap: 6px;
 
         width: 100%;
+
+        max-width: 100%;
 
         font-size:
             clamp(26px, 7.3vw, 34px);
@@ -773,6 +729,10 @@
             clamp(105px, 28vw, 130px);
 
         max-width: none;
+
+        height: auto;
+
+        flex-shrink: 0;
     }
 
 
@@ -809,10 +769,11 @@
 
 
 /* ========================================
-   MOBILE PEQUENO
+   MOBILE REAL
+   ATÉ 500px
    ======================================== */
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
 
     .cart-main {
         padding:
@@ -849,7 +810,7 @@
 
 
     /* ----------------------------------------
-       CONTEÚDO
+       CONTEÚDO SOBRE A IMAGEM
        ---------------------------------------- */
 
     .cart-empty-content {
@@ -878,6 +839,10 @@
         line-height: 1;
 
         max-width: 290px;
+
+        text-shadow:
+            0 3px 12px
+            rgba(0, 0, 0, 0.55);
     }
 
 
@@ -891,6 +856,12 @@
         max-width: 100%;
 
         margin-top: 2px;
+
+        filter:
+            drop-shadow(
+                0 4px 8px
+                rgba(0, 0, 0, 0.35)
+            );
     }
 
 
@@ -905,11 +876,15 @@
         margin-top: 15px;
 
         color:
-            rgba(255, 255, 255, 0.86);
+            #ffffff;
 
         font-size: 11.5px;
 
         line-height: 1.55;
+
+        text-shadow:
+            0 2px 8px
+            rgba(0, 0, 0, 0.85);
     }
 
 
@@ -929,6 +904,12 @@
             11px 18px;
 
         font-size: 11px;
+
+        box-shadow:
+            0 8px 22px
+            rgba(0, 0, 0, 0.35),
+            0 6px 20px
+            rgba(160, 32, 240, 0.25);
     }
 
 
@@ -937,59 +918,50 @@
        ---------------------------------------- */
 
     .cart-empty-image {
-        height: 100%;
+        position: absolute;
 
-        min-height: 0;
-    }
-
-
-    /* ----------------------------------------
-       TRANSIÇÃO LATERAL MOBILE PEQUENO
-       ---------------------------------------- */
-
-    .cart-empty-image::before {
-        left: 0;
+        inset: 0;
 
         width: 100%;
 
-        background:
-            linear-gradient(
-                90deg,
-                rgba(13, 9, 21, 0.99) 0%,
-                rgba(13, 9, 21, 0.97) 18%,
-                rgba(13, 9, 21, 0.88) 38%,
-                rgba(13, 9, 21, 0.58) 62%,
-                rgba(13, 9, 21, 0.14) 100%
-            );
+        height: 100%;
+
+        min-height: 0;
+
+        margin: 0;
+
+        overflow: hidden;
+
+        pointer-events: none;
 
         z-index: 1;
     }
 
 
     /* ----------------------------------------
-       TRANSIÇÃO SUPERIOR MOBILE PEQUENO
+       CAMADA DE LEGIBILIDADE
+       SEM DIVIDIR O HERO
        ---------------------------------------- */
 
-    .cart-empty-image::after {
+    .cart-empty-image::before {
         content: "";
 
         position: absolute;
 
-        top: 0;
-        left: 0;
-        right: 0;
+        inset: 0;
 
-        height: 35%;
+        width: 100%;
+
+        height: 100%;
 
         background:
             linear-gradient(
-                to bottom,
-                #0d0915 0%,
-                rgba(13, 9, 21, 0.97) 8%,
-                rgba(13, 9, 21, 0.76) 25%,
-                rgba(13, 9, 21, 0.40) 48%,
-                rgba(13, 9, 21, 0.12) 72%,
-                rgba(13, 9, 21, 0) 100%
+                90deg,
+                rgba(8, 5, 15, 0.78) 0%,
+                rgba(8, 5, 15, 0.68) 22%,
+                rgba(8, 5, 15, 0.48) 43%,
+                rgba(8, 5, 15, 0.24) 65%,
+                rgba(8, 5, 15, 0.08) 100%
             );
 
         z-index: 2;
@@ -999,27 +971,32 @@
 
 
     /* ----------------------------------------
-       ARTE DO HERO MOBILE PEQUENO
+       NOVA ARTE MOBILE
        ---------------------------------------- */
 
     .cart-empty-image img {
         position: absolute;
 
         top: 50%;
-        right: 0;
 
-        width: auto;
+        left: 50%;
+
+        right: auto;
+
+        width: 100%;
 
         height: 100%;
 
         max-width: none;
-        max-height: 100%;
 
-        object-fit: contain;
+        max-height: none;
+
+        object-fit: cover;
 
         object-position: center;
 
-        transform: translateY(-50%);
+        transform:
+            translate(-50%, -50%);
     }
 
 
@@ -1034,19 +1011,39 @@
 
     .cart-recommendations-heading {
         margin-bottom: 16px;
+
+        overflow: visible;
     }
 
 
     /* ----------------------------------------
-       TÍTULO
+       TÍTULO — MESMA LINHA
        ---------------------------------------- */
 
     .cart-recommendations-heading h2 {
-        gap: 5px;
+        display: flex;
 
-        font-size: 26px;
+        flex-wrap: nowrap;
+
+        align-items: center;
+
+        gap: 4px;
+
+        width: 100%;
+
+        max-width: 100%;
+
+        margin: 0;
+
+        font-size: 24px;
+
+        line-height: 1;
 
         letter-spacing: -1px;
+
+        white-space: nowrap;
+
+        overflow: visible;
     }
 
 
@@ -1055,7 +1052,13 @@
        ---------------------------------------- */
 
     .cart-recommendations-title-image {
-        width: 105px;
+        width: 90px;
+
+        max-width: none;
+
+        height: auto;
+
+        flex-shrink: 0;
     }
 
 

@@ -66,6 +66,7 @@
                 (-25% - 4.5px)
             )
         );
+
 }
 
 
@@ -81,6 +82,7 @@
         );
 
     min-width: 0;
+
 }
 
 
@@ -108,7 +110,8 @@
 
     padding: 0;
 
-    border: 1px solid
+    border:
+        1px solid
         rgba(160, 32, 240, 0.65);
 
     border-radius: 50%;
@@ -128,8 +131,13 @@
         border-color 0.2s ease,
         transform 0.2s ease,
         box-shadow 0.2s ease;
+
 }
 
+
+/* ========================================
+   HOVER DOS BOTÕES
+   ======================================== */
 
 .products-carousel-button:hover:not(:disabled) {
 
@@ -146,16 +154,26 @@
     transform:
         translateY(-50%)
         scale(1.05);
+
 }
 
+
+/* ========================================
+   BOTÃO DESABILITADO
+   ======================================== */
 
 .products-carousel-button:disabled {
 
     opacity: 0.35;
 
     cursor: default;
+
 }
 
+
+/* ========================================
+   POSIÇÃO DOS BOTÕES
+   ======================================== */
 
 .products-carousel-button-left {
 
@@ -170,6 +188,10 @@
 
 }
 
+
+/* ========================================
+   ÍCONES
+   ======================================== */
 
 .products-carousel-button svg {
 
@@ -219,6 +241,7 @@
     transition:
         width 0.2s ease,
         background-color 0.2s ease;
+
 }
 
 
@@ -290,9 +313,40 @@
 
 /* ========================================
    MOBILE
+   501px ATÉ 792px
    ======================================== */
 
 @media (max-width: 792px) {
+
+    /* ----------------------------------------
+       ÁREA DE TOQUE
+       ---------------------------------------- */
+
+    .products-carousel-viewport {
+
+        width: 90%;
+
+        margin: 0 auto;
+
+        overflow: hidden;
+
+        touch-action: pan-y;
+
+        cursor: grab;
+
+    }
+
+
+    .products-carousel-viewport:active {
+
+        cursor: grabbing;
+
+    }
+
+
+    /* ----------------------------------------
+       TRACK
+       ---------------------------------------- */
 
     .products-carousel-track {
 
@@ -309,9 +363,14 @@
     }
 
 
+    /* ----------------------------------------
+       SLIDES
+       ---------------------------------------- */
+
     .products-carousel-slide {
 
-        flex: 0 0
+        flex:
+            0 0
             calc(
                 (100% - 12px) / 2
             );
@@ -319,29 +378,14 @@
     }
 
 
-    .products-carousel-button-left {
-
-        left: -22px;
-
-    }
-
-
-    .products-carousel-button-right {
-
-        right: -22px;
-
-    }
-
-}
-
-
-/* ========================================
-   CELULARES PEQUENOS
-   ======================================== */
-
-@media (max-width: 520px) {
+    /* ----------------------------------------
+       SETAS
+       DENTRO DO CARROSSEL
+       ---------------------------------------- */
 
     .products-carousel-button {
+
+        display: flex;
 
         width: 34px;
 
@@ -352,14 +396,14 @@
 
     .products-carousel-button-left {
 
-        left: -17px;
+        left: 2px;
 
     }
 
 
     .products-carousel-button-right {
 
-        right: -17px;
+        right: 2px;
 
     }
 
@@ -375,18 +419,61 @@
 }
 
 
-@media (max-width: 380px) {
+/* ========================================
+   MOBILE REAL
+   ABAIXO DE 500px
+   ======================================== */
 
-    .products-carousel-button-left {
+@media (max-width: 499px) {
 
-        left: -15px;
+    /* ----------------------------------------
+       ÁREA DE TOQUE
+       ---------------------------------------- */
+
+    .products-carousel-viewport {
+
+        width: 100%;
+
+        margin: 0;
+
+        overflow: hidden;
+
+        cursor: grab;
+
+        touch-action: pan-y;
 
     }
 
 
-    .products-carousel-button-right {
+    .products-carousel-viewport:active {
 
-        right: -15px;
+        cursor: grabbing;
+
+    }
+
+
+    /* ----------------------------------------
+       SETAS ESCONDIDAS
+       ---------------------------------------- */
+
+    .products-carousel-button {
+
+        display: none;
+
+    }
+
+}
+
+
+/* ========================================
+   CELULARES MUITO PEQUENOS
+   ======================================== */
+
+@media (max-width: 380px) {
+
+    .products-carousel-button {
+
+        display: none;
 
     }
 

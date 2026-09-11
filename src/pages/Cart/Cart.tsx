@@ -26,6 +26,9 @@ import acaiMorango
 import cartEmptyImage
     from '../../assets/images/cart/cart-empty.png'
 
+import cartEmptyMobileImage
+    from '../../assets/images/cart/cart-empty-mobile.png'
+
 import estaVazioImage
     from '../../assets/images/cart/esta-vazio.png'
 
@@ -42,7 +45,8 @@ const recommendedProducts: CarouselProduct[] = [
     {
         id: 1,
 
-        image: acaiTradicional,
+        image:
+            acaiTradicional,
 
         name:
             'Açaí Tradicional',
@@ -58,7 +62,8 @@ const recommendedProducts: CarouselProduct[] = [
     {
         id: 2,
 
-        image: acaiLeite,
+        image:
+            acaiLeite,
 
         name:
             'Açaí com Leite em Pó',
@@ -74,7 +79,8 @@ const recommendedProducts: CarouselProduct[] = [
     {
         id: 3,
 
-        image: acaiMorango,
+        image:
+            acaiMorango,
 
         name:
             'Açaí com Morango',
@@ -90,7 +96,8 @@ const recommendedProducts: CarouselProduct[] = [
     {
         id: 4,
 
-        image: acaiTradicional,
+        image:
+            acaiTradicional,
 
         name:
             'Combo Açaívis',
@@ -146,6 +153,7 @@ function Cart() {
 
                 <section className="cart-empty">
 
+
                     <div className="cart-empty-content">
 
 
@@ -173,18 +181,14 @@ function Cart() {
                            ======================================== */}
 
                         <p>
-
                             Parece que você ainda não adicionou
                             nenhum produto ao seu carrinho.
-
                         </p>
 
 
                         <p>
-
                             Que tal escolher um açaí e tornar
                             seu dia mais saboroso?
-
                         </p>
 
 
@@ -214,12 +218,22 @@ function Cart() {
 
                     <div className="cart-empty-image">
 
-                        <img
-                            src={cartEmptyImage}
-                            alt="Carrinho de compras vazio"
-                        />
+                        <picture>
+
+                            <source
+                                media="(max-width: 792px)"
+                                srcSet={cartEmptyMobileImage}
+                            />
+
+                            <img
+                                src={cartEmptyImage}
+                                alt="Carrinho de compras vazio"
+                            />
+
+                        </picture>
 
                     </div>
+
 
                 </section>
 
@@ -229,6 +243,7 @@ function Cart() {
                    ======================================== */}
 
                 <section className="cart-recommendations">
+
 
                     <div className="cart-recommendations-heading">
 
@@ -259,6 +274,7 @@ function Cart() {
                             recommendedProducts
                         }
                     />
+
 
                 </section>
 
