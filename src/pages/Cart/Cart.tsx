@@ -57,6 +57,10 @@ import {
     MOCK_CART_ENABLED
 } from '../../dev/mockCart'
 
+import {
+    deliveryOptions
+} from '../../dev/deliveryFee'
+
 
 /* ========================================
    PRODUTOS RECOMENDADOS
@@ -114,39 +118,6 @@ function formatPrice(value: number) {
 
 
 /* ========================================
-   MOCK DE ENTREGA
-   ======================================== */
-
-const mockDeliveryOptions = [
-    {
-        id: 'centro',
-        name: 'Centro',
-        price: 8
-    },
-    {
-        id: 'tomba',
-        name: 'Tomba',
-        price: 10
-    },
-    {
-        id: 'brasilia',
-        name: 'Brasília',
-        price: 12
-    },
-    {
-        id: 'sim',
-        name: 'SIM',
-        price: 15
-    },
-    {
-        id: 'sobradinho',
-        name: 'Sobradinho',
-        price: 14
-    }
-]
-
-
-/* ========================================
    PÁGINA
    ======================================== */
 
@@ -186,15 +157,15 @@ function Cart() {
 
 
     const selectedDelivery =
-        mockDeliveryOptions.find(
+        deliveryOptions.find(
             (option) =>
                 option.id === selectedDeliveryId
         ) ??
-        mockDeliveryOptions[2]
+        deliveryOptions[2]
 
     const deliveryFee =
         hasItems
-            ? selectedDelivery.price
+            ? selectedDelivery.fee
             : 0
 
 
@@ -544,7 +515,7 @@ function Cart() {
 
                                             <div className="cart-delivery-options">
 
-                                                {mockDeliveryOptions.map(
+                                                {deliveryOptions.map(
                                                     (option) => (
 
                                                         <button
@@ -583,7 +554,7 @@ function Cart() {
 
                                                             <strong>
                                                                 {formatPrice(
-                                                                    option.price
+                                                                    option.fee
                                                                 )}
                                                             </strong>
 
