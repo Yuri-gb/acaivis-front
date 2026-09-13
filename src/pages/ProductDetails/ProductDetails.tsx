@@ -1,5 +1,10 @@
 import { useMemo } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+
+import {
+    Link,
+    Navigate,
+    useParams
+} from 'react-router-dom'
 
 import './ProductDetails.css'
 
@@ -14,7 +19,6 @@ import ProductGallery
 
 import ProductInfo
     from '../../components/ProductInfo/ProductInfo'
-
 
 import ProductAbout
     from '../../components/ProductAbout/ProductAbout'
@@ -32,11 +36,9 @@ import { mockProducts } from '../../dev/mockProduct'
 /* ========================================
    PÁGINA DE DETALHES DO PRODUTO
    ======================================== */
-
 function ProductDetails() {
 
     const { id } = useParams()
-
 
     /* ========================================
        PRODUTO ATUAL
@@ -95,14 +97,10 @@ function ProductDetails() {
 
 
     return (
-
         <>
-
             <Navbar />
 
-
             <main className="product-details-page">
-
 
                 {/* ========================================
                     BREADCRUMB
@@ -110,17 +108,17 @@ function ProductDetails() {
 
                 <div className="product-details-breadcrumb">
 
-                    <a href="/">
+                    <Link to="/">
                         Início
-                    </a>
+                    </Link>
 
                     <span>
                         &gt;
                     </span>
 
-                    <a href="/produtos">
+                    <Link to="/produtos">
                         Produtos
-                    </a>
+                    </Link>
 
                     <span>
                         &gt;
@@ -143,7 +141,6 @@ function ProductDetails() {
                         product={product}
                     />
 
-
                     <ProductInfo
                         product={product}
                     />
@@ -154,8 +151,6 @@ function ProductDetails() {
                 {/* ========================================
                     BENEFÍCIOS
                     ======================================== */}
-
-
 
 
                 {/* ========================================
@@ -192,7 +187,6 @@ function ProductDetails() {
 
                         </div>
 
-
                         <ProductsCarousel
                             products={relatedProducts}
                         />
@@ -203,13 +197,10 @@ function ProductDetails() {
 
             </main>
 
-
             <Footer />
 
         </>
-
     )
 }
-
 
 export default ProductDetails

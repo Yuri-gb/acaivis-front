@@ -7,6 +7,8 @@ import {
     FaHeart
 } from 'react-icons/fa'
 
+import { Link } from 'react-router-dom'
+
 import logo from '../../assets/images/acaivis-logo.webp'
 
 
@@ -22,8 +24,8 @@ function Footer() {
 
                 {/* LOGO */}
 
-                <a
-                    href="/"
+                <Link
+                    to="/"
                     className="footer-logo"
                 >
 
@@ -32,32 +34,33 @@ function Footer() {
                         alt="Açaívis"
                     />
 
-                </a>
+                </Link>
 
 
                 {/* NAVEGAÇÃO */}
 
                 <nav className="footer-navigation">
 
-                    <a href="/">
+                    <Link to="/">
                         Início
-                    </a>
+                    </Link>
 
-                    <a href="/produtos">
+                    <Link to="/produtos">
                         Produtos
-                    </a>
+                    </Link>
 
-                    <a href="#como-funciona">
+                    <Link to="/#como-funciona">
                         Como Funciona
-                    </a>
+                    </Link>
 
-                    <a href="#depoimentos">
+                    <Link to="/#depoimentos">
                         Depoimentos
-                    </a>
+                    </Link>
 
-                    <a href="#sobre">
+                    <Link to="/#sobre">
                         Sobre
-                    </a>
+                    </Link>
+
                 </nav>
 
 
@@ -141,9 +144,7 @@ function Footer() {
 
 
         </footer>
-
     )
-
 }
 
 

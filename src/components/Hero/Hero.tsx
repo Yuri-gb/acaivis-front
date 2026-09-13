@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import './Hero.css'
 
 import aGenteSabe
@@ -39,13 +41,9 @@ function Hero() {
 
 
                 <h1>
-
                     Uma garrafa
-
                     <br />
-
                     não é suficiente.
-
                 </h1>
 
 
@@ -57,13 +55,9 @@ function Hero() {
 
 
                 <p className="hero-description">
-
                     Açaí de verdade, cremoso e geladinho,
-
                     <br />
-
                     pronto para deixar seu dia mais gostoso.
-
                 </p>
 
 
@@ -77,12 +71,12 @@ function Hero() {
                     </a>
 
 
-                    <a
-                        href="#produtos"
+                    <Link
+                        to="/produtos"
                         className="hero-button hero-button-secondary"
                     >
                         Ver produtos
-                    </a>
+                    </Link>
 
                 </div>
 
@@ -91,7 +85,6 @@ function Hero() {
         </section>
 
     )
-
 }
 
 

@@ -4,7 +4,10 @@ import logo from '../../assets/images/acaivis-logo.webp'
 
 import { useEffect, useState } from 'react'
 
-import { useLocation } from 'react-router-dom'
+import {
+    Link,
+    useLocation
+} from 'react-router-dom'
 
 import {
     FaWhatsapp,
@@ -52,6 +55,7 @@ function Navbar() {
         }
 
         setMenuOpen(true)
+
     }
 
 
@@ -65,12 +69,15 @@ function Navbar() {
                 setMenuClosing(false)
 
             }
+
         }
+
 
         window.addEventListener(
             'resize',
             handleResize
         )
+
 
         return () => {
 
@@ -120,14 +127,14 @@ function Navbar() {
 
             <div className="navbar-logo">
 
-                <a href="/">
+                <Link to="/">
 
                     <img
                         src={logo}
                         alt="Açaívis"
                     />
 
-                </a>
+                </Link>
 
             </div>
 
@@ -141,72 +148,73 @@ function Navbar() {
 
                 {/* Início */}
 
-                <a
+                <Link
                     className={
                         isHomeActive
                             ? 'active'
                             : ''
                     }
-                    href="/"
+                    to="/"
                 >
                     Início
-                </a>
+                </Link>
 
 
                 {/* Produtos */}
 
-                <a
+                <Link
                     className={
                         isProductsActive
                             ? 'active'
                             : ''
                     }
-                    href="/produtos"
+                    to="/produtos"
                 >
                     Produtos
-                </a>
+                </Link>
 
 
                 {/* Como Funciona */}
 
-                <a
+                <Link
                     className={
                         isHowItWorksActive
                             ? 'active'
                             : ''
                     }
-                    href="/#como-funciona"
+                    to="/#como-funciona"
                 >
                     Como Funciona
-                </a>
+                </Link>
 
 
                 {/* Depoimentos */}
 
-                <a
+                <Link
                     className={
                         isTestimonialsActive
                             ? 'active'
                             : ''
                     }
-                    href="/#depoimentos"
+                    to="/#depoimentos"
                 >
                     Depoimentos
-                </a>
+                </Link>
 
 
                 {/* Sobre */}
 
-                <a
+                <Link
                     className={
                         isAboutActive
                             ? 'active'
                             : ''
                     }
-                    href="/#sobre"
+                    to="/#sobre"
                 >
                     Sobre
-                </a>
+                </Link>
+
 
             </div>
 
@@ -222,7 +230,7 @@ function Navbar() {
                     CARRINHO
                     ======================================== */}
 
-                <a
+                <Link
                     className={
                         `cart-button ${
                             isCartActive
@@ -230,7 +238,7 @@ function Navbar() {
                                 : ''
                         }`
                     }
-                    href="/carrinho"
+                    to="/carrinho"
                 >
 
                     <FaShoppingCart />
@@ -239,7 +247,7 @@ function Navbar() {
                         0
                     </span>
 
-                </a>
+                </Link>
 
 
                 {/* ========================================
@@ -344,7 +352,7 @@ function Navbar() {
                             INÍCIO
                             ======================================== */}
 
-                        <a
+                        <Link
                             className={
                                 `mobile-menu-item ${
                                     isHomeActive
@@ -352,7 +360,8 @@ function Navbar() {
                                         : ''
                                 }`
                             }
-                            href="/"
+                            to="/"
+                            onClick={closeMenu}
                         >
 
                             <FaHome />
@@ -363,14 +372,14 @@ function Navbar() {
 
                             <FaChevronRight />
 
-                        </a>
+                        </Link>
 
 
                         {/* ========================================
                             PRODUTOS
                             ======================================== */}
 
-                        <a
+                        <Link
                             className={
                                 `mobile-menu-item ${
                                     isProductsActive
@@ -378,7 +387,8 @@ function Navbar() {
                                         : ''
                                 }`
                             }
-                            href="/produtos"
+                            to="/produtos"
+                            onClick={closeMenu}
                         >
 
                             <FaBox />
@@ -389,14 +399,14 @@ function Navbar() {
 
                             <FaChevronRight />
 
-                        </a>
+                        </Link>
 
 
                         {/* ========================================
                             COMO FUNCIONA
                             ======================================== */}
 
-                        <a
+                        <Link
                             className={
                                 `mobile-menu-item ${
                                     isHowItWorksActive
@@ -404,7 +414,8 @@ function Navbar() {
                                         : ''
                                 }`
                             }
-                            href="/#como-funciona"
+                            to="/#como-funciona"
+                            onClick={closeMenu}
                         >
 
                             <FaQuestionCircle />
@@ -415,14 +426,14 @@ function Navbar() {
 
                             <FaChevronRight />
 
-                        </a>
+                        </Link>
 
 
                         {/* ========================================
                             DEPOIMENTOS
                             ======================================== */}
 
-                        <a
+                        <Link
                             className={
                                 `mobile-menu-item ${
                                     isTestimonialsActive
@@ -430,7 +441,8 @@ function Navbar() {
                                         : ''
                                 }`
                             }
-                            href="/#depoimentos"
+                            to="/#depoimentos"
+                            onClick={closeMenu}
                         >
 
                             <FaStar />
@@ -441,14 +453,14 @@ function Navbar() {
 
                             <FaChevronRight />
 
-                        </a>
+                        </Link>
 
 
                         {/* ========================================
                             SOBRE
                             ======================================== */}
 
-                        <a
+                        <Link
                             className={
                                 `mobile-menu-item ${
                                     isAboutActive
@@ -456,7 +468,8 @@ function Navbar() {
                                         : ''
                                 }`
                             }
-                            href="/#sobre"
+                            to="/#sobre"
+                            onClick={closeMenu}
                         >
 
                             <FaInfoCircle />
@@ -467,7 +480,7 @@ function Navbar() {
 
                             <FaChevronRight />
 
-                        </a>
+                        </Link>
 
 
                         {/* ========================================
@@ -482,7 +495,7 @@ function Navbar() {
                             CARRINHO
                             ======================================== */}
 
-                        <a
+                        <Link
                             className={
                                 `mobile-menu-cart ${
                                     isCartActive
@@ -490,7 +503,8 @@ function Navbar() {
                                         : ''
                                 }`
                             }
-                            href="/carrinho"
+                            to="/carrinho"
+                            onClick={closeMenu}
                         >
 
                             <FaShoppingCart />
@@ -501,7 +515,7 @@ function Navbar() {
 
                             <FaChevronRight />
 
-                        </a>
+                        </Link>
 
 
                         {/* ========================================
@@ -532,8 +546,11 @@ function Navbar() {
 
             )}
 
+
         </nav>
+
     )
+
 }
 
 

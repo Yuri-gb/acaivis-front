@@ -15,6 +15,8 @@ import {
     FaTag
 } from 'react-icons/fa'
 
+import { Link } from 'react-router-dom'
+
 import Navbar
     from '../../components/Navbar/Navbar'
 
@@ -200,9 +202,9 @@ function Cart() {
 
                             <div className="cart-filled-hero-breadcrumb">
 
-                                <a href="/">
+                                <Link to="/">
                                     Início
-                                </a>
+                                </Link>
 
                                 <FaChevronRight />
 
@@ -244,6 +246,7 @@ function Cart() {
                                         alt="Açaívis - Mais sabor, mais momentos"
                                         className="cart-filled-hero-image"
                                     />
+
                                 </picture>
 
                             </div>
@@ -401,8 +404,8 @@ function Cart() {
                                     </button>
 
 
-                                    <a
-                                        href="/produtos"
+                                    <Link
+                                        to="/produtos"
                                         className="cart-filled-continue"
                                     >
 
@@ -412,7 +415,7 @@ function Cart() {
                                             Continuar comprando
                                         </span>
 
-                                    </a>
+                                    </Link>
 
                                 </div>
 
@@ -469,16 +472,21 @@ function Cart() {
 
                                         <span>
                                             <FaMapMarkerAlt />
+
                                             <span>
                                                 Taxa de entrega
+
                                                 <small>
                                                     {selectedDelivery.name}
                                                 </small>
+
                                             </span>
+
                                         </span>
 
                                         <strong>
                                             {formatPrice(deliveryFee)}
+
                                             <FaChevronRight
                                                 className={
                                                     showDeliveryOptions
@@ -486,6 +494,7 @@ function Cart() {
                                                         : ''
                                                 }
                                             />
+
                                         </strong>
 
                                     </button>
@@ -498,6 +507,7 @@ function Cart() {
                                             <div className="cart-delivery-mock-header">
 
                                                 <div>
+
                                                     <strong>
                                                         Onde será a entrega?
                                                     </strong>
@@ -506,6 +516,7 @@ function Cart() {
                                                         Selecione uma região
                                                         para simular o frete.
                                                     </span>
+
                                                 </div>
 
                                                 <FaMapMarkerAlt />
@@ -530,16 +541,20 @@ function Cart() {
                                                                 }`
                                                             }
                                                             onClick={() => {
+
                                                                 setSelectedDeliveryId(
                                                                     option.id
                                                                 )
+
                                                                 setShowDeliveryOptions(
                                                                     false
                                                                 )
+
                                                             }}
                                                         >
 
                                                             <span>
+
                                                                 <strong>
                                                                     {option.name}
                                                                 </strong>
@@ -550,6 +565,7 @@ function Cart() {
                                                                         selecionado
                                                                     </small>
                                                                 )}
+
                                                             </span>
 
                                                             <strong>
@@ -707,8 +723,8 @@ function Cart() {
                                BOTÃO
                                ======================================== */}
 
-                            <a
-                                href="/produtos"
+                            <Link
+                                to="/produtos"
                                 className="cart-empty-button"
                             >
 
@@ -718,7 +734,8 @@ function Cart() {
 
                                 <FaChevronRight />
 
-                            </a>
+                            </Link>
+
 
                         </div>
 

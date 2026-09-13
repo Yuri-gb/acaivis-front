@@ -1,14 +1,1875 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <link rel="shortcut icon" href="src/assets/images/icons/acaivis-favicon.ico" type="image/x-icon">
-  </head>
-  <body>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+    <title>Açaívis</title>
+
+    <link
+        rel="shortcut icon"
+        href="/src/assets/images/icons/acaivis-favicon.ico"
+        type="image/x-icon"
+    >
+
+    <style>
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body { background: #100d1d; }
+
+        #initial-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            width: 100%;
+            height: 100vh;
+            background: #100d1d;
+            color: #fff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity .25s ease, visibility .25s ease;
+        }
+
+        #initial-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #initial-loader .loading-skeleton-page {
+            width: 100%;
+            min-height: 100%;
+            background: #100d1d;
+            overflow: hidden;
+        }
+
+        /* =========================================================
+           BASE / SHIMMER
+           ========================================================= */
+
+        #initial-loader .skeleton {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            background: rgba(255,255,255,.075);
+            border-radius: 8px;
+        }
+
+        #initial-loader .skeleton::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            transform: translateX(-100%);
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent 0%,
+                    rgba(255,255,255,.025) 35%,
+                    rgba(160,32,240,.12) 50%,
+                    rgba(255,255,255,.025) 65%,
+                    transparent 100%
+                );
+            animation: skeleton-shimmer 1.45s ease-in-out infinite;
+        }
+
+        @keyframes skeleton-shimmer {
+            100% { transform: translateX(100%); }
+        }
+
+
+        /* =========================================================
+           NAVBAR
+           Baseado no .navbar real:
+           80px / padding 55px / logo 125px / links 30px.
+           ========================================================= */
+
+        #initial-loader .skeleton-navbar {
+            position: relative;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 80px;
+            padding: 0 55px;
+            background:
+                linear-gradient(
+                    90deg,
+                    #09000f,
+                    #1b0028,
+                    #09000f
+                );
+        }
+
+        #initial-loader .skeleton-navbar-logo {
+            width: 125px;
+            height: 34px;
+            border-radius: 7px;
+            flex-shrink: 0;
+        }
+
+        #initial-loader .skeleton-navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-left: auto;
+            margin-right: 35px;
+        }
+
+        #initial-loader .skeleton-navbar-links span {
+            width: 43px;
+            height: 10px;
+            border-radius: 5px;
+        }
+
+        #initial-loader .skeleton-navbar-links span:nth-child(2) { width: 51px; }
+        #initial-loader .skeleton-navbar-links span:nth-child(3) { width: 83px; }
+        #initial-loader .skeleton-navbar-links span:nth-child(4) { width: 74px; }
+        #initial-loader .skeleton-navbar-links span:nth-child(5) { width: 43px; }
+
+        #initial-loader .skeleton-navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-shrink: 0;
+        }
+
+        #initial-loader .skeleton-navbar-cart {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+        }
+
+        #initial-loader .skeleton-navbar-whatsapp {
+            width: 153px;
+            height: 42px;
+            border-radius: 25px;
+        }
+
+        #initial-loader .skeleton-navbar-menu {
+            display: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+        }
+
+
+        /* =========================================================
+           HERO
+           A área de imagem continua sem skeleton.
+           ========================================================= */
+
+        #initial-loader .skeleton-hero {
+            position: relative;
+            width: 100%;
+            min-height: clamp(500px, 43vw, 600px);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(
+                    110deg,
+                    #0b0912 0%,
+                    #160c20 52%,
+                    #0d0916 100%
+                );
+        }
+
+        #initial-loader .skeleton-hero-content {
+            position: relative;
+            z-index: 2;
+            width: min(650px, 48%);
+            padding-left: clamp(7%, 8vw, 11%);
+        }
+
+        #initial-loader .skeleton-hero-eyebrow {
+            width: 105px;
+            height: 12px;
+            margin-bottom: 16px;
+        }
+
+        #initial-loader .skeleton-hero-title {
+            width: min(470px,100%);
+            height: clamp(40px,4vw,56px);
+            margin-bottom: 9px;
+        }
+
+        #initial-loader .skeleton-hero-title.second {
+            width: min(360px,78%);
+        }
+
+        #initial-loader .skeleton-hero-script {
+            width: min(430px,90%);
+            height: clamp(46px,5vw,68px);
+            margin: 15px 0 24px;
+            border-radius: 14px;
+        }
+
+        #initial-loader .skeleton-hero-description {
+            width: min(450px,94%);
+            height: 11px;
+            margin-top: 8px;
+        }
+
+        #initial-loader .skeleton-hero-description.short {
+            width: min(330px,70%);
+        }
+
+        #initial-loader .skeleton-hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        #initial-loader .skeleton-hero-button {
+            width: 128px;
+            height: 40px;
+            border-radius: 22px;
+        }
+
+        #initial-loader .skeleton-hero-button.secondary {
+            width: 116px;
+        }
+
+
+        /* =========================================================
+           PRODUCTS — AJUSTADO
+           ========================================================= */
+
+        #initial-loader .skeleton-products {
+            position: relative;
+            width: 100%;
+            padding: 55px 6%;
+            background: #100d1d;
+            overflow: hidden;
+        }
+
+        #initial-loader .skeleton-products-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: min(1160px, 100%);
+            margin: 0 auto 28px;
+        }
+
+        #initial-loader .skeleton-products-copy {
+            min-width: 0;
+        }
+
+        #initial-loader .skeleton-products-eyebrow {
+            width: 105px;
+            height: 10px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+        }
+
+        #initial-loader .skeleton-products-title {
+            width: 245px;
+            height: 35px;
+            margin: 0;
+        }
+
+        #initial-loader .skeleton-products-subtitle {
+            width: 280px;
+            height: 10px;
+            margin-top: 9px;
+        }
+
+        #initial-loader .skeleton-products-see-all {
+            width: 105px;
+            height: 38px;
+            border-radius: 22px;
+            flex-shrink: 0;
+        }
+
+        /* Carrossel */
+        #initial-loader .skeleton-products-carousel {
+            position: relative;
+            width: min(1160px, 100%);
+            margin: 0 auto;
+        }
+
+        #initial-loader .skeleton-products-viewport {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #initial-loader .skeleton-products-track {
+            display: flex;
+            gap: 18px;
+            width: 100%;
+        }
+
+        /* Desktop: 4 produtos */
+        #initial-loader .skeleton-products-slide {
+            flex: 0 0 calc((100% - 54px) / 4);
+            min-width: 0;
+        }
+
+        /* Setas */
+        /* As setas também são skeleton: somente o formato do botão,
+           sem símbolo, seta ou traço interno. */
+        #initial-loader .skeleton-products-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            z-index: 10;
+            background: rgba(255,255,255,.075);
+            overflow: hidden;
+        }
+
+        #initial-loader .skeleton-products-arrow::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            transform: translateX(-100%);
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent 0%,
+                    rgba(255,255,255,.025) 35%,
+                    rgba(160,32,240,.12) 50%,
+                    rgba(255,255,255,.025) 65%,
+                    transparent 100%
+                );
+            animation: skeleton-shimmer 1.45s ease-in-out infinite;
+        }
+
+        #initial-loader .skeleton-products-arrow.left {
+            left: -48px;
+        }
+
+        #initial-loader .skeleton-products-arrow.right {
+            right: -48px;
+        }
+
+        /* =========================================================
+           HOME PRODUCT CARD
+           ========================================================= */
+
+        #initial-loader .skeleton-home-product-card {
+            display: block;
+            width: 100%;
+            overflow: hidden;
+            background: #0d0a17;
+            border: 1px solid rgba(160, 32, 240, 0.25);
+            border-radius: 16px;
+            color: white;
+        }
+
+        #initial-loader .skeleton-home-product-card-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+        }
+
+        #initial-loader .skeleton-home-product-card-image .skeleton {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+        }
+
+        #initial-loader .skeleton-home-product-card-content {
+            padding: 14px 16px 16px;
+        }
+
+        #initial-loader .skeleton-product-name {
+            width: 68%;
+            height: 16px;
+            border-radius: 6px;
+        }
+
+        #initial-loader .skeleton-product-description {
+            width: 94%;
+            height: 10px;
+            margin-top: 12px;
+            border-radius: 5px;
+        }
+
+        #initial-loader .skeleton-product-description.short {
+            width: 72%;
+            margin-top: 6px;
+        }
+
+        #initial-loader .skeleton-home-product-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+        }
+
+        #initial-loader .skeleton-product-price {
+            width: 42%;
+            height: 16px;
+            border-radius: 6px;
+        }
+
+        #initial-loader .skeleton-product-add {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+        }
+
+        /* Indicadores */
+        #initial-loader .skeleton-products-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            margin-top: 20px;
+        }
+
+        #initial-loader .skeleton-products-dots span {
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.16);
+        }
+
+        #initial-loader .skeleton-products-dots span:first-child {
+            width: 10px;
+            height: 10px;
+            background: rgba(160,32,240,.30);
+        }
+
+        /* =========================================================
+           TABLET
+           ========================================================= */
+
+        @media (max-width:1000px) {
+            #initial-loader .skeleton-products {
+                padding: 50px 6%;
+            }
+
+            #initial-loader .skeleton-products-track {
+                gap: 14px;
+            }
+
+            #initial-loader .skeleton-products-slide {
+                flex-basis: calc((100% - 42px) / 4);
+            }
+
+            #initial-loader .skeleton-products-arrow.left {
+                left: -32px;
+            }
+
+            #initial-loader .skeleton-products-arrow.right {
+                right: -32px;
+            }
+
+            #initial-loader .skeleton-home-product-card-content {
+                padding: 13px 14px 15px;
+            }
+
+            #initial-loader .skeleton-product-name,
+            #initial-loader .skeleton-product-price {
+                height: 15px;
+            }
+
+            #initial-loader .skeleton-product-add {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        /* =========================================================
+           MOBILE <= 792px
+           2 PRODUTOS LADO A LADO
+           ========================================================= */
+
+        @media (max-width:792px) {
+            #initial-loader .skeleton-products {
+                padding: 55px 6% 85px;
+            }
+
+            #initial-loader .skeleton-products-heading {
+                margin-bottom: 30px;
+            }
+
+            #initial-loader .skeleton-products-title {
+                width: 205px;
+                height: 28px;
+            }
+
+            #initial-loader .skeleton-products-subtitle {
+                width: 270px;
+                max-width: 90%;
+                height: 8px;
+                margin-top: 8px;
+            }
+
+            #initial-loader .skeleton-products-see-all {
+                width: 95px;
+                height: 35px;
+            }
+
+            #initial-loader .skeleton-products-track {
+                gap: 12px;
+            }
+
+            /* 2 cards visíveis */
+            #initial-loader .skeleton-products-slide {
+                flex: 0 0 calc((100% - 12px) / 2);
+            }
+
+            #initial-loader .skeleton-products-arrow {
+                width: 34px;
+                height: 34px;
+            }
+
+            #initial-loader .skeleton-products-arrow.left {
+                left: -22px;
+            }
+
+            #initial-loader .skeleton-products-arrow.right {
+                right: -22px;
+            }
+
+            #initial-loader .skeleton-home-product-card {
+                border-radius: 14px;
+            }
+
+            #initial-loader .skeleton-home-product-card-content {
+                padding: 12px;
+            }
+
+            #initial-loader .skeleton-product-name {
+                height: 14px;
+            }
+
+            #initial-loader .skeleton-product-description {
+                font-size: 11px;
+                margin-top: 9px;
+            }
+
+            #initial-loader .skeleton-product-price {
+                height: 14px;
+            }
+
+            #initial-loader .skeleton-product-add {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        /* =========================================================
+           CELULAR <= 480px
+           Mantém 2 produtos lado a lado.
+           ========================================================= */
+
+        @media (max-width:480px) {
+            #initial-loader .skeleton-products {
+                padding: 52px 5% 80px;
+            }
+
+            #initial-loader .skeleton-products-heading {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 28px;
+            }
+
+            #initial-loader .skeleton-products-title {
+                width: 190px;
+                height: 27px;
+            }
+
+            #initial-loader .skeleton-products-subtitle {
+                width: 290px;
+                max-width: 100%;
+                height: 8px;
+            }
+
+            #initial-loader .skeleton-products-see-all {
+                width: 88px;
+                height: 34px;
+            }
+
+            #initial-loader .skeleton-products-carousel {
+                width: 100%;
+            }
+
+            #initial-loader .skeleton-products-track {
+                gap: 10px;
+            }
+
+            /* 2 cards lado a lado também no celular */
+            #initial-loader .skeleton-products-slide {
+                flex: 0 0 calc((100% - 10px) / 2);
+            }
+
+            #initial-loader .skeleton-products-arrow {
+                width: 30px;
+                height: 30px;
+            }
+
+            #initial-loader .skeleton-products-arrow.left {
+                left: -15px;
+            }
+
+            #initial-loader .skeleton-products-arrow.right {
+                right: -15px;
+            }
+
+            #initial-loader .skeleton-home-product-card-content {
+                padding: 10px;
+            }
+
+            #initial-loader .skeleton-product-name {
+                height: 14px;
+            }
+
+            #initial-loader .skeleton-product-description {
+                height: 8px;
+                margin-top: 8px;
+            }
+
+            #initial-loader .skeleton-product-description.short {
+                margin-top: 5px;
+            }
+
+            #initial-loader .skeleton-home-product-card-footer {
+                margin-top: 12px;
+            }
+
+            #initial-loader .skeleton-product-price {
+                height: 14px;
+            }
+
+            #initial-loader .skeleton-product-add {
+                width: 30px;
+                height: 30px;
+            }
+
+            #initial-loader .skeleton-products-dots {
+                margin-top: 18px;
+            }
+        }
+
+        /* =========================================================
+           CELULAR PEQUENO <= 380px
+           ========================================================= */
+
+        @media (max-width:380px) {
+            #initial-loader .skeleton-products {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            #initial-loader .skeleton-products-slide {
+                flex-basis: calc((100% - 8px) / 2);
+            }
+
+            #initial-loader .skeleton-products-track {
+                gap: 8px;
+            }
+
+            #initial-loader .skeleton-home-product-card-content {
+                padding: 9px;
+            }
+
+            #initial-loader .skeleton-product-add {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        /* =========================================================
+           COMO FAZER
+           ========================================================= */
+
+        #initial-loader .skeleton-how {
+            width: 100%;
+            padding: 90px 8%;
+            background: #100d1d;
+        }
+
+        #initial-loader .skeleton-how-inner {
+            width: min(1160px,100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: clamp(40px,6vw,80px);
+            align-items: center;
+        }
+
+        #initial-loader .skeleton-how-eyebrow {
+            width: 105px;
+            height: 9px;
+            margin-bottom: 13px;
+        }
+
+        #initial-loader .skeleton-how-title {
+            width: 155px;
+            height: 29px;
+        }
+
+        #initial-loader .skeleton-how-title.second {
+            width: 120px;
+            height: 28px;
+            margin-top: 7px;
+        }
+
+        #initial-loader .skeleton-how-steps {
+            display: grid;
+            grid-template-columns: repeat(4,minmax(0,1fr));
+            gap: 22px;
+        }
+
+        #initial-loader .skeleton-how-step {
+            position: relative;
+        }
+
+        #initial-loader .skeleton-how-icon {
+            width: 31px;
+            height: 31px;
+            margin-bottom: 12px;
+            border-radius: 7px;
+        }
+
+        #initial-loader .skeleton-how-number {
+            position: absolute;
+            top: 8px;
+            left: 41px;
+            width: 22px;
+            height: 9px;
+        }
+
+        #initial-loader .skeleton-how-step-title {
+            width: 90%;
+            height: 11px;
+        }
+
+        #initial-loader .skeleton-how-text {
+            width: 94%;
+            height: 8px;
+            margin-top: 8px;
+        }
+
+        #initial-loader .skeleton-how-text.short {
+            width: 70%;
+            margin-top: 5px;
+        }
+
+
+        /* =========================================================
+           SOBRE
+           ========================================================= */
+
+        #initial-loader .skeleton-about {
+            position: relative;
+            width: 100%;
+            min-height: 365px;
+            padding: 80px 8%;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at 50% 50%,
+                    rgba(126,14,157,.08),
+                    transparent 42%
+                ),
+                #100d1d;
+        }
+
+        #initial-loader .skeleton-about-inner {
+            position: relative;
+            z-index: 2;
+            width: min(1160px,100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(320px,1.1fr) minmax(300px,.9fr);
+            gap: 80px;
+            align-items: center;
+        }
+
+        #initial-loader .skeleton-about-eyebrow {
+            width: 70px;
+            height: 8px;
+            margin-bottom: 14px;
+        }
+
+        #initial-loader .skeleton-about-title {
+            width: 340px;
+            height: 28px;
+        }
+
+        #initial-loader .skeleton-about-title.second {
+            width: 315px;
+            margin-top: 7px;
+        }
+
+        #initial-loader .skeleton-about-text {
+            width: 520px;
+            max-width: 100%;
+            height: 9px;
+            margin-top: 20px;
+        }
+
+        #initial-loader .skeleton-about-text.second {
+            width: 465px;
+            margin-top: 7px;
+        }
+
+        #initial-loader .skeleton-about-button {
+            width: 135px;
+            height: 32px;
+            margin-top: 20px;
+            border-radius: 18px;
+        }
+
+        #initial-loader .skeleton-about-features {
+            display: grid;
+            grid-template-columns: repeat(2,minmax(0,1fr));
+            gap: 25px 40px;
+        }
+
+        #initial-loader .skeleton-feature {
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            gap: 10px;
+            align-items: start;
+        }
+
+        #initial-loader .skeleton-feature-icon {
+            width: 25px;
+            height: 25px;
+            border-radius: 7px;
+        }
+
+        #initial-loader .skeleton-feature-title {
+            width: 92px;
+            height: 8px;
+        }
+
+        #initial-loader .skeleton-feature-text {
+            width: 78px;
+            height: 7px;
+            margin-top: 6px;
+        }
+
+
+        /* =========================================================
+           FOOTER
+           Baseado no .footer real:
+           padding 28px 6% 14px, main flex e bottom line.
+           ========================================================= */
+
+        #initial-loader .skeleton-footer {
+            position: relative;
+            width: 100%;
+            padding: 28px 6% 14px;
+            background:
+                linear-gradient(
+                    90deg,
+                    #09000f,
+                    #1b0028,
+                    #09000f
+                );
+            border-top: 1px solid rgba(160,32,240,.12);
+            overflow: hidden;
+        }
+
+        #initial-loader .skeleton-footer-main {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1160px;
+            margin: 0 auto;
+        }
+
+        #initial-loader .skeleton-footer-logo {
+            width: 90px;
+            height: 30px;
+            flex-shrink: 0;
+        }
+
+        #initial-loader .skeleton-footer-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 23px;
+            margin-left: 35px;
+        }
+
+        #initial-loader .skeleton-footer-navigation span {
+            width: 38px;
+            height: 7px;
+        }
+
+        #initial-loader .skeleton-footer-navigation span:nth-child(2) { width: 52px; }
+        #initial-loader .skeleton-footer-navigation span:nth-child(3) { width: 73px; }
+        #initial-loader .skeleton-footer-navigation span:nth-child(4) { width: 62px; }
+        #initial-loader .skeleton-footer-navigation span:nth-child(5) { width: 38px; }
+
+        #initial-loader .skeleton-footer-contact {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-left: 30px;
+            flex-shrink: 0;
+        }
+
+        #initial-loader .skeleton-footer-social {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        #initial-loader .skeleton-footer-location {
+            width: 112px;
+            height: 7px;
+        }
+
+        #initial-loader .skeleton-footer-bottom {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1160px;
+            margin: 20px auto 0;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,.07);
+        }
+
+        #initial-loader .skeleton-footer-bottom span {
+            width: 105px;
+            height: 7px;
+        }
+
+        #initial-loader .skeleton-footer-bottom span:last-child {
+            width: 125px;
+        }
+
+
+        /* =========================================================
+           TABLET
+           ========================================================= */
+
+        @media (max-width:1000px) {
+
+            #initial-loader .skeleton-navbar {
+                padding: 0 30px;
+            }
+
+            #initial-loader .skeleton-navbar-links {
+                gap: 20px;
+                margin-right: 20px;
+            }
+
+            #initial-loader .skeleton-navbar-links span {
+                width: 40px;
+            }
+
+            #initial-loader .skeleton-navbar-links span:nth-child(2) { width: 48px; }
+            #initial-loader .skeleton-navbar-links span:nth-child(3) { width: 70px; }
+            #initial-loader .skeleton-navbar-links span:nth-child(4) { width: 64px; }
+
+            #initial-loader .skeleton-navbar-whatsapp {
+                width: 125px;
+                height: 38px;
+            }
+
+            #initial-loader .skeleton-products {
+                padding: 50px 6% 105px;
+            }
+
+            #initial-loader .skeleton-products-heading {
+                margin-bottom: 28px;
+            }
+
+            #initial-loader .skeleton-products-title {
+                height: 31px;
+            }
+
+            #initial-loader .skeleton-products-carousel {
+                max-width: 1000px;
+            }
+
+            #initial-loader .skeleton-products-track {
+                gap: 14px;
+            }
+
+            #initial-loader .skeleton-products-slide {
+                flex-basis: calc((100% - 28px) / 3);
+            }
+
+            #initial-loader .skeleton-products-arrow.left {
+                left: -32px;
+            }
+
+            #initial-loader .skeleton-products-arrow.right {
+                right: -32px;
+            }
+
+            #initial-loader .skeleton-home-product-card-content {
+                padding: 13px 14px 15px;
+            }
+
+            #initial-loader .skeleton-product-name {
+                height: 15px;
+            }
+
+            #initial-loader .skeleton-product-price {
+                height: 15px;
+            }
+
+            #initial-loader .skeleton-product-add {
+                width: 32px;
+                height: 32px;
+            }
+
+            #initial-loader .skeleton-how-inner {
+                grid-template-columns: 150px 1fr;
+                gap: 35px;
+            }
+
+            #initial-loader .skeleton-how-steps {
+                gap: 14px;
+            }
+
+            #initial-loader .skeleton-about-inner {
+                gap: 45px;
+            }
+        }
+
+
+        /* =========================================================
+           MOBILE <= 792
+           ========================================================= */
+
+        @media (max-width:792px) {
+
+            /* NAVBAR */
+            #initial-loader .skeleton-navbar {
+                height: 80px;
+                padding: 0 30px;
+            }
+
+            #initial-loader .skeleton-navbar-logo {
+                width: 105px;
+                height: 31px;
+            }
+
+            #initial-loader .skeleton-navbar-links,
+            #initial-loader .skeleton-navbar-actions {
+                display: none;
+            }
+
+            #initial-loader .skeleton-navbar-menu {
+                display: block;
+                margin-left: auto;
+            }
+
+
+            /* HERO */
+            #initial-loader .skeleton-hero {
+                min-height: 510px;
+                align-items: flex-start;
+            }
+
+            #initial-loader .skeleton-hero-content {
+                width: 100%;
+                padding: 34px 24px 25px 7%;
+            }
+
+            #initial-loader .skeleton-hero-eyebrow {
+                width: 76px;
+                height: 10px;
+                margin-bottom: 12px;
+            }
+
+            #initial-loader .skeleton-hero-title {
+                width: 285px;
+                max-width: 78%;
+                height: 35px;
+            }
+
+            #initial-loader .skeleton-hero-title.second {
+                width: 230px;
+            }
+
+            #initial-loader .skeleton-hero-script {
+                width: 270px;
+                max-width: 72%;
+                height: 43px;
+                margin: 9px 0 19px;
+            }
+
+            #initial-loader .skeleton-hero-description {
+                width: 280px;
+                max-width: 83%;
+                height: 9px;
+            }
+
+            #initial-loader .skeleton-hero-description.short {
+                width: 220px;
+                max-width: 65%;
+            }
+
+            #initial-loader .skeleton-hero-buttons {
+                margin-top: 18px;
+            }
+
+            #initial-loader .skeleton-hero-button {
+                width: 118px;
+                height: 36px;
+            }
+
+            #initial-loader .skeleton-hero-button.secondary {
+                width: 110px;
+            }
+
+
+            /* PRODUCTS */
+            #initial-loader .skeleton-products {
+                padding: 55px 6% 100px;
+            }
+
+            #initial-loader .skeleton-products-heading {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 32px;
+            }
+
+            #initial-loader .skeleton-products-title {
+                width: 205px;
+                height: 28px;
+            }
+
+            #initial-loader .skeleton-products-subtitle {
+                width: 270px;
+                max-width: 90%;
+                height: 8px;
+                margin-top: 8px;
+            }
+
+            #initial-loader .skeleton-products-see-all {
+                width: 95px;
+                height: 35px;
+            }
+
+            #initial-loader .skeleton-products-track {
+                gap: 12px;
+            }
+
+            #initial-loader .skeleton-products-slide {
+                flex-basis: calc((100% - 12px) / 2);
+            }
+
+            #initial-loader .skeleton-products-arrow {
+                width: 34px;
+                height: 34px;
+            }
+
+            #initial-loader .skeleton-products-arrow.left {
+                left: -22px;
+            }
+
+            #initial-loader .skeleton-products-arrow.right {
+                right: -22px;
+            }
+
+            #initial-loader .skeleton-products-dots {
+                margin-top: 22px;
+            }
+
+
+            /* HOW */
+            #initial-loader .skeleton-how {
+                padding: 72px 6% 85px;
+            }
+
+            #initial-loader .skeleton-how-inner {
+                display: block;
+            }
+
+            #initial-loader .skeleton-how-heading {
+                margin-bottom: 38px;
+            }
+
+            #initial-loader .skeleton-how-eyebrow {
+                width: 75px;
+                height: 8px;
+                margin-bottom: 10px;
+            }
+
+            #initial-loader .skeleton-how-title {
+                width: 175px;
+                height: 24px;
+            }
+
+            #initial-loader .skeleton-how-title.second {
+                width: 125px;
+                height: 24px;
+                margin-top: 5px;
+            }
+
+            #initial-loader .skeleton-how-steps {
+                grid-template-columns: repeat(2,minmax(0,1fr));
+                gap: 32px 24px;
+            }
+
+            #initial-loader .skeleton-how-icon {
+                width: 26px;
+                height: 26px;
+                margin-bottom: 9px;
+            }
+
+            #initial-loader .skeleton-how-number {
+                top: 7px;
+                left: 34px;
+            }
+
+
+            /* ABOUT */
+            #initial-loader .skeleton-about {
+                min-height: 620px;
+                padding: 68px 20px 90px;
+            }
+
+            #initial-loader .skeleton-about-inner {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 38px;
+                text-align: center;
+            }
+
+            #initial-loader .skeleton-about-eyebrow {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #initial-loader .skeleton-about-title {
+                width: 255px;
+                height: 25px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #initial-loader .skeleton-about-title.second {
+                width: 235px;
+                margin: 6px auto 0;
+            }
+
+            #initial-loader .skeleton-about-text {
+                width: 310px;
+                max-width: 92%;
+                margin: 18px auto 0;
+            }
+
+            #initial-loader .skeleton-about-text.second {
+                width: 270px;
+                margin: 7px auto 0;
+            }
+
+            #initial-loader .skeleton-about-button {
+                margin: 18px auto 0;
+            }
+
+            #initial-loader .skeleton-about-features {
+                width: min(330px,100%);
+                gap: 28px 20px;
+                text-align: left;
+            }
+
+            #initial-loader .skeleton-feature {
+                grid-template-columns: 25px 1fr;
+                gap: 8px;
+            }
+
+            #initial-loader .skeleton-feature-icon {
+                width: 22px;
+                height: 22px;
+            }
+
+            #initial-loader .skeleton-feature-title {
+                width: 76px;
+                height: 7px;
+            }
+
+            #initial-loader .skeleton-feature-text {
+                width: 64px;
+                height: 6px;
+            }
+
+
+            /* FOOTER */
+            #initial-loader .skeleton-footer {
+                padding: 28px 6% 18px;
+            }
+
+            #initial-loader .skeleton-footer-main {
+                flex-direction: column;
+                gap: 22px;
+            }
+
+            #initial-loader .skeleton-footer-logo {
+                width: 80px;
+                height: 27px;
+            }
+
+            #initial-loader .skeleton-footer-navigation {
+                gap: 14px 20px;
+                margin-left: 0;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            #initial-loader .skeleton-footer-navigation span {
+                width: 36px;
+                height: 7px;
+            }
+
+            #initial-loader .skeleton-footer-navigation span:nth-child(2) { width: 43px; }
+            #initial-loader .skeleton-footer-navigation span:nth-child(3) { width: 57px; }
+            #initial-loader .skeleton-footer-navigation span:nth-child(4) { width: 48px; }
+
+            #initial-loader .skeleton-footer-contact {
+                margin-left: 0;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            #initial-loader .skeleton-footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+
+        /* =========================================================
+           CELULAR <= 480
+           O carousel real vira 1 card por vez.
+           ========================================================= */
+
+        @media (max-width:480px) {
+
+            #initial-loader .skeleton-navbar {
+                padding: 0 22px;
+            }
+
+            #initial-loader .skeleton-navbar-logo {
+                width: 93px;
+                height: 30px;
+            }
+
+            #initial-loader .skeleton-hero {
+                min-height: 510px;
+            }
+
+            #initial-loader .skeleton-products {
+                padding: 52px 5% 95px;
+            }
+
+            #initial-loader .skeleton-products-heading {
+                display: block;
+                margin-bottom: 34px;
+            }
+
+            #initial-loader .skeleton-products-eyebrow {
+                width: 75px;
+                height: 8px;
+                margin-bottom: 8px;
+            }
+
+            #initial-loader .skeleton-products-title {
+                width: 190px;
+                height: 27px;
+            }
+
+            #initial-loader .skeleton-products-subtitle {
+                width: 290px;
+                max-width: 100%;
+                height: 8px;
+                margin-top: 9px;
+            }
+
+            #initial-loader .skeleton-products-see-all {
+                margin-top: 18px;
+                width: 105px;
+                height: 38px;
+            }
+
+            #initial-loader .skeleton-products-carousel {
+                width: 100%;
+                max-width: 360px;
+                margin: 0 auto;
+            }
+
+            #initial-loader .skeleton-products-track {
+                gap: 12px;
+            }
+
+            #initial-loader .skeleton-products-slide {
+                flex: 0 0 100%;
+            }
+
+            #initial-loader .skeleton-products-arrow {
+                width: 32px;
+                height: 32px;
+            }
+
+            #initial-loader .skeleton-products-arrow.left {
+                left: -16px;
+            }
+
+            #initial-loader .skeleton-products-arrow.right {
+                right: -16px;
+            }
+
+            #initial-loader .skeleton-home-product-card-content {
+                padding: 12px;
+            }
+
+            #initial-loader .skeleton-product-name {
+                height: 15px;
+            }
+
+            #initial-loader .skeleton-product-description {
+                height: 8px;
+                margin-top: 9px;
+            }
+
+            #initial-loader .skeleton-product-price {
+                height: 15px;
+            }
+
+            #initial-loader .skeleton-product-add {
+                width: 32px;
+                height: 32px;
+            }
+
+            #initial-loader .skeleton-how {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            #initial-loader .skeleton-about {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+
+        /* =========================================================
+           CELULAR <= 380
+           ========================================================= */
+
+        @media (max-width:380px) {
+
+            #initial-loader .skeleton-products {
+                padding: 48px 5% 90px;
+            }
+
+            #initial-loader .skeleton-products-carousel {
+                max-width: 335px;
+            }
+
+            #initial-loader .skeleton-products-arrow.left {
+                left: -14px;
+            }
+
+            #initial-loader .skeleton-products-arrow.right {
+                right: -14px;
+            }
+
+            #initial-loader .skeleton-home-product-card-content {
+                padding: 11px;
+            }
+
+            #initial-loader .skeleton-product-name {
+                height: 14px;
+            }
+
+            #initial-loader .skeleton-product-price {
+                height: 14px;
+            }
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+            #initial-loader .skeleton::after {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        id="initial-loader"
+        aria-live="polite"
+        aria-label="Carregando Açaívis"
+    >
+        <main class="loading-skeleton-page">
+
+            <!-- =====================================================
+                 NAVBAR
+                 ===================================================== -->
+            <header class="skeleton-navbar">
+                <div class="skeleton skeleton-navbar-logo"></div>
+
+                <nav class="skeleton-navbar-links" aria-hidden="true">
+                    <span class="skeleton"></span>
+                    <span class="skeleton"></span>
+                    <span class="skeleton"></span>
+                    <span class="skeleton"></span>
+                    <span class="skeleton"></span>
+                </nav>
+
+                <div class="skeleton-navbar-actions">
+                    <div class="skeleton skeleton-navbar-cart"></div>
+                    <div class="skeleton skeleton-navbar-whatsapp"></div>
+                </div>
+
+                <div class="skeleton skeleton-navbar-menu"></div>
+            </header>
+
+
+            <!-- =====================================================
+                 HERO
+                 A imagem/arte do Hero NÃO recebe skeleton.
+                 ===================================================== -->
+            <section class="skeleton-hero">
+
+                <div class="skeleton-hero-content">
+
+                    <div class="skeleton skeleton-hero-eyebrow"></div>
+
+                    <div class="skeleton skeleton-hero-title"></div>
+                    <div class="skeleton skeleton-hero-title second"></div>
+
+                    <div class="skeleton skeleton-hero-script"></div>
+
+                    <div class="skeleton skeleton-hero-description"></div>
+                    <div class="skeleton skeleton-hero-description short"></div>
+
+                    <div class="skeleton-hero-buttons">
+                        <div class="skeleton skeleton-hero-button"></div>
+                        <div class="skeleton skeleton-hero-button secondary"></div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 PRODUTOS
+                 ===================================================== -->
+            <section class="skeleton-products">
+
+                <div class="skeleton-products-heading">
+                    <div class="skeleton-products-copy">
+                        <div class="skeleton skeleton-products-eyebrow"></div>
+                        <div class="skeleton skeleton-products-title"></div>
+                        <div class="skeleton skeleton-products-subtitle"></div>
+                    </div>
+                    <div class="skeleton skeleton-products-see-all"></div>
+                </div>
+
+                <div class="skeleton-products-carousel">
+                    <div class="skeleton-products-arrow left" aria-hidden="true"></div>
+                    <div class="skeleton-products-viewport">
+                        <div class="skeleton-products-track">
+
+
+                    <article class="skeleton-products-slide"><div class="skeleton-home-product-card">
+                        <div class="skeleton-home-product-card-image">
+                            <div class="skeleton"></div>
+                        </div>
+
+                        <div class="skeleton-home-product-card-content">
+                            <div class="skeleton skeleton-product-name"></div>
+                            <div class="skeleton skeleton-product-description"></div>
+                            <div class="skeleton skeleton-product-description short"></div>
+
+                            <div class="skeleton-home-product-card-footer">
+                                <div class="skeleton skeleton-product-price"></div>
+                                <div class="skeleton skeleton-product-add"></div>
+                            </div>
+                        </div>
+                    </div></article>
+
+                    <article class="skeleton-products-slide"><div class="skeleton-home-product-card">
+                        <div class="skeleton-home-product-card-image">
+                            <div class="skeleton"></div>
+                        </div>
+
+                        <div class="skeleton-home-product-card-content">
+                            <div class="skeleton skeleton-product-name"></div>
+                            <div class="skeleton skeleton-product-description"></div>
+                            <div class="skeleton skeleton-product-description short"></div>
+
+                            <div class="skeleton-home-product-card-footer">
+                                <div class="skeleton skeleton-product-price"></div>
+                                <div class="skeleton skeleton-product-add"></div>
+                            </div>
+                        </div>
+                    </div></article>
+
+                    <article class="skeleton-products-slide"><div class="skeleton-home-product-card">
+                        <div class="skeleton-home-product-card-image">
+                            <div class="skeleton"></div>
+                        </div>
+
+                        <div class="skeleton-home-product-card-content">
+                            <div class="skeleton skeleton-product-name"></div>
+                            <div class="skeleton skeleton-product-description"></div>
+                            <div class="skeleton skeleton-product-description short"></div>
+
+                            <div class="skeleton-home-product-card-footer">
+                                <div class="skeleton skeleton-product-price"></div>
+                                <div class="skeleton skeleton-product-add"></div>
+                            </div>
+                        </div>
+                    </div></article>
+
+                    <article class="skeleton-products-slide"><div class="skeleton-home-product-card">
+                        <div class="skeleton-home-product-card-image">
+                            <div class="skeleton"></div>
+                        </div>
+
+                        <div class="skeleton-home-product-card-content">
+                            <div class="skeleton skeleton-product-name"></div>
+                            <div class="skeleton skeleton-product-description"></div>
+                            <div class="skeleton skeleton-product-description short"></div>
+
+                            <div class="skeleton-home-product-card-footer">
+                                <div class="skeleton skeleton-product-price"></div>
+                                <div class="skeleton skeleton-product-add"></div>
+                            </div>
+                        </div>
+                    </div></article>
+
+                    <div class="skeleton-products-arrow right" aria-hidden="true"></div>
+</div>
+
+                <div class="skeleton-products-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 COMO FAZER SEU PEDIDO
+                 ===================================================== -->
+            <section class="skeleton-how">
+
+                <div class="skeleton-how-inner">
+
+                    <div class="skeleton-how-heading">
+                        <div class="skeleton skeleton-how-eyebrow"></div>
+                        <div class="skeleton skeleton-how-title"></div>
+                        <div class="skeleton skeleton-how-title second"></div>
+                    </div>
+
+                    <div class="skeleton-how-steps">
+
+                        <div class="skeleton-how-step">
+                            <div class="skeleton skeleton-how-icon"></div>
+                            <div class="skeleton skeleton-how-number"></div>
+                            <div class="skeleton skeleton-how-step-title"></div>
+                            <div class="skeleton skeleton-how-text"></div>
+                            <div class="skeleton skeleton-how-text short"></div>
+                        </div>
+
+                        <div class="skeleton-how-step">
+                            <div class="skeleton skeleton-how-icon"></div>
+                            <div class="skeleton skeleton-how-number"></div>
+                            <div class="skeleton skeleton-how-step-title"></div>
+                            <div class="skeleton skeleton-how-text"></div>
+                            <div class="skeleton skeleton-how-text short"></div>
+                        </div>
+
+                        <div class="skeleton-how-step">
+                            <div class="skeleton skeleton-how-icon"></div>
+                            <div class="skeleton skeleton-how-number"></div>
+                            <div class="skeleton skeleton-how-step-title"></div>
+                            <div class="skeleton skeleton-how-text"></div>
+                            <div class="skeleton skeleton-how-text short"></div>
+                        </div>
+
+                        <div class="skeleton-how-step">
+                            <div class="skeleton skeleton-how-icon"></div>
+                            <div class="skeleton skeleton-how-number"></div>
+                            <div class="skeleton skeleton-how-step-title"></div>
+                            <div class="skeleton skeleton-how-text"></div>
+                            <div class="skeleton skeleton-how-text short"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 MAIS QUE AÇAÍ
+                 ===================================================== -->
+            <section class="skeleton-about">
+
+                <div class="skeleton-about-decoration left">
+                    <div class="skeleton"></div>
+                </div>
+
+                <div class="skeleton-about-decoration right">
+                    <div class="skeleton"></div>
+                </div>
+
+                <div class="skeleton-about-inner">
+
+                    <div class="skeleton-about-copy">
+                        <div class="skeleton skeleton-about-eyebrow"></div>
+
+                        <div class="skeleton skeleton-about-title"></div>
+                        <div class="skeleton skeleton-about-title second"></div>
+
+                        <div class="skeleton skeleton-about-text"></div>
+                        <div class="skeleton skeleton-about-text second"></div>
+
+                        <div class="skeleton skeleton-about-button"></div>
+                    </div>
+
+
+                    <div class="skeleton-about-features">
+
+                        <div class="skeleton-feature">
+                            <div class="skeleton skeleton-feature-icon"></div>
+                            <div>
+                                <div class="skeleton skeleton-feature-title"></div>
+                                <div class="skeleton skeleton-feature-text"></div>
+                            </div>
+                        </div>
+
+                        <div class="skeleton-feature">
+                            <div class="skeleton skeleton-feature-icon"></div>
+                            <div>
+                                <div class="skeleton skeleton-feature-title"></div>
+                                <div class="skeleton skeleton-feature-text"></div>
+                            </div>
+                        </div>
+
+                        <div class="skeleton-feature">
+                            <div class="skeleton skeleton-feature-icon"></div>
+                            <div>
+                                <div class="skeleton skeleton-feature-title"></div>
+                                <div class="skeleton skeleton-feature-text"></div>
+                            </div>
+                        </div>
+
+                        <div class="skeleton-feature">
+                            <div class="skeleton skeleton-feature-icon"></div>
+                            <div>
+                                <div class="skeleton skeleton-feature-title"></div>
+                                <div class="skeleton skeleton-feature-text"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 FOOTER
+                 ===================================================== -->
+            <footer class="skeleton-footer">
+
+                <div class="skeleton-footer-main">
+
+                    <div class="skeleton skeleton-footer-logo"></div>
+
+                    <div class="skeleton-footer-navigation">
+                        <span class="skeleton"></span>
+                        <span class="skeleton"></span>
+                        <span class="skeleton"></span>
+                        <span class="skeleton"></span>
+                        <span class="skeleton"></span>
+                    </div>
+
+                    <div class="skeleton-footer-contact">
+                        <div class="skeleton skeleton-footer-social"></div>
+                        <div class="skeleton skeleton-footer-social"></div>
+                        <div class="skeleton skeleton-footer-location"></div>
+                    </div>
+
+                </div>
+
+                <div class="skeleton-footer-bottom">
+                    <span class="skeleton"></span>
+                    <span class="skeleton"></span>
+                </div>
+
+            </footer>
+
+        </main>
+    </div>
+
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+    <script>
+        const initialLoader =
+            document.getElementById('initial-loader')
+
+        const root =
+            document.getElementById('root')
+
+        const hideInitialLoader = () => {
+            if (!initialLoader) return
+
+            initialLoader.classList.add('hidden')
+        }
+
+        const observer =
+            new MutationObserver(() => {
+                if (root && root.hasChildNodes()) {
+                    hideInitialLoader()
+                    observer.disconnect()
+                }
+            })
+
+        if (root) {
+            observer.observe(
+                root,
+                {
+                    childList: true,
+                    subtree: true
+                }
+            )
+        }
+    </script>
+
+    <script
+        type="module"
+        src="/src/main.tsx"
+    ></script>
+</body>
 </html>
