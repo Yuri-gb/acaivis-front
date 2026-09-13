@@ -640,3 +640,14 @@
         font-size: 14px;
     }
 }
+
+
+/* ========================================
+   DESCRIÇÃO - TABLET / TELAS MENORES
+   ======================================== */
+
+@media (max-width: 900px) and (min-width: 793px) {
+    .product-card-content p {
+        -webkit-line-clamp: 3;
+    }
+}
