@@ -30,15 +30,21 @@ import ProductsCarousel, {
     CarouselProduct
 } from '../../components/ProductsCarousel/ProductsCarousel'
 
-import { mockProducts } from '../../dev/mockProduct'
+import { mockProducts }
+    from '../../dev/mockProduct'
+
+import gostar
+    from '../../assets/images/cart/gostar.webp'
 
 
 /* ========================================
    PÁGINA DE DETALHES DO PRODUTO
    ======================================== */
+
 function ProductDetails() {
 
     const { id } = useParams()
+
 
     /* ========================================
        PRODUTO ATUAL
@@ -92,7 +98,10 @@ function ProductDetails() {
        ======================================== */
 
     if (!product) {
-        return <Navigate to="/produtos" replace />
+        return <Navigate
+            to="/produtos"
+            replace
+        />
     }
 
 
@@ -182,7 +191,16 @@ function ProductDetails() {
                         <div className="product-details-related-header">
 
                             <h2>
-                                Você também pode <em>gostar</em>
+
+                                Você também pode
+
+                                <em>
+                                    <img
+                                        src={gostar}
+                                        alt="gostar"
+                                    />
+                                </em>
+
                             </h2>
 
                         </div>
