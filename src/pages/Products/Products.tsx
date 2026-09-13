@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import './Products.css'
 
@@ -23,14 +24,9 @@ import ProductsPagination
 import Footer
     from '../../components/Footer/Footer'
 
-import acaiTradicional
-    from '../../assets/images/products/acai-tradicional.png'
-
-import acaiLeite
-    from '../../assets/images/products/acai-leite.png'
-
-import acaiMorango
-    from '../../assets/images/products/acai-morango.png'
+import {
+    mockProducts
+} from '../../dev/mockProduct'
 
 
 /* ========================================
@@ -61,441 +57,7 @@ interface Product {
    PRODUTOS
    ======================================== */
 
-const products: Product[] = [
-
-    {
-        id: 1,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 2,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: true
-    },
-
-    {
-        id: 3,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: true
-    },
-
-    {
-        id: 4,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 5,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: true
-    },
-
-    {
-        id: 6,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: false
-    },
-
-    {
-        id: 7,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 8,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: true
-    },
-
-    {
-        id: 9,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: true
-    },
-
-    {
-        id: 10,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 11,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: true
-    },
-
-    {
-        id: 12,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: true
-    },
-
-    {
-        id: 13,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 14,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: false
-    },
-
-    {
-        id: 15,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: true
-    },
-
-    {
-        id: 16,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 17,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: true
-    },
-
-    {
-        id: 18,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: true
-    },
-
-    {
-        id: 19,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 20,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: true
-    },
-
-    {
-        id: 21,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: true
-    },
-
-    {
-        id: 22,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 23,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: true
-    },
-
-    {
-        id: 24,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: true
-    },
-
-    {
-        id: 25,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 26,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: true
-    },
-
-    {
-        id: 27,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: false
-    },
-
-    {
-        id: 28,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 29,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: true
-    },
-
-    {
-        id: 30,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: true
-    },
-
-    {
-        id: 31,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 32,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: true
-    },
-
-    {
-        id: 33,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: true
-    },
-
-    {
-        id: 34,
-        image: acaiTradicional,
-        name: 'Açaí Tradicional',
-        size: '500 ml',
-        description:
-            'Açaí cremoso e geladinho, perfeito para qualquer momento.',
-        price: 'R$ 18,90',
-        badge: 'MAIS VENDIDO',
-        available: true
-    },
-
-    {
-        id: 35,
-        image: acaiLeite,
-        name: 'Açaí com Leite',
-        size: '500 ml',
-        description:
-            'Açaí cremoso combinado com leite para deixar tudo ainda mais gostoso.',
-        price: 'R$ 20,90',
-        badge: 'QUERIDINHO',
-        available: false
-    },
-
-    {
-        id: 36,
-        image: acaiMorango,
-        name: 'Açaí com Morango',
-        size: '500 ml',
-        description:
-            'Açaí geladinho com morangos para uma combinação irresistível.',
-        price: 'R$ 22,90',
-        badge: 'PREMIUM',
-        available: true
-    }
-
-]
+const products: Product[] = mockProducts
 
 
 /* ========================================
@@ -503,6 +65,8 @@ const products: Product[] = [
    ======================================== */
 
 function Products() {
+
+    const navigate = useNavigate()
 
     /* ========================================
        ESTADOS
@@ -541,7 +105,7 @@ function Products() {
     const [
         maxPrice,
         setMaxPrice
-    ] = useState(40)
+    ] = useState(80)
 
 
     const [
@@ -726,7 +290,11 @@ function Products() {
                 ).length,
 
 
-            combos: 0,
+            combos:
+                searchProducts.filter(
+                    (product) =>
+                        product.name.startsWith('Combo')
+                ).length,
 
 
             adicionais: 0
@@ -763,7 +331,7 @@ function Products() {
             '2 garrafas':
                 products.filter(
                     (product) =>
-                        product.size === '2 garrafas'
+                        product.size.startsWith('2 garrafas')
                 ).length
 
         }
@@ -858,6 +426,82 @@ function Products() {
 
         setCurrentPage(1)
 
+    }
+
+
+    /* ========================================
+       ABRIR DETALHES DO PRODUTO
+       ======================================== */
+
+    const handleProductClick = (
+        productId: number
+    ) => {
+
+        navigate(`/produtos/${productId}`)
+
+    }
+
+
+    /* ========================================
+       ADICIONAR AO CARRINHO
+       ======================================== */
+
+    const handleAddToCart = (
+        productId: number,
+        quantity: number
+    ) => {
+
+        const product = products.find(
+            (item) => item.id === productId
+        )
+
+        if (!product || !product.available) {
+            return
+        }
+
+        const productPrice =
+            Number(
+                product.price
+                    .replace('R$', '')
+                    .replace('.', '')
+                    .replace(',', '.')
+                    .trim()
+            )
+
+        const currentCart = JSON.parse(
+            localStorage.getItem('acaivis_cart') || '[]'
+        )
+
+        const existingItemIndex =
+            currentCart.findIndex(
+                (item: {
+                    productId: number
+                }) => item.productId === productId
+            )
+
+        if (existingItemIndex >= 0) {
+
+            currentCart[existingItemIndex].quantity +=
+                quantity
+
+        } else {
+
+            currentCart.push({
+                id: Date.now(),
+                productId: product.id,
+                image: product.image,
+                name: product.name,
+                description: product.size,
+                unitPrice: productPrice,
+                quantity
+            })
+
+        }
+
+        localStorage.setItem(
+            'acaivis_cart',
+            JSON.stringify(currentCart)
+        )
     }
 
 
@@ -965,9 +609,37 @@ function Products() {
                             currentProducts.map(
                                 (product) => (
 
-                                    <ProductCard
+                                    <div
                                         key={product.id}
-                                        image={product.image}
+                                        onClick={(event) => {
+                                            const target =
+                                                event.target as HTMLElement
+
+                                            if (
+                                                target.closest(
+                                                    'button, a, input, select, textarea'
+                                                )
+                                            ) {
+                                                return
+                                            }
+
+                                            handleProductClick(product.id)
+                                        }}
+                                        role="link"
+                                        tabIndex={0}
+                                        onKeyDown={(event) => {
+                                            if (
+                                                event.key === 'Enter' ||
+                                                event.key === ' '
+                                            ) {
+                                                event.preventDefault()
+                                                handleProductClick(product.id)
+                                            }
+                                        }}
+                                    >
+                                        <ProductCard
+                                            productId={product.id}
+                                            image={product.image}
                                         name={product.name}
                                         size={product.size}
                                         description={
@@ -975,7 +647,11 @@ function Products() {
                                         }
                                         price={product.price}
                                         badge={product.badge}
-                                    />
+                                            onAddToCart={
+                                                handleAddToCart
+                                            }
+                                        />
+                                    </div>
 
                                 )
                             )

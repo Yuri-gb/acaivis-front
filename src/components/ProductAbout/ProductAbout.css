@@ -1,0 +1,125 @@
+/* ========================================
+   PRODUCT ABOUT
+   ======================================== */
+
+.product-details-about {
+    max-width: 1160px;
+    margin: 14px auto 0;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: rgba(7, 6, 14, 0.38);
+    box-sizing: border-box;
+}
+
+.product-details-about h2 {
+    margin: 0 0 13px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.product-details-about h2::after {
+    content: "";
+    display: block;
+    width: 65px;
+    height: 3px;
+    margin-top: 6px;
+    border-radius: 3px;
+    background: #a020f0;
+}
+
+.product-details-about p {
+    max-width: 800px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.68);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.product-details-about-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.product-details-about-feature {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 62px;
+    padding: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 9px;
+    box-sizing: border-box;
+}
+
+.product-details-about-feature svg {
+    flex: 0 0 auto;
+    width: 25px;
+    height: 25px;
+    color: #a020f0;
+}
+
+.product-details-about-feature strong,
+.product-details-about-feature span {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+}
+
+.product-details-about-feature strong {
+    color: white;
+    font-size: 11px;
+}
+
+.product-details-about-feature span {
+    margin-top: 2px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 9px;
+}
+
+@media (max-width: 1000px) {
+    .product-details-about-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .product-details-about {
+        padding: 15px;
+    }
+
+    .product-details-about h2 {
+        font-size: 19px;
+    }
+
+    .product-details-about p {
+        font-size: 11px;
+    }
+
+    .product-details-about-features {
+        gap: 7px;
+        margin-top: 14px;
+    }
+
+    .product-details-about-feature {
+        min-height: 55px;
+        padding: 7px;
+    }
+
+    .product-details-about-feature svg {
+        width: 21px;
+        height: 21px;
+    }
+
+    .product-details-about-feature strong {
+        font-size: 10px;
+    }
+
+    .product-details-about-feature span {
+        font-size: 8px;
+    }
+}

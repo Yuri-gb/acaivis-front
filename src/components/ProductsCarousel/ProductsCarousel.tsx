@@ -302,9 +302,55 @@ function ProductsCarousel({
         productId: number
     ) => {
 
-        console.log(
-            'Produto adicionado ao carrinho:',
-            productId
+        const product = products.find(
+            (item) => item.id === productId
+        )
+
+        if (!product) {
+            return
+        }
+
+        const productPrice =
+            Number(
+                product.price
+                    .replace('R$', '')
+                    .replace('.', '')
+                    .replace(',', '.')
+                    .trim()
+            )
+
+        const currentCart = JSON.parse(
+            localStorage.getItem('acaivis_cart') || '[]'
+        )
+
+        const existingItemIndex =
+            currentCart.findIndex(
+                (item: {
+                    productId: number
+                }) => item.productId === productId
+            )
+
+        if (existingItemIndex >= 0) {
+
+            currentCart[existingItemIndex].quantity += 1
+
+        } else {
+
+            currentCart.push({
+                id: Date.now(),
+                productId: product.id,
+                image: product.image,
+                name: product.name,
+                description: product.description,
+                unitPrice: productPrice,
+                quantity: 1
+            })
+
+        }
+
+        localStorage.setItem(
+            'acaivis_cart',
+            JSON.stringify(currentCart)
         )
     }
 

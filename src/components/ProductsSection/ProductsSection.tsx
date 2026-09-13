@@ -4,64 +4,24 @@ import ProductsCarousel, {
     CarouselProduct
 } from '../ProductsCarousel/ProductsCarousel'
 
-import acaiTradicional
-    from '../../assets/images/products/acai-tradicional.png'
-
-import acaiLeite
-    from '../../assets/images/products/acai-leite.png'
-
-import acaiMorango
-    from '../../assets/images/products/acai-morango.png'
+import { mockProducts } from '../../dev/mockProduct'
 
 
 /* ========================================
    PRODUTOS
    ======================================== */
 
-const products: CarouselProduct[] = [
-
-    {
-        id: 1,
-
-        image: acaiTradicional,
-
-        name: 'Açaí Tradicional',
-
-        description:
-            'Cremoso e irresistível.',
-
-        price: 'R$ 15,90'
-    },
-
-
-    {
-        id: 2,
-
-        image: acaiLeite,
-
-        name: 'Açaí com Leite em Pó',
-
-        description:
-            'Um clássico que nunca falha.',
-
-        price: 'R$ 17,90'
-    },
-
-
-    {
-        id: 3,
-
-        image: acaiMorango,
-
-        name: 'Açaí com Morango',
-
-        description:
-            'Sabor que vicia.',
-
-        price: 'R$ 18,90'
-    }
-
-]
+const products: CarouselProduct[] =
+    mockProducts
+        .filter((product) => product.available)
+        .slice(0, 3)
+        .map((product) => ({
+            id: product.id,
+            image: product.image,
+            name: product.name,
+            description: product.description,
+            price: product.price
+        }))
 
 
 function ProductsSection() {
@@ -113,3 +73,4 @@ function ProductsSection() {
 
 
 export default ProductsSection
+

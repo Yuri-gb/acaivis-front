@@ -11,22 +11,46 @@ import { useState } from 'react'
 
 
 interface ProductCardProps {
+
+    productId: number
+
     image: string
+
     name: string
+
     size: string
+
     description: string
+
     price: string
+
     badge?: string
+
+    onAddToCart: (
+        productId: number,
+        quantity: number
+    ) => void
 }
 
 
 function ProductCard({
+
+    productId,
+
     image,
+
     name,
+
     size,
+
     description,
+
     price,
-    badge
+
+    badge,
+
+    onAddToCart
+
 }: ProductCardProps) {
 
     const [quantity, setQuantity] = useState(1)
@@ -39,23 +63,39 @@ function ProductCard({
         setQuantity((current) => {
 
             if (current <= 1) {
+
                 return 1
+
             }
 
             return current - 1
+
         })
+
     }
 
 
     const increaseQuantity = () => {
 
         setQuantity((current) => current + 1)
+
     }
 
 
     const toggleFavorite = () => {
 
         setFavorite((current) => !current)
+
+    }
+
+
+    const handleAddToCart = () => {
+
+        onAddToCart(
+            productId,
+            quantity
+        )
+
     }
 
 
@@ -74,25 +114,36 @@ function ProductCard({
                 {badge && (
 
                     <span className="product-card-badge">
+
                         {badge}
+
                     </span>
 
                 )}
 
 
                 <button
+
                     type="button"
+
                     className={
                         `product-card-favorite ${
                             favorite ? 'active' : ''
                         }`
                     }
+
                     onClick={toggleFavorite}
+
                     aria-label={
+
                         favorite
+
                             ? `Remover ${name} dos favoritos`
+
                             : `Adicionar ${name} aos favoritos`
+
                     }
+
                 >
 
                     <FaHeart />
@@ -101,8 +152,11 @@ function ProductCard({
 
 
                 <img
+
                     src={image}
+
                     alt={name}
+
                 />
 
             </div>
@@ -116,17 +170,23 @@ function ProductCard({
 
 
                 <h3>
+
                     {name}
+
                 </h3>
 
 
                 <span className="product-card-size">
+
                     {size}
+
                 </span>
 
 
                 <p>
+
                     {description}
+
                 </p>
 
 
@@ -135,7 +195,9 @@ function ProductCard({
                     ======================================== */}
 
                 <strong className="product-card-price">
+
                     {price}
+
                 </strong>
 
 
@@ -147,9 +209,15 @@ function ProductCard({
 
 
                     <button
+
                         type="button"
+
                         onClick={decreaseQuantity}
-                        aria-label={`Diminuir quantidade de ${name}`}
+
+                        aria-label={
+                            `Diminuir quantidade de ${name}`
+                        }
+
                     >
 
                         <FaMinus />
@@ -158,14 +226,22 @@ function ProductCard({
 
 
                     <span>
+
                         {quantity}
+
                     </span>
 
 
                     <button
+
                         type="button"
+
                         onClick={increaseQuantity}
-                        aria-label={`Aumentar quantidade de ${name}`}
+
+                        aria-label={
+                            `Aumentar quantidade de ${name}`
+                        }
+
                     >
 
                         <FaPlus />
@@ -181,14 +257,21 @@ function ProductCard({
                     ======================================== */}
 
                 <button
+
                     type="button"
+
                     className="product-card-add"
+
+                    onClick={handleAddToCart}
+
                 >
 
                     <FaShoppingCart />
 
                     <span>
+
                         Adicionar
+
                     </span>
 
                 </button>
@@ -197,7 +280,9 @@ function ProductCard({
             </div>
 
         </article>
+
     )
+
 }
 
 

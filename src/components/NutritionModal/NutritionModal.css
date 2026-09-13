@@ -1,0 +1,265 @@
+/* ========================================
+   NUTRITION MODAL
+   ======================================== */
+
+.nutrition-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(3, 2, 8, 0.68);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-sizing: border-box;
+}
+
+.nutrition-modal {
+    width: 100%;
+    max-width: 620px;
+    max-height: min(720px, calc(100vh - 48px));
+    overflow: hidden;
+    border: 1px solid rgba(160, 32, 240, 0.3);
+    border-radius: 24px;
+    background: #0d0a17;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
+}
+
+.nutrition-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 26px 28px 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nutrition-modal-eyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: #a020f0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.nutrition-modal-header h2 {
+    margin: 0;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.nutrition-modal-header p {
+    margin: 5px 0 0;
+    color: rgba(255, 255, 255, 0.58);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+.nutrition-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.78);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.nutrition-modal-close:hover {
+    transform: scale(1.05);
+    background: #a020f0;
+    color: white;
+}
+
+.nutrition-modal-close svg {
+    width: 13px;
+    height: 13px;
+}
+
+.nutrition-modal-content {
+    max-height: calc(100vh - 190px);
+    overflow-y: auto;
+    padding: 24px 28px 28px;
+}
+
+.nutrition-modal-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nutrition-modal-table {
+    width: 100%;
+    min-width: 420px;
+    border-collapse: collapse;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nutrition-modal-table th,
+.nutrition-modal-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: left;
+}
+
+.nutrition-modal-table th {
+    background: rgba(160, 32, 240, 0.12);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.nutrition-modal-table td {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+}
+
+.nutrition-modal-table td:last-child,
+.nutrition-modal-table th:last-child {
+    text-align: right;
+}
+
+.nutrition-modal-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.nutrition-modal-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 792px) {
+    .nutrition-modal-overlay {
+        padding: 20px;
+    }
+
+    .nutrition-modal {
+        max-width: 600px;
+        max-height: calc(100vh - 40px);
+        border-radius: 22px;
+    }
+
+    .nutrition-modal-header {
+        padding: 24px 24px 20px;
+    }
+
+    .nutrition-modal-content {
+        max-height: calc(100vh - 180px);
+        padding: 22px 24px 24px;
+    }
+}
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 480px) {
+    .nutrition-modal-overlay {
+        align-items: center;
+        padding: 12px;
+    }
+
+    .nutrition-modal {
+        width: 100%;
+        max-width: none;
+        max-height: calc(100vh - 24px);
+        border-radius: 20px;
+    }
+
+    .nutrition-modal-header {
+        gap: 12px;
+        padding: 20px 18px 17px;
+    }
+
+    .nutrition-modal-eyebrow {
+        margin-bottom: 4px;
+        font-size: 9px;
+    }
+
+    .nutrition-modal-header h2 {
+        font-size: 20px;
+    }
+
+    .nutrition-modal-header p {
+        font-size: 11px;
+    }
+
+    .nutrition-modal-close {
+        width: 34px;
+        height: 34px;
+    }
+
+    .nutrition-modal-content {
+        max-height: calc(100vh - 140px);
+        padding: 18px;
+    }
+
+    .nutrition-modal-table {
+        min-width: 360px;
+    }
+
+    .nutrition-modal-table th,
+    .nutrition-modal-table td {
+        padding: 12px 13px;
+    }
+
+    .nutrition-modal-table th,
+    .nutrition-modal-table td {
+        font-size: 11px;
+    }
+}
+
+/* ========================================
+   MOBILE PEQUENO
+   ======================================== */
+
+@media (max-width: 360px) {
+    .nutrition-modal-overlay {
+        padding: 8px;
+    }
+
+    .nutrition-modal {
+        max-height: calc(100vh - 16px);
+        border-radius: 18px;
+    }
+
+    .nutrition-modal-header {
+        padding: 18px 15px 15px;
+    }
+
+    .nutrition-modal-header h2 {
+        font-size: 18px;
+    }
+
+    .nutrition-modal-content {
+        max-height: calc(100vh - 125px);
+        padding: 15px;
+    }
+
+    .nutrition-modal-table {
+        min-width: 340px;
+    }
+
+    .nutrition-modal-table th,
+    .nutrition-modal-table td {
+        padding: 11px 12px;
+    }
+}

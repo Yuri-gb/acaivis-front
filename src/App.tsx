@@ -8,10 +8,13 @@ import AboutSection from './components/AboutSection/AboutSection'
 import Footer from './components/Footer/Footer'
 
 import Products from './pages/Products/Products'
+import ProductDetails from './pages/ProductDetails/ProductDetails'
 import Cart from './pages/Cart/Cart'
 
 function Home() {
+
     return (
+
         <>
             <Navbar />
             <Hero />
@@ -20,13 +23,18 @@ function Home() {
             <AboutSection />
             <Footer />
         </>
+
     )
 }
 
 function App() {
+
     return (
+
         <BrowserRouter>
+
             <Routes>
+
                 <Route
                     path="/"
                     element={<Home />}
@@ -38,11 +46,19 @@ function App() {
                 />
 
                 <Route
+                    path="/produtos/:id"
+                    element={<ProductDetails />}
+                />
+
+                <Route
                     path="/carrinho"
                     element={<Cart />}
                 />
+
             </Routes>
+
         </BrowserRouter>
+
     )
 }
 

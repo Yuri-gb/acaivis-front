@@ -1,0 +1,259 @@
+/* ========================================
+   PRODUCT INFO
+   ======================================== */
+
+.product-details-info {
+    position: relative;
+    min-width: 0;
+    padding: 8px 4px 0;
+}
+
+.product-details-favorite {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    float: right;
+    margin: 0 0 8px 15px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    line-height: 1.2;
+    text-align: left;
+    cursor: pointer;
+}
+
+.product-details-favorite svg {
+    width: 25px;
+    height: 25px;
+    color: #a020f0;
+}
+
+.product-details-favorite:hover {
+    color: white;
+}
+
+.product-details-info h1 {
+    margin: 0;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.08;
+}
+
+.product-details-size {
+    display: block;
+    margin-top: 7px;
+    color: rgba(255, 255, 255, 0.62);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.product-details-rating {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 12px;
+}
+
+.product-details-rating-stars {
+    color: #ffc400;
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+
+.product-details-rating-text {
+    color: rgba(255, 255, 255, 0.58);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+}
+
+.product-details-price {
+    display: block;
+    margin-top: 15px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.product-details-description {
+    max-width: 520px;
+    margin: 9px 0 20px;
+    color: rgba(255, 255, 255, 0.68);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.product-details-quantity-label {
+    display: block;
+    margin-bottom: 7px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.product-details-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 410px;
+    height: 48px;
+    padding: 0 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    box-sizing: border-box;
+}
+
+.product-details-quantity button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.product-details-quantity button:hover {
+    color: #a020f0;
+}
+
+.product-details-quantity svg {
+    width: 11px;
+    height: 11px;
+}
+
+.product-details-quantity span {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+}
+
+.product-details-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 410px;
+    height: 48px;
+    margin-top: 11px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 10px;
+    background: #a020f0;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-details-add:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(160, 32, 240, 0.3);
+}
+
+.product-details-add:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.product-details-add:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.product-details-add svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ========================================
+   TABELA NUTRICIONAL
+   ======================================== */
+
+.product-details-nutrition-header button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #a020f0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.product-details-nutrition-header button:hover {
+    color: #c15cff;
+}
+
+@media (max-width: 792px) {
+    .product-details-info {
+        padding-top: 0;
+    }
+
+    .product-details-info h1 {
+        font-size: 34px;
+    }
+
+    .product-details-price {
+        font-size: 31px;
+    }
+
+    .product-details-description {
+        max-width: 100%;
+    }
+
+    .product-details-quantity,
+    .product-details-add {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-details-info h1 {
+        font-size: 29px;
+    }
+
+    .product-details-size {
+        font-size: 13px;
+    }
+
+    .product-details-rating-stars {
+        font-size: 15px;
+    }
+
+    .product-details-rating-text {
+        font-size: 10px;
+    }
+
+    .product-details-price {
+        font-size: 29px;
+    }
+
+    .product-details-description {
+        margin-bottom: 16px;
+        font-size: 12px;
+    }
+
+    .product-details-favorite {
+        font-size: 10px;
+    }
+
+    .product-details-favorite svg {
+        width: 22px;
+        height: 22px;
+    }
+}
