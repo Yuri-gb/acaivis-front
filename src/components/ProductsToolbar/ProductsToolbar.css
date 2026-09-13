@@ -1,6 +1,6 @@
- /* ========================================
-    PRODUCTS TOOLBAR
-    ======================================== */
+/* ========================================
+   PRODUCTS TOOLBAR
+   ======================================== */
 
 .products-toolbar {
     display: grid;
@@ -180,20 +180,11 @@
 .products-toolbar-sort {
     position: relative;
 
-    display: grid;
-
-    grid-template-columns:
-        1fr auto;
-
-    grid-template-rows:
-        auto auto;
+    display: flex;
 
     align-items: center;
 
     height: 44px;
-
-    padding:
-        5px 12px;
 
     box-sizing: border-box;
 
@@ -211,16 +202,13 @@
     font-family:
         'Poppins', sans-serif;
 
-    text-align: left;
-
-    cursor: pointer;
-
     transition:
         border-color 0.2s ease,
         background-color 0.2s ease;
 }
 
-.products-toolbar-sort:hover {
+.products-toolbar-sort:hover,
+.products-toolbar-sort.open {
     border-color:
         rgba(160, 32, 240, 0.65);
 
@@ -228,7 +216,42 @@
         rgba(160, 32, 240, 0.07);
 }
 
-.products-toolbar-sort span {
+.products-toolbar-sort-trigger {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+
+    grid-template-rows:
+        auto auto;
+
+    align-items: center;
+
+    width: 100%;
+
+    height: 100%;
+
+    padding:
+        5px 12px;
+
+    border: none;
+
+    border-radius: 22px;
+
+    background: transparent;
+
+    color: white;
+
+    font-family:
+        'Poppins', sans-serif;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.products-toolbar-sort-trigger span {
     grid-column: 1;
 
     grid-row: 1;
@@ -241,7 +264,7 @@
     line-height: 1.1;
 }
 
-.products-toolbar-sort strong {
+.products-toolbar-sort-trigger strong {
     grid-column: 1;
 
     grid-row: 2;
@@ -255,18 +278,113 @@
     line-height: 1.1;
 }
 
-.products-toolbar-sort svg {
+.products-toolbar-sort-trigger svg {
     grid-column: 2;
 
     grid-row: 1 / 3;
 
     width: 10px;
+
     height: 10px;
 
     margin-left: 8px;
 
     color:
         rgba(255, 255, 255, 0.75);
+
+    transition:
+        transform 0.2s ease;
+}
+
+.products-toolbar-sort.open
+.products-toolbar-sort-trigger svg {
+    transform:
+        rotate(180deg);
+}
+
+.products-toolbar-sort-menu {
+    position: absolute;
+
+    top:
+        calc(100% + 7px);
+
+    left: 0;
+
+    right: 0;
+
+    z-index: 300;
+
+    padding: 5px;
+
+    border:
+        1px solid
+        rgba(160, 32, 240, 0.45);
+
+    border-radius: 14px;
+
+    background:
+        #100d1d;
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.45),
+
+        0 0 20px
+        rgba(160, 32, 240, 0.08);
+
+    overflow: hidden;
+}
+
+.products-toolbar-sort-option {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 34px;
+
+    padding:
+        0 10px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        transparent;
+
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-family:
+        'Poppins', sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 500;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.products-toolbar-sort-option:hover {
+    background:
+        rgba(160, 32, 240, 0.14);
+
+    color: white;
+}
+
+.products-toolbar-sort-option.active {
+    background:
+        #5d00b8;
+
+    color: white;
 }
 
 
@@ -317,7 +435,8 @@
 
     border-radius: 19px;
 
-    background: transparent;
+    background:
+        transparent;
 
     color:
         rgba(255, 255, 255, 0.48);
@@ -338,6 +457,7 @@
 
 .products-toolbar-view-button svg {
     width: 12px;
+
     height: 12px;
 }
 
@@ -424,6 +544,7 @@
 
     .products-toolbar-search svg {
         width: 15px;
+
         height: 15px;
     }
 
@@ -455,6 +576,7 @@
 
     .products-toolbar-filter svg {
         width: 13px;
+
         height: 13px;
     }
 
@@ -474,22 +596,27 @@
 
         height: 44px;
 
-        padding:
-            5px 12px;
+        padding: 0;
 
         border-radius: 22px;
     }
 
-    .products-toolbar-sort span {
+    .products-toolbar-sort-trigger {
+        padding:
+            5px 12px;
+    }
+
+    .products-toolbar-sort-trigger span {
         font-size: 8px;
     }
 
-    .products-toolbar-sort strong {
+    .products-toolbar-sort-trigger strong {
         font-size: 10px;
     }
 
-    .products-toolbar-sort svg {
+    .products-toolbar-sort-trigger svg {
         width: 9px;
+
         height: 9px;
 
         margin-left: 6px;
@@ -562,6 +689,7 @@
 
     .products-toolbar-filter svg {
         width: 12px;
+
         height: 12px;
     }
 
@@ -577,15 +705,19 @@
     .products-toolbar-sort {
         height: 42px;
 
+        padding: 0;
+    }
+
+    .products-toolbar-sort-trigger {
         padding:
             5px 10px;
     }
 
-    .products-toolbar-sort span {
+    .products-toolbar-sort-trigger span {
         font-size: 7px;
     }
 
-    .products-toolbar-sort strong {
+    .products-toolbar-sort-trigger strong {
         font-size: 9px;
     }
 

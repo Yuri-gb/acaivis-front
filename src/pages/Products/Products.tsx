@@ -105,13 +105,32 @@ function Products() {
     const [
         maxPrice,
         setMaxPrice
-    ] = useState(80)
+    ] = useState(40)
 
 
     const [
         showOnlyAvailable,
         setShowOnlyAvailable
     ] = useState(true)
+
+
+    const [
+        viewMode,
+        setViewMode
+    ] = useState<'grid' | 'list'>('grid')
+
+
+    const [
+        sortOption,
+        setSortOption
+    ] = useState<
+        'best-selling' |
+        'newest' |
+        'price-asc' |
+        'price-desc' |
+        'name-asc' |
+        'name-desc'
+    >('best-selling')
 
 
     /* ========================================
@@ -225,6 +244,91 @@ function Products() {
         minPrice,
         maxPrice,
         showOnlyAvailable
+    ])
+
+
+    /* ========================================
+       ORDENAÇÃO
+       ======================================== */
+
+    const sortedProducts = useMemo(() => {
+
+        const sorted = [
+            ...filteredProducts
+        ]
+
+        switch (sortOption) {
+
+            case 'newest':
+                return sorted.sort(
+                    (a, b) => b.id - a.id
+                )
+
+            case 'price-asc':
+                return sorted.sort(
+                    (a, b) =>
+                        Number(
+                            a.price
+                                .replace('R$', '')
+                                .replace('.', '')
+                                .replace(',', '.')
+                                .trim()
+                        ) -
+                        Number(
+                            b.price
+                                .replace('R$', '')
+                                .replace('.', '')
+                                .replace(',', '.')
+                                .trim()
+                        )
+                )
+
+            case 'price-desc':
+                return sorted.sort(
+                    (a, b) =>
+                        Number(
+                            b.price
+                                .replace('R$', '')
+                                .replace('.', '')
+                                .replace(',', '.')
+                                .trim()
+                        ) -
+                        Number(
+                            a.price
+                                .replace('R$', '')
+                                .replace('.', '')
+                                .replace(',', '.')
+                                .trim()
+                        )
+                )
+
+            case 'name-asc':
+                return sorted.sort(
+                    (a, b) =>
+                        a.name.localeCompare(
+                            b.name,
+                            'pt-BR'
+                        )
+                )
+
+            case 'name-desc':
+                return sorted.sort(
+                    (a, b) =>
+                        b.name.localeCompare(
+                            a.name,
+                            'pt-BR'
+                        )
+                )
+
+            case 'best-selling':
+            default:
+                return sorted
+
+        }
+
+    }, [
+        filteredProducts,
+        sortOption
     ])
 
 
@@ -347,7 +451,7 @@ function Products() {
         Math.max(
             1,
             Math.ceil(
-                filteredProducts.length /
+                sortedProducts.length /
                 productsPerPage
             )
         )
@@ -359,7 +463,7 @@ function Products() {
 
 
     const currentProducts =
-        filteredProducts.slice(
+        sortedProducts.slice(
             firstProductIndex,
             firstProductIndex +
             productsPerPage
@@ -375,6 +479,21 @@ function Products() {
     ) => {
 
         setSearch(value)
+
+        setCurrentPage(1)
+
+    }
+
+
+    /* ========================================
+       ALTERAR ORDENAÇÃO
+       ======================================== */
+
+    const handleSortChange = (
+        option: typeof sortOption
+    ) => {
+
+        setSortOption(option)
 
         setCurrentPage(1)
 
@@ -527,6 +646,10 @@ function Products() {
                     onOpenFilters={() =>
                         setIsFiltersOpen(true)
                     }
+                    sortOption={sortOption}
+                    onSortChange={handleSortChange}
+                    viewMode={viewMode}
+                    onViewModeChange={setViewMode}
                 />
 
 
@@ -602,7 +725,9 @@ function Products() {
                     />
 
 
-                    <div className="products-grid">
+                    <div className={`products-grid ${
+                        viewMode === 'list' ? 'list-view' : ''
+                    }`}>
 
                         {currentProducts.length > 0 ? (
 

@@ -49,6 +49,38 @@
 
 
 /* ========================================
+   VISUALIZAÇÃO EM LISTA
+   ======================================== */
+
+.products-grid.list-view {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+}
+
+.products-grid.list-view .product-card {
+    flex-direction: row;
+
+    min-height: 190px;
+}
+
+.products-grid.list-view .product-card-image {
+    flex-shrink: 0;
+
+    width: 250px;
+    height: 190px;
+}
+
+.products-grid.list-view .product-card-content {
+    flex: 1;
+
+    min-width: 0;
+
+    justify-content: center;
+}
+
+
+/* ========================================
    NENHUM RESULTADO
    ======================================== */
 
@@ -111,6 +143,10 @@
    ======================================== */
 
 @media (max-width: 1100px) {
+
+    .products-grid.list-view .product-card-image {
+        width: 220px;
+    }
 
     .products-catalog {
         grid-template-columns:

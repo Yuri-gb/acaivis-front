@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react'
+
 import './ProductsToolbar.css'
 
 import {
@@ -22,6 +24,30 @@ interface ProductsToolbarProps {
     ) => void
 
     onOpenFilters?: () => void
+
+    sortOption:
+        | 'best-selling'
+        | 'newest'
+        | 'price-asc'
+        | 'price-desc'
+        | 'name-asc'
+        | 'name-desc'
+
+    onSortChange: (
+        option:
+            | 'best-selling'
+            | 'newest'
+            | 'price-asc'
+            | 'price-desc'
+            | 'name-asc'
+            | 'name-desc'
+    ) => void
+
+    viewMode: 'grid' | 'list'
+
+    onViewModeChange: (
+        mode: 'grid' | 'list'
+    ) => void
 }
 
 
@@ -35,13 +61,97 @@ function ProductsToolbar({
 
     onSearchChange,
 
-    onOpenFilters
+    onOpenFilters,
+
+    sortOption,
+
+    onSortChange,
+
+    viewMode,
+
+    onViewModeChange
 
 }: ProductsToolbarProps) {
+
+    const [isSortOpen, setIsSortOpen] = useState(false)
+
+    const sortRef = useRef<HTMLDivElement>(null)
+
+
+    const sortOptions = [
+        {
+            value: 'best-selling',
+            label: 'Mais vendidos'
+        },
+        {
+            value: 'newest',
+            label: 'Mais recentes'
+        },
+        {
+            value: 'price-asc',
+            label: 'Menor preço'
+        },
+        {
+            value: 'price-desc',
+            label: 'Maior preço'
+        },
+        {
+            value: 'name-asc',
+            label: 'A → Z'
+        },
+        {
+            value: 'name-desc',
+            label: 'Z → A'
+        }
+    ] as const
+
+
+    /* ========================================
+       FECHAR AO CLICAR FORA
+       ======================================== */
+
+    useEffect(() => {
+
+        const handleClickOutside = (
+            event: MouseEvent
+        ) => {
+
+            if (
+                sortRef.current &&
+                !sortRef.current.contains(
+                    event.target as Node
+                )
+            ) {
+
+                setIsSortOpen(false)
+
+            }
+
+        }
+
+
+        document.addEventListener(
+            'mousedown',
+            handleClickOutside
+        )
+
+
+        return () => {
+
+            document.removeEventListener(
+                'mousedown',
+                handleClickOutside
+            )
+
+        }
+
+    }, [])
+
 
     return (
 
         <div className="products-toolbar">
+
 
             {/* ========================================
                BUSCA
@@ -88,22 +198,97 @@ function ProductsToolbar({
                ORDENAÇÃO
                ======================================== */}
 
-            <button
-                type="button"
-                className="products-toolbar-sort"
+            <div
+                ref={sortRef}
+                className={`products-toolbar-sort ${
+                    isSortOpen
+                        ? 'open'
+                        : ''
+                }`}
             >
 
-                <span>
-                    Ordenar por
-                </span>
+                <button
+                    type="button"
+                    className="products-toolbar-sort-trigger"
+                    onClick={() =>
+                        setIsSortOpen(
+                            (open) => !open
+                        )
+                    }
+                    aria-expanded={isSortOpen}
+                    aria-haspopup="listbox"
+                >
 
-                <strong>
-                    Mais vendidos
-                </strong>
+                    <span>
+                        Ordenar por
+                    </span>
 
-                <FaChevronDown />
+                    <strong>
+                        {
+                            sortOptions.find(
+                                (option) =>
+                                    option.value ===
+                                    sortOption
+                            )?.label
+                            || 'Mais vendidos'
+                        }
+                    </strong>
 
-            </button>
+                    <FaChevronDown />
+
+                </button>
+
+
+                {isSortOpen && (
+
+                    <div
+                        className="products-toolbar-sort-menu"
+                        role="listbox"
+                        aria-label="Ordenar produtos"
+                    >
+
+                        {sortOptions.map(
+                            (option) => (
+
+                                <button
+                                    key={option.value}
+                                    type="button"
+                                    role="option"
+                                    aria-selected={
+                                        sortOption ===
+                                        option.value
+                                    }
+                                    className={`products-toolbar-sort-option ${
+                                        sortOption ===
+                                        option.value
+                                            ? 'active'
+                                            : ''
+                                    }`}
+                                    onClick={() => {
+
+                                        onSortChange(
+                                            option.value
+                                        )
+
+                                        setIsSortOpen(
+                                            false
+                                        )
+
+                                    }}
+                                >
+
+                                    {option.label}
+
+                                </button>
+
+                            )
+                        )}
+
+                    </div>
+
+                )}
+
+            </div>
 
 
             {/* ========================================
@@ -114,7 +299,16 @@ function ProductsToolbar({
 
                 <button
                     type="button"
-                    className="products-toolbar-view-button active"
+                    className={`products-toolbar-view-button ${
+                        viewMode === 'grid'
+                            ? 'active'
+                            : ''
+                    }`}
+                    onClick={() =>
+                        onViewModeChange(
+                            'grid'
+                        )
+                    }
                     aria-label="Visualização em grade"
                 >
 
@@ -129,7 +323,16 @@ function ProductsToolbar({
 
                 <button
                     type="button"
-                    className="products-toolbar-view-button"
+                    className={`products-toolbar-view-button ${
+                        viewMode === 'list'
+                            ? 'active'
+                            : ''
+                    }`}
+                    onClick={() =>
+                        onViewModeChange(
+                            'list'
+                        )
+                    }
                     aria-label="Visualização em lista"
                 >
 
