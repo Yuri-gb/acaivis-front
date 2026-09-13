@@ -12,7 +12,7 @@ import acaiMorango
    CONFIGURAÇÃO
    ======================================== */
 
-export const MOCK_CART_ENABLED = true
+export const MOCK_CART_ENABLED = false
 
 
 /* ========================================
