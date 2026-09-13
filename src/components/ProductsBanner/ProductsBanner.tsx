@@ -8,10 +8,10 @@ import {
 } from 'react-icons/fa'
 
 import productsBannerImage
-    from '../../assets/images/products/products-banner.png'
+    from '../../assets/images/products/products-banner.webp'
 
 import productsBannerMobileImage
-    from '../../assets/images/products/products-banner.png'
+    from '../../assets/images/products/products-banner-mobile.webp'
 
 import type { ReactNode } from 'react'
 

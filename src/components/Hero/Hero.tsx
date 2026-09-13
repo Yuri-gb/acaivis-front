@@ -1,14 +1,13 @@
 import './Hero.css'
 
 import aGenteSabe
-    from '../../assets/images/a-gente-sabe..png'
+    from '../../assets/images/a-gente-sabe.webp'
 
 import heroBackground
-    from '../../assets/images/hero-background2.png'
+    from '../../assets/images/hero-background2.webp'
 
 import heroBackgroundMobile
-    from '../../assets/images/hero-background-mobile..png'
-
+    from '../../assets/images/hero-background-mobile.webp'
 
 function Hero() {
 

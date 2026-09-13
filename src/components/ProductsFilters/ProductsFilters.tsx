@@ -9,7 +9,7 @@ import {
 } from 'react-icons/fa'
 
 import mascotImage
-    from '../../assets/images/products/acaivis-mascote-card.png'
+    from '../../assets/images/products/acaivis-mascote-card.webp'
 
 
 /* ========================================

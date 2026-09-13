@@ -7,7 +7,7 @@ import {
     FaHeart
 } from 'react-icons/fa'
 
-import logo from '../../assets/images/acaivis-logo.png.png'
+import logo from '../../assets/images/acaivis-logo.webp'
 
 
 function Footer() {

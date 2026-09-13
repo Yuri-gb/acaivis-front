@@ -26,31 +26,31 @@ import ProductsCarousel, {
 } from '../../components/ProductsCarousel/ProductsCarousel'
 
 import acaiTradicional
-    from '../../assets/images/products/acai-tradicional.png'
+    from '../../assets/images/products/acai-tradicional.webp'
 
 import acaiLeite
-    from '../../assets/images/products/acai-leite.png'
+    from '../../assets/images/products/acai-leite.webp'
 
 import acaiMorango
-    from '../../assets/images/products/acai-morango.png'
+    from '../../assets/images/products/acai-morango.webp'
 
 import cartEmptyImage
-    from '../../assets/images/cart/cart-empty.png'
+    from '../../assets/images/cart/cart-empty.webp'
 
 import cartEmptyMobileImage
-    from '../../assets/images/cart/cart-empty-mobile.png'
+    from '../../assets/images/cart/cart-empty-mobile.webp'
 
 import cartEmptyCheioImage
-    from '../../assets/images/cart/cart-empty-cheio.png'
+    from '../../assets/images/cart/cart-empty-cheio.webp'
 
 import cartEmptyCheioMobileImage
-    from '../../assets/images/cart/cart-empty-cheio-mobile.png'
+    from '../../assets/images/cart/cart-empty-cheio-mobile.webp'
 
 import estaVazioImage
-    from '../../assets/images/cart/esta-vazio.png'
+    from '../../assets/images/cart/esta-vazio.webp'
 
 import gostarImage
-    from '../../assets/images/cart/gostar.png'
+    from '../../assets/images/cart/gostar.webp'
 
 import {
     getMockCart,

@@ -9,10 +9,10 @@ import {
 } from 'react-icons/fa'
 
 import aboutDecorationLeft
-    from '../../assets/images/about/l.png'
+    from '../../assets/images/about/l.webp'
 
 import aboutDecorationRight
-    from '../../assets/images/about/r.png'
+    from '../../assets/images/about/r.webp'
 
 
 interface Benefit {

@@ -1,6 +1,11 @@
-import acaiTradicional from '../assets/images/products/acai-tradicional.png'
-import acaiLeite from '../assets/images/products/acai-leite.png'
-import acaiMorango from '../assets/images/products/acai-morango.png'
+import acaiTradicional
+    from '../assets/images/products/acai-tradicional.webp'
+
+import acaiLeite
+    from '../assets/images/products/acai-leite.webp'
+
+import acaiMorango
+    from '../assets/images/products/acai-morango.webp'
 
 
 /* ========================================
