@@ -29,6 +29,7 @@ export interface MercadoPagoPaymentResponse {
     qrCode?: string | null
     qrCodeBase64?: string | null
     ticketUrl?: string | null
+    expiresAt?: string | null
 }
 
 export interface DeliveryOrder { id:number; trackingCode:string; customerName:string; customerPhone:string; address:string; neighborhood:string; city:string; state:string; zipCode:string; total:number; paymentMethod:PaymentMethod; paymentConfirmed:boolean; status:OrderStatus; items:OrderItem[]; routeOrder?:number|null; deliveryProofUrl?:string|null; deliveredAt?:string|null; deliveredBy?:string|null }
