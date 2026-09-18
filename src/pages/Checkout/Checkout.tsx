@@ -412,6 +412,7 @@ function Checkout() {
                             })
                                 .then(response => {
                                     setPayment(response)
+                                    clearCart()
                                     navigate(`/resultado-pagamento?codigo=${encodeURIComponent(currentOrder.trackingCode)}`)
                                 })
                                 .catch(paymentError => {
@@ -596,6 +597,7 @@ function Checkout() {
                 })
 
                 setPayment(response)
+                clearCart()
                 navigate(`/resultado-pagamento?codigo=${encodeURIComponent(createdOrder.trackingCode)}`)
                 setLoading(false)
                 return
