@@ -1,0 +1,903 @@
+/* ========================================
+   PRODUCT DETAILS PAGE
+   ======================================== */
+
+.product-details-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 18px 3% 90px;
+    background:
+        radial-gradient(
+            circle at 50% 18%,
+            rgba(160, 32, 240, 0.08),
+            transparent 32%
+        ),
+        linear-gradient(
+            180deg,
+            #090711 0%,
+            #0d0a17 55%,
+            #0a0812 100%
+        );
+    color: white;
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BREADCRUMB
+   ======================================== */
+
+.product-details-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 1160px;
+    margin: 0 auto 22px;
+    color: rgba(255, 255, 255, 0.55);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.product-details-breadcrumb a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.product-details-breadcrumb a:hover {
+    color: #a020f0;
+}
+
+.product-details-breadcrumb span:last-child {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* ========================================
+   ÁREA PRINCIPAL
+   ======================================== */
+
+.product-details-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 34px;
+    max-width: 1160px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+
+/* ========================================
+   GALERIA
+   ======================================== */
+
+.product-details-gallery {
+    min-width: 0;
+}
+
+.product-gallery-main {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.55 / 1;
+    overflow: hidden;
+    border: 1px solid rgba(160, 32, 240, 0.3);
+    border-radius: 40px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(160, 32, 240, 0.16),
+            transparent 65%
+        ),
+        #0b0912;
+    box-sizing: border-box;
+}
+
+.product-gallery-main img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.product-gallery-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 16px;
+    border-radius: 20px;
+    background: linear-gradient(
+        90deg,
+        #8b00ff,
+        #a020f0
+    );
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.product-gallery-zoom {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 3;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    background: rgba(8, 7, 14, 0.82);
+    color: white;
+}
+
+.product-gallery-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.product-gallery-thumbnail {
+    height: 82px;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 9px;
+    background: #0d0a17;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.product-gallery-thumbnail.active {
+    border: 2px solid #a020f0;
+}
+
+.product-gallery-thumbnail img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ========================================
+   INFORMAÇÕES
+   ======================================== */
+
+.product-details-info {
+    min-width: 0;
+    padding: 0 4px;
+}
+
+.product-details-info h1 {
+    margin: 0;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.08;
+}
+
+.product-details-size {
+    display: block;
+    margin-top: 7px;
+    color: #a020f0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.product-details-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 13px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.product-details-rating-stars {
+    color: #ffc400;
+    letter-spacing: 2px;
+    font-size: 19px;
+}
+
+.product-details-rating-text {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 14px;
+}
+
+.product-details-price {
+    display: block;
+    margin-top: 12px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.product-details-description {
+    max-width: 560px;
+    margin: 9px 0 18px;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+
+/* ========================================
+   FAVORITOS
+   ======================================== */
+
+.product-details-favorite {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 18px auto;
+    width: fit-content;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.product-details-favorite svg {
+    width: 34px;
+    height: 34px;
+    color: #a020f0;
+}
+
+
+/* ========================================
+   QUANTIDADE
+   ======================================== */
+
+.product-details-quantity-label {
+    display: block;
+    margin-bottom: 6px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.product-details-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 430px;
+    height: 54px;
+    padding: 0 18px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 30px;
+    box-sizing: border-box;
+}
+
+.product-details-quantity button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.product-details-quantity span {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ========================================
+   ADICIONAR AO CARRINHO
+   ======================================== */
+
+.product-details-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 430px;
+    height: 54px;
+    margin-top: 13px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(
+        90deg,
+        #8500ff,
+        #a020f0
+    );
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.product-details-add:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 24px rgba(160, 32, 240, 0.3);
+}
+
+.product-details-add:active {
+    transform: scale(0.98);
+}
+
+
+/* ========================================
+   BENEFÍCIOS
+   ======================================== */
+
+.product-details-benefits {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1160px;
+    margin: 20px auto 0;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+    background: rgba(7, 6, 14, 0.42);
+    overflow: hidden;
+}
+
+.product-details-benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 112px;
+    padding: 14px;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.product-details-benefit:last-child {
+    border-right: none;
+}
+
+.product-details-benefit svg {
+    width: 35px;
+    height: 35px;
+    color: #a020f0;
+}
+
+.product-details-benefit strong {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.product-details-benefit span {
+    color: rgba(255, 255, 255, 0.72);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+
+/* ========================================
+   SOBRE O PRODUTO
+   ======================================== */
+
+.product-details-about {
+    position: relative;
+    max-width: 1160px;
+    margin: 14px auto 0;
+    padding: 18px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    background: rgba(7, 6, 14, 0.38);
+    box-sizing: border-box;
+}
+
+.product-details-about h2,
+.product-details-nutrition h2 {
+    margin: 0 0 14px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.product-details-about h2::after {
+    content: "";
+    display: block;
+    width: 74px;
+    height: 4px;
+    margin-top: 6px;
+    border-radius: 4px;
+    background: #a020f0;
+}
+
+.product-details-about p {
+    max-width: 720px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.76);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+
+/* ========================================
+   CARACTERÍSTICAS DO PRODUTO
+   ======================================== */
+
+.product-details-about-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.product-details-about-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 64px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.product-details-about-feature svg {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    color: #a020f0;
+}
+
+.product-details-about-feature strong,
+.product-details-about-feature span {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+}
+
+.product-details-about-feature strong {
+    color: white;
+    font-size: 12px;
+}
+
+.product-details-about-feature span {
+    margin-top: 2px;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 10px;
+}
+
+
+/* ========================================
+   INFORMAÇÕES NUTRICIONAIS
+   ======================================== */
+
+.product-details-nutrition {
+    max-width: 1160px;
+    margin: 14px auto 0;
+    padding: 18px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    background: rgba(7, 6, 14, 0.38);
+    box-sizing: border-box;
+}
+
+.product-details-nutrition-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.product-details-nutrition-header a {
+    color: #a020f0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.product-details-nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.product-details-nutrition-item {
+    padding: 13px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+}
+
+.product-details-nutrition-item strong,
+.product-details-nutrition-item span {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+}
+
+.product-details-nutrition-item strong {
+    color: white;
+    font-size: 14px;
+}
+
+.product-details-nutrition-item span {
+    margin-top: 3px;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 11px;
+}
+
+
+/* ========================================
+   PRODUTOS RELACIONADOS
+   ======================================== */
+
+.product-details-related {
+    max-width: 1160px;
+    margin: 38px auto 0;
+}
+
+.product-details-related-header {
+    margin-bottom: 18px;
+}
+
+.product-details-related-header h2 {
+    margin: 0;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.product-details-related-header h2 em {
+    display: inline-flex;
+    align-items: center;
+    width: 118px;
+    height: 48px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.product-details-related-header h2 em img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 1000px) {
+
+    .product-details-page {
+        padding: 16px 4% 80px;
+    }
+
+    .product-details-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .product-details-info h1 {
+        font-size: 36px;
+    }
+
+    .product-details-price {
+        font-size: 32px;
+    }
+
+    .product-details-benefit {
+        min-height: 100px;
+    }
+
+    .product-details-about-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* ========================================
+   TABLET PEQUENO
+   ======================================== */
+
+@media (max-width: 792px) {
+
+    .product-details-page {
+        padding: 14px 3% 70px;
+    }
+
+    .product-details-breadcrumb {
+        margin-bottom: 16px;
+        font-size: 12px;
+    }
+
+    .product-details-main {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .product-details-info {
+        padding: 0 2px;
+    }
+
+    .product-details-info h1 {
+        font-size: 34px;
+    }
+
+    .product-details-benefits {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-details-benefit:nth-child(2) {
+        border-right: none;
+    }
+
+    .product-details-benefit:nth-child(-n + 2) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .product-details-about-features,
+    .product-details-nutrition-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* ========================================
+   CELULAR
+   ======================================== */
+
+@media (max-width: 480px) {
+
+    .product-details-page {
+        padding: 12px 3% 55px;
+    }
+
+    .product-details-breadcrumb {
+        gap: 7px;
+        font-size: 10px;
+    }
+
+    .product-gallery-main {
+        aspect-ratio: 1 / 0.94;
+        border-radius: 12px;
+    }
+
+    .product-gallery-badge {
+        top: 10px;
+        left: 10px;
+        min-height: 30px;
+        padding: 0 12px;
+        font-size: 10px;
+    }
+
+    .product-gallery-zoom {
+        right: 10px;
+        bottom: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .product-gallery-thumbnails {
+        gap: 7px;
+        margin-top: 9px;
+    }
+
+    .product-gallery-thumbnail {
+        height: 58px;
+        border-radius: 7px;
+    }
+
+    .product-details-info h1 {
+        font-size: 30px;
+    }
+
+    .product-details-size {
+        font-size: 18px;
+    }
+
+    .product-details-rating {
+        gap: 7px;
+        margin-top: 10px;
+    }
+
+    .product-details-rating-stars {
+        font-size: 16px;
+    }
+
+    .product-details-rating-text {
+        font-size: 11px;
+    }
+
+    .product-details-price {
+        font-size: 31px;
+    }
+
+    .product-details-description {
+        font-size: 13px;
+    }
+
+    .product-details-favorite {
+        font-size: 12px;
+    }
+
+    .product-details-favorite svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .product-details-quantity {
+        max-width: none;
+        height: 50px;
+    }
+
+    .product-details-add {
+        max-width: none;
+        height: 50px;
+        font-size: 13px;
+    }
+
+    .product-details-benefits {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 16px;
+    }
+
+    .product-details-benefit {
+        min-height: 94px;
+        padding: 10px 6px;
+    }
+
+    .product-details-benefit svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .product-details-benefit strong {
+        font-size: 11px;
+    }
+
+    .product-details-benefit span {
+        font-size: 10px;
+    }
+
+    .product-details-about,
+    .product-details-nutrition {
+        padding: 15px;
+    }
+
+    .product-details-about h2,
+    .product-details-nutrition h2 {
+        font-size: 20px;
+    }
+
+    .product-details-about p {
+        font-size: 12px;
+    }
+
+    .product-details-about-features,
+    .product-details-nutrition-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+    }
+
+    .product-details-about-feature {
+        min-height: 58px;
+        padding: 8px;
+    }
+
+    .product-details-about-feature svg {
+        width: 23px;
+        height: 23px;
+    }
+
+    .product-details-nutrition-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .product-details-nutrition-item {
+        padding: 10px;
+    }
+
+    .product-details-related {
+        margin-top: 30px;
+    }
+
+    .product-details-related-header h2 {
+        font-size: 23px;
+    }
+
+    .product-details-related-header h2 em {
+        width: 92px;
+        height: 38px;
+        margin-left: 5px;
+    }
+
+    .product-details-related-header h2 em img {
+        width: 100%;
+        height: 100%;
+    }
+
+}
+
+
+/* ========================================
+   CELULARES PEQUENOS
+   ======================================== */
+
+@media (max-width: 380px) {
+
+    .product-details-info h1 {
+        font-size: 27px;
+    }
+
+    .product-details-price {
+        font-size: 28px;
+    }
+
+    .product-details-about-features,
+    .product-details-nutrition-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* ========================================
+   AJUSTE DE POSICIONAMENTO
+   Mantém conteúdo e dimensões existentes.
+   ======================================== */
+
+.product-details-main .product-details-info {
+    position: relative;
+}
+
+.product-details-main .product-details-favorite {
+    position: absolute;
+    top: 12px;
+    right: 4px;
+    float: none;
+    margin: 0;
+}
+
+.product-details-main .product-details-info h1 {
+    padding-right: 145px;
+}
+
+@media (max-width: 792px) {
+    .product-details-main .product-details-favorite {
+        position: static;
+        float: right;
+        margin: 0 0 10px 15px;
+    }
+
+    .product-details-main .product-details-info h1 {
+        padding-right: 0;
+    }
+}

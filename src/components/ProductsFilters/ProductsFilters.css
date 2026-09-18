@@ -1,0 +1,1563 @@
+/* ========================================
+   FILTROS
+   ======================================== */
+
+.acaivis-filters {
+    position: relative;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    border-radius: 10px;
+
+    background:
+        rgba(8, 7, 15, 0.55);
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   CABEÇALHO MOBILE
+   ======================================== */
+
+.acaivis-filters-mobile-header {
+    display: none;
+}
+
+
+/* ========================================
+   SEÇÕES
+   ======================================== */
+
+.acaivis-filters-section {
+    padding:
+        18px 16px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+}
+
+.acaivis-filters-section:last-of-type {
+    border-bottom: none;
+}
+
+
+/* ========================================
+   TÍTULO DA SEÇÃO
+   ======================================== */
+
+.acaivis-filters-section-title {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-bottom: 13px;
+}
+
+.acaivis-filters-section-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+.acaivis-filters-section-heading svg {
+    width: 17px;
+    height: 17px;
+
+    flex-shrink: 0;
+
+    color:
+        #a020f0;
+}
+
+.acaivis-filters-section h3 {
+    margin: 0;
+
+    color: white;
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.acaivis-filters-chevron {
+    width: 12px;
+    height: 12px;
+
+    color:
+        rgba(255, 255, 255, 0.70);
+}
+
+
+/* ========================================
+   CATEGORIAS
+   ======================================== */
+
+.acaivis-filters-category-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.acaivis-filters-category {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    min-height: 28px;
+
+    padding:
+        0 10px;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background:
+        transparent;
+
+    color:
+        rgba(255, 255, 255, 0.68);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 400;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.acaivis-filters-category:hover {
+    background:
+        rgba(160, 32, 240, 0.10);
+
+    color: white;
+}
+
+.acaivis-filters-category.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(93, 0, 184, 0.85),
+            rgba(110, 0, 220, 0.65)
+        );
+
+    color: white;
+}
+
+.acaivis-filters-category span:last-child {
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    font-size: 9px;
+}
+
+.acaivis-filters-category.active span:last-child {
+    color: white;
+}
+
+
+/* ========================================
+   RADIO DAS CATEGORIAS
+   ======================================== */
+
+.acaivis-filters-radio {
+    display: none;
+}
+
+
+/* ========================================
+   CHECKBOX
+   ======================================== */
+
+.acaivis-filters-checkbox {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-height: 27px;
+
+    cursor: pointer;
+}
+
+.acaivis-filters-checkbox input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.acaivis-filters-checkbox-box {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 15px;
+    height: 15px;
+
+    flex-shrink: 0;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.35);
+
+    border-radius: 3px;
+
+    background:
+        rgba(255, 255, 255, 0.02);
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.acaivis-filters-checkbox input:checked
++ .acaivis-filters-checkbox-box {
+    border-color:
+        #a020f0;
+
+    background:
+        #a020f0;
+}
+
+.acaivis-filters-checkbox input:checked
++ .acaivis-filters-checkbox-box::after {
+    content: "";
+
+    width: 4px;
+    height: 7px;
+
+    border:
+        solid white;
+
+    border-width:
+        0 1.5px 1.5px 0;
+
+    transform:
+        rotate(45deg)
+        translate(-1px, -1px);
+}
+
+.acaivis-filters-checkbox-label {
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 400;
+}
+
+.acaivis-filters-checkbox-count {
+    margin-left: auto;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 9px;
+}
+
+
+/* ========================================
+   PREÇO
+   ======================================== */
+
+.acaivis-filters-price {
+    width: 100%;
+}
+
+.acaivis-filters-price-track {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    height: 24px;
+}
+
+
+/* ========================================
+   LINHA DO PREÇO
+   ======================================== */
+
+.acaivis-filters-price-line {
+    position: absolute;
+
+    top: 50%;
+
+    height: 4px;
+
+    border-radius: 999px;
+
+    background:
+        #a020f0;
+
+    transform:
+        translateY(-50%);
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   RANGE
+   ======================================== */
+
+.acaivis-filters-price-range {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 24px;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   TRILHO
+   ======================================== */
+
+.acaivis-filters-price-range::-webkit-slider-runnable-track {
+    width: 100%;
+
+    height: 4px;
+
+    background: transparent;
+
+    border: none;
+}
+
+.acaivis-filters-price-range::-moz-range-track {
+    width: 100%;
+
+    height: 4px;
+
+    background: transparent;
+
+    border: none;
+}
+
+
+/* ========================================
+   BOLINHA - CHROME / EDGE / SAFARI
+   ======================================== */
+
+.acaivis-filters-price-range::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+
+    margin-top: -6px;
+
+    border:
+        2px solid
+        #a020f0;
+
+    border-radius: 50%;
+
+    background:
+        #a020f0;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    pointer-events: auto;
+
+    cursor: pointer;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.acaivis-filters-price-range::-webkit-slider-thumb:hover {
+    box-shadow:
+        0 0 0 5px
+        rgba(160, 32, 240, 0.14);
+}
+
+
+/* ========================================
+   BOLINHA - FIREFOX
+   ======================================== */
+
+.acaivis-filters-price-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+
+    border:
+        2px solid
+        #a020f0;
+
+    border-radius: 50%;
+
+    background:
+        #a020f0;
+
+    pointer-events: auto;
+
+    cursor: pointer;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.acaivis-filters-price-range::-moz-range-thumb:hover {
+    box-shadow:
+        0 0 0 5px
+        rgba(160, 32, 240, 0.14);
+}
+
+
+/* ========================================
+   CAMADAS DOS RANGES
+   ======================================== */
+
+.acaivis-filters-price-range.min {
+    z-index: 2;
+}
+
+.acaivis-filters-price-range.max {
+    z-index: 3;
+}
+
+
+/* ========================================
+   VALORES
+   ======================================== */
+
+.acaivis-filters-price-values {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    color:
+        rgba(255, 255, 255, 0.70);
+
+    font-family:
+        'Poppins',
+        sans-serif;
+
+    font-size: 9px;
+}
+
+
+/* ========================================
+   MASCOTE AÇAÍVIS
+   ======================================== */
+
+.acaivis-filters-quality {
+    position: relative;
+
+    width: 100%;
+
+    height: 360px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            145deg,
+            #26003d 0%,
+            #160020 48%,
+            #08070f 100%
+        );
+
+    overflow: hidden;
+}
+
+.acaivis-filters-quality img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center bottom;
+
+    pointer-events: none;
+
+    user-select: none;
+}
+
+
+/* ========================================
+   OVERLAY MOBILE
+   ======================================== */
+
+.acaivis-filters-overlay {
+    display: none;
+}
+
+
+/* ========================================
+   BOTÕES MOBILE
+   ======================================== */
+
+.acaivis-filters-mobile-actions {
+    display: none;
+}
+
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 1100px) {
+
+    .acaivis-filters-quality {
+        height: 330px;
+    }
+}
+
+
+/* ========================================
+   MOBILE — NOVO DRAWER DE FILTROS
+   ======================================== */
+
+@media (max-width: 792px) {
+
+    .acaivis-filters-overlay {
+        position: fixed;
+
+        inset: 0;
+
+        display: block;
+
+        background:
+            rgba(0, 0, 0, 0.68);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        pointer-events: none;
+
+        transition:
+            opacity 0.25s ease,
+            visibility 0.25s ease;
+
+        z-index: 90;
+    }
+
+    .acaivis-filters-overlay.active {
+        opacity: 1;
+
+        visibility: visible;
+
+        pointer-events: auto;
+    }
+
+    .acaivis-filters {
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        width: 100%;
+
+        height:
+            min(92vh, 760px);
+
+        max-height:
+            92vh;
+
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.10);
+
+        border-bottom: none;
+
+        border-radius:
+            24px 24px 0 0;
+
+        background:
+            linear-gradient(
+                180deg,
+                #11101d 0%,
+                #090811 100%
+            );
+
+        display: flex;
+
+        flex-direction: column;
+
+        overflow: hidden;
+
+        transform:
+            translateY(100%);
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        pointer-events: none;
+
+        transition:
+            transform 0.30s ease,
+            opacity 0.25s ease,
+            visibility 0.30s ease;
+
+        z-index: 100;
+    }
+
+    .acaivis-filters.mobile-open {
+        transform:
+            translateY(0);
+
+        opacity: 1;
+
+        visibility: visible;
+
+        pointer-events: auto;
+    }
+
+
+    /* ========================================
+       HEADER MOBILE
+       ======================================== */
+
+    .acaivis-filters-mobile-header {
+        position: relative;
+
+        display: block;
+
+        flex:
+            0 0 auto;
+
+        padding:
+            12px 18px 18px;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.10);
+
+        background:
+            #11101d;
+
+        z-index: 3;
+    }
+
+    .acaivis-filters-mobile-handle {
+        width: 52px;
+
+        height: 4px;
+
+        margin:
+            0 auto 16px;
+
+        border-radius:
+            999px;
+
+        background:
+            rgba(255, 255, 255, 0.38);
+    }
+
+    .acaivis-filters-mobile-title {
+        display: flex;
+
+        align-items: flex-start;
+
+        justify-content:
+            space-between;
+
+        gap: 12px;
+
+        padding-right: 36px;
+    }
+
+    .acaivis-filters-mobile-title h2 {
+        margin: 0;
+
+        color: #fff;
+
+        font-family:
+            'Poppins',
+            sans-serif;
+
+        font-size:
+            clamp(22px, 6vw, 28px);
+
+        font-weight: 700;
+
+        line-height: 1.1;
+    }
+
+    .acaivis-filters-mobile-title p {
+        margin:
+            4px 0 0;
+
+        color:
+            rgba(255, 255, 255, 0.55);
+
+        font-family:
+            'Poppins',
+            sans-serif;
+
+        font-size:
+            clamp(10px, 2.8vw, 12px);
+
+        line-height: 1.3;
+    }
+
+    .acaivis-filters-mobile-clear {
+        flex-shrink: 0;
+
+        margin-top: 7px;
+
+        padding: 0;
+
+        border: 0;
+
+        background:
+            transparent;
+
+        color:
+            #c02cff;
+
+        font-family:
+            'Poppins',
+            sans-serif;
+
+        font-size:
+            clamp(10px, 2.8vw, 12px);
+
+        font-weight: 500;
+
+        text-decoration: none;
+
+        white-space: nowrap;
+
+        cursor: pointer;
+    }
+
+    .acaivis-filters-mobile-close {
+        position: absolute;
+
+        top: 45px;
+
+        right: 14px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: 28px;
+        height: 28px;
+
+        padding: 0;
+
+        border: 0;
+
+        background:
+            transparent;
+
+        color:
+            rgba(255, 255, 255, 0.90);
+
+        cursor: pointer;
+    }
+
+    .acaivis-filters-mobile-close svg {
+        width: 20px;
+        height: 20px;
+    }
+
+
+    /* ========================================
+       ÁREA DE SCROLL
+       ======================================== */
+
+    .acaivis-filters-mobile-content {
+        min-height: 0;
+
+        flex:
+            1 1 auto;
+
+        overflow-y: auto;
+
+        overflow-x: hidden;
+
+        -webkit-overflow-scrolling:
+            touch;
+
+        overscroll-behavior-y:
+            contain;
+
+        scrollbar-width:
+            thin;
+
+        scrollbar-color:
+            #a020f0 transparent;
+    }
+
+    .acaivis-filters-mobile-content::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .acaivis-filters-mobile-content::-webkit-scrollbar-track {
+        background:
+            transparent;
+    }
+
+    .acaivis-filters-mobile-content::-webkit-scrollbar-thumb {
+        border-radius:
+            999px;
+
+        background:
+            #a020f0;
+    }
+
+
+    /* ========================================
+       SEÇÕES MOBILE
+       ======================================== */
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding:
+            18px 18px 20px;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.09);
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section-title {
+        margin-bottom:
+            12px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section-heading {
+        gap:
+            10px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section-heading svg {
+        width:
+            17px;
+
+        height:
+            17px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section h3 {
+        font-size:
+            14px;
+
+        font-weight:
+            600;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-chevron {
+        width:
+            13px;
+
+        height:
+            13px;
+    }
+
+
+    /* ========================================
+       CATEGORIAS MOBILE
+       ======================================== */
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-category-list {
+        gap:
+            3px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-category {
+        min-height:
+            34px;
+
+        padding:
+            0 9px;
+
+        border-radius:
+            8px;
+
+        font-size:
+            11px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-category
+    span:nth-child(2) {
+        min-width:
+            0;
+
+        margin-left:
+            8px;
+
+        overflow:
+            hidden;
+
+        text-overflow:
+            ellipsis;
+
+        white-space:
+            nowrap;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-category
+    span:last-child {
+        flex:
+            0 0 auto;
+
+        font-size:
+            10px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-radio {
+        display:
+            block;
+
+        width:
+            15px;
+
+        height:
+            15px;
+
+        flex:
+            0 0 15px;
+
+        box-sizing:
+            border-box;
+
+        border:
+            1.5px solid
+            rgba(255, 255, 255, 0.58);
+
+        border-radius:
+            50%;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-category.active
+    .acaivis-filters-radio {
+        border:
+            5px solid
+            #a020f0;
+    }
+
+
+    /* ========================================
+       TAMANHO — CHIPS
+       ======================================== */
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2) {
+        padding-bottom:
+            18px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox {
+        position:
+            relative;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        min-height:
+            42px;
+
+        padding:
+            0 10px;
+
+        box-sizing:
+            border-box;
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.16);
+
+        border-radius:
+            12px;
+
+        background:
+            rgba(255, 255, 255, 0.015);
+
+        cursor:
+            pointer;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2) {
+        display:
+            grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        column-gap:
+            8px;
+
+        row-gap:
+            10px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-section-title {
+        grid-column:
+            1 / -1;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox:nth-of-type(4) {
+        grid-column:
+            1 / -1;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox
+    input {
+        position:
+            absolute;
+
+        opacity:
+            0;
+
+        pointer-events:
+            none;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox-box {
+        display:
+            none;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox-label {
+        font-size:
+            12px;
+
+        color:
+            rgba(255, 255, 255, 0.78);
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox-count {
+        display:
+            none;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox:has(input:checked) {
+        border-color:
+            #a020f0;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(160, 32, 240, 0.22),
+                rgba(192, 44, 255, 0.10)
+            );
+
+        box-shadow:
+            inset 0 0 0 1px
+            rgba(160, 32, 240, 0.18);
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox:has(input:checked)::before {
+        content:
+            '✓';
+
+        margin-right:
+            6px;
+
+        color:
+            #c02cff;
+
+        font-weight:
+            700;
+    }
+
+
+    /* ========================================
+       PREÇO MOBILE
+       ======================================== */
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-price-track {
+        height:
+            28px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-price-line {
+        height:
+            4px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-price-range {
+        height:
+            28px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-price-range::-webkit-slider-thumb {
+        width:
+            20px;
+
+        height:
+            20px;
+
+        margin-top:
+            -8px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-price-range::-moz-range-thumb {
+        width:
+            20px;
+
+        height:
+            20px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-price-values {
+        margin-top:
+            7px;
+
+        font-size:
+            11px;
+    }
+
+
+    /* ========================================
+       DISPONIBILIDADE
+       ======================================== */
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(4) {
+        border-bottom:
+            none;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(4)
+    .acaivis-filters-checkbox {
+        min-height:
+            42px;
+
+        gap:
+            10px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(4)
+    .acaivis-filters-checkbox-box {
+        width:
+            19px;
+
+        height:
+            19px;
+
+        border-radius:
+            4px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(4)
+    .acaivis-filters-checkbox-label {
+        font-size:
+            12px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(4)
+    .acaivis-filters-checkbox-count {
+        display:
+            none;
+    }
+
+    .acaivis-filters-quality {
+        display:
+            none;
+    }
+
+
+    /* ========================================
+       FOOTER MOBILE
+       ======================================== */
+
+    .acaivis-filters-mobile-actions {
+        position:
+            relative;
+
+        flex:
+            0 0 auto;
+
+        display:
+            grid;
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+
+        gap:
+            8px;
+
+        padding:
+            10px 12px 12px;
+
+        border-top:
+            1px solid
+            rgba(255, 255, 255, 0.10);
+
+        background:
+            #090811;
+
+        z-index:
+            4;
+    }
+
+    .acaivis-filters-mobile-actions button {
+        min-width:
+            0;
+
+        width:
+            100%;
+
+        height:
+            46px;
+
+        padding:
+            0 10px;
+
+        box-sizing:
+            border-box;
+
+        border-radius:
+            24px;
+
+        font-family:
+            'Poppins',
+            sans-serif;
+
+        font-size:
+            12px;
+
+        font-weight:
+            600;
+
+        white-space:
+            nowrap;
+
+        cursor:
+            pointer;
+    }
+
+    .acaivis-filters-mobile-cancel {
+        border:
+            1.5px solid
+            #a020f0;
+
+        background:
+            transparent;
+
+        color:
+            #c02cff;
+    }
+
+    .acaivis-filters-mobile-apply {
+        border:
+            none;
+
+        background:
+            linear-gradient(
+                135deg,
+                #a020f0 0%,
+                #c02cff 100%
+            );
+
+        color:
+            #fff;
+
+        box-shadow:
+            0 6px 18px
+            rgba(160, 32, 240, 0.20);
+    }
+}
+
+
+/* ========================================
+   CELULARES ESTREITOS
+   ======================================== */
+
+@media (max-width: 380px) {
+
+    .acaivis-filters {
+        height:
+            94vh;
+
+        max-height:
+            94vh;
+
+        border-radius:
+            20px 20px 0 0;
+    }
+
+    .acaivis-filters-mobile-header {
+        padding-left:
+            14px;
+
+        padding-right:
+            14px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section {
+        padding-left:
+            14px;
+
+        padding-right:
+            14px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section h3 {
+        font-size:
+            13px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-category {
+        min-height:
+            32px;
+
+        font-size:
+            10px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox {
+        min-height:
+            40px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox-label {
+        font-size:
+            11px;
+    }
+
+    .acaivis-filters-mobile-actions {
+        padding-left:
+            10px;
+
+        padding-right:
+            10px;
+    }
+
+    .acaivis-filters-mobile-actions button {
+        height:
+            44px;
+
+        font-size:
+            11px;
+
+        padding-left:
+            6px;
+
+        padding-right:
+            6px;
+    }
+}
+
+
+/* ========================================
+   CELULARES MUITO ESTREITOS
+   ======================================== */
+
+@media (max-width: 320px) {
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2) {
+        grid-template-columns:
+            1fr;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-section:nth-of-type(2)
+    .acaivis-filters-checkbox:nth-of-type(4) {
+        grid-column:
+            auto;
+    }
+}
+
+
+/* ========================================
+   AJUSTE MOBILE — CATEGORIAS À ESQUERDA
+   ======================================== */
+
+@media (max-width: 792px) {
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-category {
+        justify-content:
+            flex-start;
+
+        text-align:
+            left;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-category
+    span:nth-child(2) {
+        margin-left:
+            10px;
+    }
+
+    .acaivis-filters-mobile-content
+    .acaivis-filters-category
+    span:last-child {
+        margin-left:
+            auto;
+    }
+}
+
+
+/* ========================================
+   OCULTAR LIMPAR TUDO NO MOBILE
+   ======================================== */
+
+@media (max-width: 792px) {
+    .acaivis-filters-mobile-clear {
+        display: none;
+    }
+}
+
+
+/* ========================================
+   DESKTOP — FILTRO LATERAL
+   ======================================== */
+
+@media (min-width: 793px) {
+
+    .acaivis-filters {
+        width: 250px;
+        max-width: 250px;
+        align-self: start;
+    }
+
+    .acaivis-filters .acaivis-filters-mobile-header,
+    .acaivis-filters .acaivis-filters-mobile-actions {
+        display: none;
+    }
+}

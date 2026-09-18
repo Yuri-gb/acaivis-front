@@ -1,0 +1,953 @@
+.delivery-page {
+    min-height: 100vh;
+    background: #111016;
+    color: #f5f4f8;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.delivery-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 20px;
+
+    background: rgba(23, 21, 29, 0.94);
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid #2b2734;
+}
+
+.delivery-header button {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #24212b;
+    border: 1px solid #37323f;
+    color: #eee;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        border-color .2s ease;
+}
+
+.delivery-header button:hover {
+    background: #2d2935;
+    border-color: #494252;
+}
+
+.delivery-header button:active {
+    transform: scale(.94);
+}
+
+.delivery-brand {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+}
+
+.delivery-role {
+    font-size: 12px;
+    color: #a99fb8;
+    margin-top: 1px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.delivery-main {
+    width: 100%;
+    max-width: 760px;
+
+    margin: auto;
+
+    padding: 24px 16px 48px;
+}
+
+/* =========================
+   TOP
+========================= */
+
+.delivery-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 16px;
+}
+
+.delivery-top h1 {
+    margin: 0;
+
+    font-size: 26px;
+    line-height: 1.15;
+
+    letter-spacing: -0.6px;
+}
+
+.delivery-top p {
+    margin: 7px 0 0;
+
+    color: #aaa4b1;
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.delivery-refresh,
+.delivery-secondary {
+    background: #24212b;
+    border: 1px solid #393340;
+    color: #eee;
+
+    border-radius: 10px;
+
+    padding: 10px 14px;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        border-color .2s ease;
+}
+
+.delivery-refresh:hover,
+.delivery-secondary:hover {
+    background: #2d2935;
+    border-color: #494252;
+}
+
+.delivery-refresh:active,
+.delivery-secondary:active {
+    transform: scale(.96);
+}
+
+.delivery-refresh:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.delivery-search {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    column-gap: 10px;
+    align-items: center;
+
+    margin: 22px 0;
+
+    background: #19171f;
+
+    border: 1px solid #302b38;
+    border-radius: 13px;
+
+    padding: 12px 14px;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.delivery-search:focus-within {
+    border-color: #6334b5;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, .10);
+}
+
+.delivery-search svg {
+    color: #9c93a7;
+    font-size: 13px;
+}
+
+.delivery-search input {
+    width: 100%;
+
+    background: transparent;
+    border: 0;
+    outline: 0;
+
+    color: #fff;
+
+    font-size: 13px;
+}
+
+.delivery-search input::placeholder {
+    color: #77717d;
+}
+
+.delivery-search small {
+    grid-column: 2;
+
+    color: #77717d;
+
+    margin-top: 5px;
+
+    font-size: 10px;
+}
+
+/* =========================
+   LISTA
+========================= */
+
+.delivery-list {
+    display: grid;
+    gap: 12px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.delivery-card {
+    position: relative;
+
+    background: #19171f;
+
+    border: 1px solid #2d2935;
+    border-radius: 16px;
+
+    padding: 15px;
+
+    /*
+     * Muito importante para o toque:
+     * impede o navegador de tentar rolar
+     * enquanto o card está sendo arrastado.
+     */
+    touch-action: none;
+
+    user-select: none;
+
+    cursor: grab;
+
+    /*
+     * Ajuda o navegador a otimizar
+     * o movimento do card.
+     */
+    will-change: transform;
+
+    /*
+     * A animação fica suave quando os cards
+     * mudam de posição e quando o card
+     * acompanha o dedo.
+     */
+    transition:
+        transform .18s cubic-bezier(.2, .8, .2, 1),
+        border-color .22s ease,
+        box-shadow .22s ease,
+        opacity .22s ease;
+}
+
+.delivery-card:active {
+    cursor: grabbing;
+}
+
+/*
+ * Card que está sendo segurado.
+ */
+.delivery-card-dragging {
+    z-index: 50;
+
+    /*
+     * O deslocamento X/Y é aplicado pelo React
+     * enquanto o dedo se move.
+     */
+    border-color: #8b5cf6;
+
+    box-shadow:
+        0 22px 45px rgba(0, 0, 0, .52),
+        0 0 0 1px rgba(139, 92, 246, .30),
+        0 0 28px rgba(124, 58, 237, .18);
+
+    opacity: .97;
+}
+
+.delivery-card-dragging::after {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(139, 92, 246, .10),
+            transparent 55%
+        );
+
+    animation: deliveryDragGlow 1.1s ease-in-out infinite alternate;
+}
+
+/*
+ * Card que receberá a posição.
+ */
+.delivery-card-drag-over {
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 2px rgba(124, 58, 237, .14),
+        0 0 18px rgba(124, 58, 237, .10);
+
+    transform: scale(1.012);
+
+    animation: deliveryDropTarget .7s ease-in-out infinite alternate;
+}
+
+/* =========================
+   CARD HEADER
+========================= */
+
+.delivery-card-head,
+.delivery-actions,
+.delivery-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.delivery-card-head strong {
+    display: block;
+
+    font-size: 15px;
+
+    letter-spacing: .1px;
+}
+
+.delivery-card-head span {
+    display: block;
+
+    color: #aaa4b1;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+.delivery-order-number {
+    min-width: 28px;
+    height: 28px;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    background: #24212b;
+
+    border: 1px solid #302b38;
+
+    border-radius: 8px;
+
+    padding: 0 !important;
+
+    color: #c8c1cf !important;
+
+    font-size: 11px !important;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+}
+
+.delivery-card-dragging .delivery-order-number {
+    background: #31205b;
+    border-color: #7c3aed;
+
+    transform: scale(1.05);
+}
+
+/* =========================
+   ENDEREÇO
+========================= */
+
+.delivery-address {
+    display: grid;
+    gap: 4px;
+
+    margin: 14px 0;
+}
+
+.delivery-address strong {
+    color: #f5f4f8;
+
+    font-size: 13px;
+}
+
+.delivery-address span {
+    color: #aaa4b1;
+
+    font-size: 12px;
+
+    line-height: 1.45;
+}
+
+/* =========================
+   META
+========================= */
+
+.delivery-meta {
+    border-top: 1px solid #2b2731;
+
+    padding-top: 12px;
+
+    color: #ddd6e2;
+
+    font-size: 12px;
+}
+
+.delivery-meta span:first-child {
+    font-weight: 800;
+
+    color: #f0eaff;
+}
+
+/* =========================
+   AÇÕES
+========================= */
+
+.delivery-actions {
+    margin-top: 12px;
+}
+
+.route-control {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: #8e8697;
+
+    font-size: 10px;
+
+    flex-shrink: 0;
+}
+
+.route-control svg {
+    font-size: 12px;
+
+    transition:
+        transform .2s ease,
+        color .2s ease;
+}
+
+.delivery-card-dragging .route-control svg {
+    color: #9b6cff;
+
+    transform:
+        translateY(-1px)
+        rotate(-8deg);
+}
+
+/* =========================
+   BOTÃO PRINCIPAL
+========================= */
+
+.delivery-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 36px;
+
+    border: 0;
+    border-radius: 10px;
+
+    padding: 9px 13px;
+
+    background: #7c3aed;
+    color: #fff;
+
+    font-weight: 700;
+    font-size: 12px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 14px rgba(124, 58, 237, .18);
+
+    transition:
+        background .2s ease,
+        transform .15s ease,
+        box-shadow .2s ease;
+}
+
+.delivery-btn:hover {
+    background: #8b4af0;
+
+    box-shadow:
+        0 7px 18px rgba(124, 58, 237, .25);
+}
+
+.delivery-btn:active {
+    transform: scale(.96);
+
+    box-shadow:
+        0 3px 8px rgba(124, 58, 237, .16);
+}
+
+.delivery-btn:disabled {
+    opacity: .45;
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+}
+
+/* =========================
+   EMPTY / ERROR
+========================= */
+
+.delivery-empty,
+.delivery-error {
+    padding: 18px;
+
+    border-radius: 12px;
+
+    background: #19171f;
+
+    border: 1px solid #2d2935;
+
+    color: #aaa4b1;
+
+    font-size: 13px;
+}
+
+.delivery-error {
+    margin-bottom: 14px;
+
+    color: #f2b8c0;
+
+    border-color: #63323b;
+
+    background: #21171a;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.delivery-modal-backdrop {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, .72);
+
+    backdrop-filter: blur(4px);
+
+    z-index: 20;
+
+    display: grid;
+    place-items: center;
+
+    padding: 16px;
+
+    animation: deliveryBackdropIn .2s ease both;
+}
+
+.delivery-modal {
+    position: relative;
+
+    width: min(100%, 520px);
+
+    max-height: 92vh;
+
+    overflow: auto;
+
+    background: #19171f;
+
+    border: 1px solid #38323f;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, .55);
+
+    animation: deliveryModalIn .25s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.delivery-modal h2 {
+    margin: 0 0 6px;
+
+    font-size: 20px;
+}
+
+.delivery-modal p {
+    color: #aaa4b1;
+
+    font-size: 13px;
+}
+
+.delivery-modal-close {
+    position: absolute;
+
+    right: 12px;
+    top: 10px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    border: 0;
+
+    color: #aaa;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    border-radius: 8px;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+}
+
+.delivery-modal-close:hover {
+    background: #24212b;
+    color: #fff;
+}
+
+/* =========================
+   CONFIRMAÇÃO
+========================= */
+
+.delivery-confirm-box {
+    display: grid;
+    gap: 4px;
+
+    background: #121117;
+
+    border: 1px solid #24212d;
+
+    border-radius: 12px;
+
+    padding: 13px;
+
+    margin: 16px 0;
+}
+
+.delivery-confirm-box span,
+.delivery-confirm-box small {
+    color: #8f8996;
+
+    font-size: 11px;
+}
+
+.delivery-confirm-box strong {
+    font-size: 22px;
+}
+
+/* =========================
+   PAGAMENTO NA ENTREGA
+========================= */
+
+.delivery-cash-warning {
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: #2a2116;
+
+    border: 1px solid #4c3920;
+
+    color: #e4c99e;
+
+    margin-bottom: 14px;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+/* =========================
+   FOTO
+========================= */
+
+.delivery-file {
+    display: none;
+}
+
+.delivery-photo-placeholder {
+    width: 100%;
+
+    min-height: 180px;
+
+    background: #121117;
+
+    border: 1px dashed #4a4351;
+
+    border-radius: 14px;
+
+    color: #b8b0c0;
+
+    display: grid;
+
+    place-content: center;
+
+    gap: 8px;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+.delivery-photo-placeholder:hover {
+    background: #17151d;
+
+    border-color: #7050a8;
+}
+
+.delivery-photo-placeholder:active {
+    transform: scale(.99);
+}
+
+.delivery-photo-placeholder svg {
+    margin: auto;
+
+    font-size: 25px;
+
+    color: #9b6cff;
+}
+
+.delivery-photo-placeholder small {
+    color: #77717d;
+}
+
+.delivery-preview {
+    display: block;
+
+    width: 100%;
+
+    max-height: 360px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    border: 1px solid #332d3b;
+}
+
+/* =========================
+   MODAL AÇÕES
+========================= */
+
+.delivery-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 16px;
+}
+
+.delivery-modal-actions .delivery-btn {
+    min-width: 160px;
+}
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+@keyframes deliveryBackdropIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes deliveryDragGlow {
+    from {
+        opacity: .45;
+        transform: scale(.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.015);
+    }
+}
+
+@keyframes deliveryDropTarget {
+    from {
+        transform: scale(1.006);
+    }
+
+    to {
+        transform: scale(1.018);
+    }
+}
+
+@keyframes deliveryModalIn {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .delivery-header {
+        padding: 14px 16px;
+    }
+
+    .delivery-main {
+        padding:
+            20px
+            12px
+            40px;
+    }
+
+    .delivery-top {
+        align-items: stretch;
+    }
+
+    .delivery-top h1 {
+        font-size: 23px;
+    }
+
+    .delivery-top p {
+        font-size: 12px;
+    }
+
+    .delivery-refresh {
+        height: max-content;
+
+        padding:
+            9px
+            11px;
+
+        font-size: 11px;
+    }
+
+    .delivery-search {
+        margin: 18px 0;
+    }
+
+    .delivery-card {
+        padding: 14px;
+
+        border-radius: 15px;
+    }
+
+    /*
+     * Mais espaço para o dedo no botão.
+     */
+    .delivery-btn {
+        min-height: 38px;
+
+        padding:
+            9px
+            12px;
+    }
+
+    .delivery-actions {
+        align-items: stretch;
+    }
+
+    .delivery-actions .delivery-btn {
+        flex: 1;
+    }
+
+    .route-control {
+        max-width: 130px;
+    }
+
+    .delivery-modal {
+        padding: 18px;
+
+        border-radius: 17px;
+    }
+
+    .delivery-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .delivery-modal-actions button {
+        width: 100%;
+    }
+
+    .delivery-modal-actions .delivery-btn {
+        min-width: 0;
+    }
+}
+
+/* =========================
+   REDUÇÃO DE MOVIMENTO
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .delivery-card,
+    .delivery-card-dragging::after,
+    .delivery-card-drag-over,
+    .delivery-btn,
+    .delivery-modal,
+    .delivery-modal-backdrop,
+    .delivery-header button,
+    .delivery-refresh,
+    .delivery-secondary {
+        transition: none !important;
+        animation: none !important;
+    }
+}

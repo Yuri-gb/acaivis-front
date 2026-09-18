@@ -1,0 +1,849 @@
+/* ========================================
+   PRODUCTS SECTION
+   ======================================== */
+
+.products-section {
+
+    position: relative;
+
+    width: 100%;
+
+    padding: 55px 8% 110px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #100d1d 0%,
+            #0d0a17 100%
+        );
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   TRANSIÇÃO PARA O HOW IT WORKS
+   ======================================== */
+
+.products-section::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    height: 150px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(13, 10, 23, 0.10) 15%,
+            rgba(15, 12, 26, 0.28) 30%,
+            rgba(18, 15, 31, 0.48) 45%,
+            rgba(21, 18, 34, 0.68) 60%,
+            rgba(23, 19, 38, 0.84) 78%,
+            #171326 100%
+        );
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+
+/* ========================================
+   CABEÇALHO
+   ======================================== */
+
+.products-section-header {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    max-width: 1100px;
+
+    margin: 0 auto 25px;
+}
+
+
+.products-section-label {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #a020f0;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    letter-spacing: 5px;
+}
+
+
+.products-section-header h2 {
+
+    margin: 0;
+
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+
+.products-section-header p {
+
+    margin: 8px 0 0;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 400;
+}
+
+
+/* ========================================
+   VER TODOS
+   ======================================== */
+
+.products-see-all {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    min-width: 105px;
+
+    height: 38px;
+
+    padding: 0 16px;
+
+    border: 1px solid rgba(160, 32, 240, 0.45);
+
+    border-radius: 22px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.products-see-all svg {
+
+    width: 11px;
+
+    height: 11px;
+
+    color: #a020f0;
+}
+
+
+.products-see-all:hover {
+
+    background-color: rgba(160, 32, 240, 0.12);
+
+    border-color: #a020f0;
+
+    transform: translateX(2px);
+}
+
+
+/* ========================================
+   CARROSSEL
+   ======================================== */
+
+.products-carousel {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    max-width: 1160px;
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   ÁREA VISÍVEL DO CARROSSEL
+   ======================================== */
+
+.products-carousel-viewport {
+
+    width: 100%;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   TRACK
+   ======================================== */
+
+.products-carousel-track {
+
+    --carousel-index: 0;
+
+    display: flex;
+
+    gap: 18px;
+
+    width: 100%;
+
+    will-change: transform;
+
+    transform:
+        translateX(
+            calc(
+                var(--carousel-index) *
+                (-33.333333% - 6px)
+            )
+        );
+
+    transition:
+        transform 0.45s ease;
+}
+
+
+/* ========================================
+   SLIDE / CARD
+   ======================================== */
+
+.products-carousel-slide {
+
+    flex: 0 0 calc(
+        (100% - 36px) / 3
+    );
+
+    min-width: 0;
+}
+
+
+/* ========================================
+   SETAS
+   ======================================== */
+
+.products-carousel-button {
+
+    position: absolute;
+
+    top: 50%;
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.28);
+
+    border-radius: 50%;
+
+    background: rgba(10, 7, 18, 0.9);
+
+    color: white;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transform: translateY(-50%);
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.products-carousel-button:hover:not(:disabled) {
+
+    background-color: #a020f0;
+
+    border-color: #a020f0;
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+.products-carousel-button:disabled {
+
+    opacity: 0.35;
+
+    cursor: default;
+}
+
+
+.products-carousel-button svg {
+
+    width: 13px;
+
+    height: 13px;
+}
+
+
+.products-carousel-button-left {
+
+    left: -42px;
+}
+
+
+.products-carousel-button-right {
+
+    right: -42px;
+}
+
+
+/* ========================================
+   INDICADORES
+   ======================================== */
+
+.products-carousel-dots {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 20px;
+}
+
+
+.products-carousel-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background-color: rgba(255, 255, 255, 0.22);
+
+    cursor: pointer;
+
+    transition:
+        width 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.products-carousel-dot:hover {
+
+    transform: scale(1.15);
+}
+
+
+.products-carousel-dot.active {
+
+    width: 10px;
+
+    height: 10px;
+
+    background-color: #a020f0;
+
+    box-shadow:
+        0 0 10px rgba(160, 32, 240, 0.5);
+}
+
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 1000px) {
+
+    .products-section {
+
+        padding: 50px 6% 105px;
+    }
+
+
+    .products-section-header {
+
+        margin-bottom: 28px;
+    }
+
+
+    .products-section-header h2 {
+
+        font-size: 28px;
+    }
+
+
+    .products-section-header p {
+
+        font-size: 12px;
+    }
+
+
+    .products-carousel {
+
+        max-width: 1000px;
+    }
+
+
+    .products-carousel-track {
+
+        gap: 14px;
+
+        transform:
+            translateX(
+                calc(
+                    var(--carousel-index) *
+                    (-33.333333% - 4.666667px)
+                )
+            );
+    }
+
+
+    .products-carousel-slide {
+
+        flex-basis: calc(
+            (100% - 28px) / 3
+        );
+    }
+
+
+    .products-carousel-button-left {
+
+        left: -32px;
+    }
+
+
+    .products-carousel-button-right {
+
+        right: -32px;
+    }
+
+}
+
+
+/* ========================================
+   TABLET PEQUENO
+   ======================================== */
+
+@media (max-width: 792px) {
+
+    .products-section {
+
+        padding: 55px 6% 100px;
+    }
+
+
+    .products-section-header {
+
+        align-items: flex-start;
+
+        margin-bottom: 32px;
+    }
+
+
+    .products-section-label {
+
+        font-size: 10px;
+
+        letter-spacing: 4px;
+
+        margin-bottom: 7px;
+    }
+
+
+    .products-section-header h2 {
+
+        font-size: 25px;
+
+        line-height: 1.15;
+    }
+
+
+    .products-section-header p {
+
+        max-width: 300px;
+
+        margin-top: 8px;
+
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    .products-see-all {
+
+        min-width: 95px;
+
+        height: 35px;
+
+        padding: 0 13px;
+
+        font-size: 11px;
+    }
+
+
+    .products-carousel-track {
+
+        gap: 12px;
+
+        transform:
+            translateX(
+                calc(
+                    var(--carousel-index) *
+                    (-50% - 6px)
+                )
+            );
+    }
+
+
+    .products-carousel-slide {
+
+        flex-basis: calc(
+            (100% - 12px) / 2
+        );
+    }
+
+
+    .products-carousel-button {
+
+        width: 34px;
+
+        height: 34px;
+    }
+
+
+    .products-carousel-button-left {
+
+        left: -22px;
+    }
+
+
+    .products-carousel-button-right {
+
+        right: -22px;
+    }
+
+
+    .products-carousel-dots {
+
+        margin-top: 22px;
+    }
+
+}
+
+
+/* ========================================
+   CELULAR
+   ======================================== */
+
+@media (max-width: 480px) {
+
+    .products-section {
+
+        padding: 52px 5% 95px;
+    }
+
+
+    /* ========================================
+       CABEÇALHO
+       ======================================== */
+
+    .products-section-header {
+
+        display: block;
+
+        margin-bottom: 34px;
+    }
+
+
+    .products-section-label {
+
+        font-size: 9px;
+
+        letter-spacing: 3px;
+
+        margin-bottom: 8px;
+    }
+
+
+    .products-section-header h2 {
+
+        font-size: 24px;
+
+        line-height: 1.15;
+    }
+
+
+    .products-section-header p {
+
+        max-width: 320px;
+
+        margin-top: 9px;
+
+        font-size: 11px;
+
+        line-height: 1.5;
+    }
+
+
+    /* ========================================
+       VER TODOS
+       ======================================== */
+
+    .products-see-all {
+
+        margin-top: 18px;
+
+        min-width: 105px;
+
+        height: 38px;
+
+        padding: 0 15px;
+
+        font-size: 11px;
+    }
+
+
+    /* ========================================
+       CARROSSEL
+       ======================================== */
+
+    .products-carousel {
+
+        width: 100%;
+
+        max-width: 360px;
+
+        margin: 0 auto;
+    }
+
+
+    .products-carousel-viewport {
+
+        width: 100%;
+
+        overflow: hidden;
+    }
+
+
+    .products-carousel-track {
+
+        gap: 12px;
+
+        transform:
+            translateX(
+                calc(
+                    var(--carousel-index) *
+                    (-100% - 12px)
+                )
+            );
+    }
+
+
+    .products-carousel-slide {
+
+        flex: 0 0 100%;
+
+        min-width: 0;
+    }
+
+
+    /* ========================================
+       SETAS
+       ======================================== */
+
+    .products-carousel-button {
+
+        width: 32px;
+
+        height: 32px;
+    }
+
+
+    .products-carousel-button-left {
+
+        left: -16px;
+    }
+
+
+    .products-carousel-button-right {
+
+        right: -16px;
+    }
+
+
+    .products-carousel-button svg {
+
+        width: 11px;
+
+        height: 11px;
+    }
+
+
+    /* ========================================
+       INDICADORES
+       ======================================== */
+
+    .products-carousel-dots {
+
+        margin-top: 24px;
+
+        gap: 7px;
+    }
+
+}
+
+
+/* ========================================
+   CELULARES PEQUENOS
+   ======================================== */
+
+@media (max-width: 380px) {
+
+    .products-section {
+
+        padding: 48px 5% 90px;
+    }
+
+
+    .products-section-header {
+
+        margin-bottom: 30px;
+    }
+
+
+    .products-section-label {
+
+        font-size: 8px;
+
+        letter-spacing: 2.8px;
+    }
+
+
+    .products-section-header h2 {
+
+        font-size: 22px;
+    }
+
+
+    .products-section-header p {
+
+        max-width: 290px;
+
+        font-size: 10.5px;
+
+        line-height: 1.5;
+    }
+
+
+    .products-see-all {
+
+        margin-top: 16px;
+
+        height: 36px;
+
+        font-size: 10.5px;
+    }
+
+
+    .products-carousel {
+
+        max-width: 335px;
+    }
+
+
+    .products-carousel-track {
+
+        gap: 12px;
+
+        transform:
+            translateX(
+                calc(
+                    var(--carousel-index) *
+                    (-100% - 12px)
+                )
+            );
+    }
+
+
+    .products-carousel-button {
+
+        width: 30px;
+
+        height: 30px;
+    }
+
+
+    .products-carousel-button-left {
+
+        left: -14px;
+    }
+
+
+    .products-carousel-button-right {
+
+        right: -14px;
+    }
+
+
+    .products-carousel-dots {
+
+        margin-top: 22px;
+    }
+
+}

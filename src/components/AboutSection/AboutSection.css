@@ -1,0 +1,572 @@
+/* ========================================
+   ABOUT SECTION
+   ======================================== */
+
+.about-section {
+    position: relative;
+    width: 100%;
+    min-height: 430px;
+
+    padding:
+        clamp(50px, 5vw, 70px)
+        6%;
+
+    box-sizing: border-box;
+
+    background: #100d1d;
+
+    overflow: hidden;
+
+    z-index: 2;
+}
+
+
+/* ========================================
+   DECORAÇÕES LATERAIS
+   ======================================== */
+
+.about-section-decoration {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    user-select: none;
+
+    z-index: 1;
+}
+
+
+/* ========================================
+   DECORAÇÃO ESQUERDA
+   ======================================== */
+
+.about-section-decoration-left {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    display: block;
+
+    height: 100%;
+    width: auto;
+
+    max-height: 100%;
+    max-width: none;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+
+/* ========================================
+   DECORAÇÃO DIREITA
+   ======================================== */
+
+.about-section-decoration-right {
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    display: block;
+
+    height: 100%;
+    width: auto;
+
+    max-height: 100%;
+    max-width: none;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+
+/* ========================================
+   CONTEÚDO
+   ======================================== */
+
+.about-section-content {
+    position: relative;
+
+    z-index: 3;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 560px)
+        minmax(0, 380px);
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: clamp(35px, 5vw, 70px);
+
+    width: 100%;
+    max-width: 1050px;
+
+    min-height: 290px;
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   ÁREA DE LEITURA
+   ======================================== */
+
+.about-section-text {
+    position: relative;
+
+    width: min(100%, 560px);
+
+    isolation: isolate;
+}
+
+
+.about-section-text::before {
+    content: "";
+
+    position: absolute;
+
+    top: -25px;
+    right: -35px;
+    bottom: -25px;
+    left: -35px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(16, 13, 29, 0.92) 0%,
+            rgba(16, 13, 29, 0.78) 45%,
+            rgba(16, 13, 29, 0) 78%
+        );
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* ========================================
+   TEXTO
+   ======================================== */
+
+.about-section-label {
+    display: block;
+
+    margin-bottom:
+        clamp(6px, 0.7vw, 8px);
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-family:
+        'Poppins', sans-serif;
+
+    font-size:
+        clamp(9px, 0.7vw, 10px);
+
+    font-weight: 500;
+
+    letter-spacing:
+        clamp(4px, 0.5vw, 6px);
+}
+
+
+.about-section-text h2 {
+    margin: 0;
+
+    color: white;
+
+    font-family:
+        'Poppins', sans-serif;
+
+    font-size:
+        clamp(26px, 2.4vw, 34px);
+
+    font-weight: 700;
+
+    line-height: 1.12;
+}
+
+
+.about-section-text h2 span {
+    color: #a020f0;
+}
+
+
+.about-section-text p {
+    width: min(100%, 470px);
+
+    margin:
+        clamp(14px, 1.4vw, 16px)
+        0
+        clamp(20px, 2vw, 22px);
+
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-family:
+        'Poppins', sans-serif;
+
+    font-size:
+        clamp(10.5px, 0.85vw, 12px);
+
+    font-weight: 400;
+
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   BOTÃO
+   ======================================== */
+
+.about-section-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    min-width:
+        clamp(175px, 16vw, 190px);
+
+    height:
+        clamp(38px, 3.2vw, 40px);
+
+    padding:
+        0
+        clamp(16px, 1.5vw, 18px);
+
+    box-sizing: border-box;
+
+    border:
+        1px solid
+        rgba(160, 32, 240, 0.75);
+
+    border-radius: 22px;
+
+    background:
+        rgba(160, 32, 240, 0.10);
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family:
+        'Poppins', sans-serif;
+
+    font-size:
+        clamp(10px, 0.8vw, 11px);
+
+    font-weight: 500;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.about-section-button svg {
+    width: 11px;
+    height: 11px;
+
+    color: #a020f0;
+}
+
+
+.about-section-button:hover {
+    background-color: #a020f0;
+
+    transform: translateX(2px);
+
+    box-shadow:
+        0 6px 18px
+        rgba(160, 32, 240, 0.25);
+}
+
+
+.about-section-button:hover svg {
+    color: white;
+}
+
+
+/* ========================================
+   BENEFÍCIOS
+   ======================================== */
+
+.about-section-benefits {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(140px, 180px));
+
+    column-gap:
+        clamp(14px, 2vw, 24px);
+
+    row-gap:
+        clamp(20px, 2.2vw, 28px);
+
+    width: fit-content;
+
+    max-width: 100%;
+
+    margin-left: 0;
+    margin-right: auto;
+}
+
+
+/* ========================================
+   ITEM DO BENEFÍCIO
+   ======================================== */
+
+.about-section-benefit {
+    display: flex;
+
+    align-items: center;
+
+    gap:
+        clamp(8px, 1vw, 12px);
+
+    min-width: 0;
+}
+
+
+/* ========================================
+   ÍCONE
+   ======================================== */
+
+.about-section-benefit-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width:
+        clamp(30px, 3vw, 36px);
+
+    height:
+        clamp(30px, 3vw, 36px);
+
+    color: #a020f0;
+
+    flex-shrink: 0;
+}
+
+
+.about-section-benefit-icon svg {
+    width:
+        clamp(22px, 2.3vw, 28px);
+
+    height:
+        clamp(22px, 2.3vw, 28px);
+}
+
+
+/* ========================================
+   TEXTO DOS BENEFÍCIOS
+   ======================================== */
+
+.about-section-benefit-text {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1px;
+
+    min-width: 0;
+
+    color:
+        rgba(255, 255, 255, 0.70);
+
+    font-family:
+        'Poppins', sans-serif;
+
+    font-size:
+        clamp(9px, 0.7vw, 10px);
+
+    line-height: 1.35;
+}
+
+
+.about-section-benefit-text span:first-child {
+    color: white;
+
+    font-weight: 500;
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 768px) {
+
+    .about-section {
+        min-height: 620px;
+
+        padding:
+            70px 6% 55px;
+    }
+
+
+    /* ========================================
+       DECORAÇÕES
+       ======================================== */
+
+    .about-section-decoration-left {
+        height: 45%;
+        width: auto;
+
+        bottom: 0;
+        left: 0;
+    }
+
+
+    .about-section-decoration-right {
+        height: 45%;
+        width: auto;
+
+        bottom: 0;
+        right: 0;
+    }
+
+
+    /* ========================================
+       CONTEÚDO
+       ======================================== */
+
+    .about-section-content {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 28px;
+
+        width: 100%;
+
+        min-height: auto;
+    }
+
+
+    /* ========================================
+       TEXTO
+       ======================================== */
+
+    .about-section-text {
+        width: 100%;
+
+        max-width: 520px;
+
+        text-align: center;
+    }
+
+
+    .about-section-text::before {
+        top: -25px;
+        right: -20px;
+        bottom: -25px;
+        left: -20px;
+
+        background:
+            radial-gradient(
+                ellipse at center,
+                rgba(16, 13, 29, 0.95) 0%,
+                rgba(16, 13, 29, 0.88) 55%,
+                rgba(16, 13, 29, 0) 85%
+            );
+    }
+
+
+    .about-section-label {
+        font-size: 9px;
+
+        letter-spacing: 4px;
+    }
+
+
+    .about-section-text h2 {
+        font-size:
+            clamp(27px, 7vw, 34px);
+
+        line-height: 1.1;
+    }
+
+
+    .about-section-text p {
+        width:
+            min(100%, 430px);
+
+        margin:
+            16px auto 22px;
+
+        font-size: 11px;
+
+        line-height: 1.6;
+    }
+
+
+    .about-section-button {
+        min-width: 180px;
+
+        height: 40px;
+
+        font-size: 11px;
+    }
+
+
+    /* ========================================
+       BENEFÍCIOS
+       ======================================== */
+
+    .about-section-benefits {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(130px, 1fr));
+
+        column-gap: 20px;
+
+        row-gap: 24px;
+
+        width:
+            min(100%, 360px);
+
+        margin: 0 auto;
+    }
+
+
+    .about-section-benefit {
+        gap: 8px;
+    }
+
+
+    .about-section-benefit-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+
+    .about-section-benefit-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+
+    .about-section-benefit-text {
+        font-size: 9px;
+
+        text-align: left;
+    }
+}

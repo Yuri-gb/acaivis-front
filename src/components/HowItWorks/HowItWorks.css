@@ -1,0 +1,454 @@
+/* ========================================
+   HOW IT WORKS
+   ======================================== */
+
+.how-it-works {
+
+    position: relative;
+
+    width: 100%;
+
+    padding: 48px 6% 44px;
+
+    box-sizing: border-box;
+
+    background: #171326;
+
+    overflow: hidden;
+}
+
+
+/* ========================================
+   TRANSIÇÃO PARA O ABOUT
+   ======================================== */
+
+.how-it-works::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    height: 95px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(23, 19, 38, 0.20) 35%,
+            rgba(16, 13, 29, 0.55) 70%,
+            #100d1d 100%
+        );
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+/* ========================================
+   CONTEÚDO
+   ======================================== */
+
+.how-it-works-content {
+
+    position: relative;
+
+    z-index: 3;
+
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    max-width: 1160px;
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   INTRODUÇÃO
+   ======================================== */
+
+.how-it-works-intro {
+
+    flex: 0 0 300px;
+
+    padding-right: 25px;
+}
+
+
+.how-it-works-intro h2 {
+
+    margin: 0;
+
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+
+.how-it-works-intro h2 span {
+
+    display: block;
+
+    width: fit-content;
+
+    margin-top: 2px;
+
+    color: #a020f0;
+
+    font-family: cursive;
+
+    font-size: 36px;
+
+    font-style: italic;
+
+    font-weight: 700;
+
+    line-height: 0.95;
+
+    transform: rotate(-3deg);
+}
+
+
+/* ========================================
+   PASSOS
+   ======================================== */
+
+.how-it-works-steps {
+
+    display: flex;
+
+    align-items: stretch;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.how-it-works-step-wrapper {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.how-it-works-step {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+/* ========================================
+   CABEÇALHO DO PASSO
+   ======================================== */
+
+.how-it-works-step-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    min-height: 38px;
+}
+
+
+.how-it-works-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 34px;
+
+    height: 36px;
+
+    color: #a020f0;
+
+    flex-shrink: 0;
+}
+
+
+.how-it-works-icon svg {
+
+    width: 31px;
+
+    height: 31px;
+}
+
+
+/* ========================================
+   ÍCONE DA MOTO
+   ======================================== */
+
+.how-it-works-step-wrapper:last-child
+.how-it-works-icon {
+
+    width: 38px;
+}
+
+
+.how-it-works-step-wrapper:last-child
+.how-it-works-icon svg {
+
+    width: 36px;
+
+    height: 36px;
+}
+
+
+/* ========================================
+   NÚMERO
+   ======================================== */
+
+.how-it-works-number {
+
+    display: flex;
+
+    align-items: center;
+
+    height: 36px;
+
+    color: #a020f0;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    line-height: 1;
+}
+
+
+/* ========================================
+   TÍTULO
+   ======================================== */
+
+.how-it-works-step h3 {
+
+    margin: 9px 0 5px;
+
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    line-height: 1.25;
+}
+
+
+/* ========================================
+   DESCRIÇÃO
+   ======================================== */
+
+.how-it-works-step p {
+
+    width: 150px;
+
+    max-width: 100%;
+
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 400;
+
+    line-height: 1.45;
+}
+
+
+/* ========================================
+   SETAS
+   ======================================== */
+
+.how-it-works-arrow {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 30px;
+
+    height: 38px;
+
+    margin: 0 7px;
+
+    color: #a020f0;
+
+    transform: translateY(-2px);
+}
+
+
+.how-it-works-arrow svg {
+
+    width: 9px;
+
+    height: 9px;
+}
+
+
+/* ========================================
+   ESPAÇAMENTO DOS PASSOS
+   ======================================== */
+
+.how-it-works-step-wrapper:nth-child(1),
+.how-it-works-step-wrapper:nth-child(2),
+.how-it-works-step-wrapper:nth-child(3) {
+
+    padding-right: 2px;
+}
+
+
+/* ========================================
+   ALINHAMENTO
+   ======================================== */
+
+.how-it-works-step h3,
+.how-it-works-step p {
+
+    padding-left: 0;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    .how-it-works-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 35px;
+    }
+
+
+    .how-it-works-intro {
+
+        flex: none;
+
+        width: 100%;
+
+        padding-right: 0;
+    }
+
+
+    .how-it-works-steps {
+
+        width: 100%;
+    }
+
+}
+
+
+/* ========================================
+   TABLET
+   ======================================== */
+
+@media (max-width: 650px) {
+
+    .how-it-works {
+
+        padding: 42px 6%;
+    }
+
+
+    .how-it-works-steps {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 30px 20px;
+    }
+
+
+    .how-it-works-step-wrapper {
+
+        display: block;
+    }
+
+
+    .how-it-works-arrow {
+
+        display: none;
+    }
+
+
+    .how-it-works-step p {
+
+        width: auto;
+    }
+
+}
+
+
+/* ========================================
+   CELULAR
+   ======================================== */
+
+@media (max-width: 480px) {
+
+    .how-it-works {
+
+        padding: 38px 5% 42px;
+    }
+
+
+    .how-it-works-intro h2 {
+
+        font-size: 25px;
+    }
+
+
+    .how-it-works-intro h2 span {
+
+        font-size: 33px;
+    }
+
+
+    .how-it-works-steps {
+
+        gap: 28px 18px;
+    }
+
+}

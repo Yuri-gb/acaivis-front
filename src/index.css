@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #a020f0 #0d0918;
+}
+
+/* Chrome / Edge / Safari */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0d0918;
+}
+
+::-webkit-scrollbar-thumb {
+    min-height: 40px;
+    border: 2px solid #0d0918;
+    border-radius: 999px;
+    background:
+        linear-gradient(
+            180deg,
+            #a020f0 0%,
+            #7b00d4 50%,
+            #5d00b8 100%
+        );
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:
+        linear-gradient(
+            180deg,
+            #b83cff 0%,
+            #a020f0 50%,
+            #7b00d4 100%
+        );
+}
+
+::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+    background: transparent;
+}
+
+::-webkit-scrollbar-button:single-button {
+    width: 0;
+    height: 0;
+    display: none;
+    background: transparent;
+}
+
+::-webkit-scrollbar-corner {
+    background: #0d0918;
+}
