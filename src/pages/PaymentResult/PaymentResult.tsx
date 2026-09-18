@@ -4,14 +4,14 @@ import { FaArrowLeft, FaArrowRight, FaCheckCircle, FaClock, FaCopy, FaExclamatio
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import { api, ApiError } from '../../services/api'
-import type { MercadoPagoPaymentResponse, Order } from '../../types/api'
+import type { MercadoPagoPaymentResponse, TrackingOrder } from '../../types/api'
 import './PaymentResult.css'
 
 const money = (value: number) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
 type ViewState = 'APPROVED' | 'PROMISED' | 'PENDING' | 'PROCESSING' | 'REFUSED' | 'EXPIRED' | 'LOADING' | 'ERROR'
 
-const getState = (order: Order | null, payment: MercadoPagoPaymentResponse | null): ViewState => {
+const getState = (order: TrackingOrder | null, payment: MercadoPagoPaymentResponse | null): ViewState => {
     if (!order) return 'LOADING'
     if (order.status === 'PAYMENT_PROMISED') return 'PROMISED'
     if (order.status === 'CANCELLED') return 'EXPIRED'
@@ -26,7 +26,7 @@ const getState = (order: Order | null, payment: MercadoPagoPaymentResponse | nul
 export default function PaymentResult() {
     const [params] = useSearchParams()
     const code = params.get('codigo')?.trim().toUpperCase() || ''
-    const [order, setOrder] = useState<Order | null>(null)
+    const [order, setOrder] = useState<TrackingOrder | null>(null)
     const [payment, setPayment] = useState<MercadoPagoPaymentResponse | null>(null)
     const [error, setError] = useState('')
     const [copied, setCopied] = useState(false)
@@ -39,8 +39,7 @@ export default function PaymentResult() {
         }
         try {
             const current = await api.trackOrder(code)
-            const full = await api.order(current.trackingCode ? current as never : 0)
-            setOrder(full)
+            setOrder(current)
             const paymentData = await api.paymentStatus(code)
             setPayment(paymentData)
             setError('')
