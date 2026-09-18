@@ -7,7 +7,6 @@ import {
     FaCheck,
     FaCheckCircle,
     FaCopy,
-    FaCreditCard,
     FaExclamationCircle,
     FaHourglassHalf,
     FaQrcode,
