@@ -19,7 +19,7 @@ import {
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import { api, ApiError } from '../../services/api'
-import type { MercadoPagoPaymentResponse, Order, PaymentMethod } from '../../types/api'
+import type { MercadoPagoPaymentResponse, TrackingOrder } from '../../types/api'
 
 const money = (value: number) =>
     value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
@@ -38,7 +38,7 @@ type ResultState =
     | 'REFUSED'
     | 'EXPIRED'
 
-function resolveState(order: Order, payment: MercadoPagoPaymentResponse | null): ResultState {
+function resolveState(order: TrackingOrder, payment: MercadoPagoPaymentResponse | null): ResultState {
     if (order.status === 'PAYMENT_PROMISED') return 'PROMISED'
     if (order.status === 'PAID' || order.paymentConfirmed) return 'APPROVED'
     if (order.status === 'CANCELLED') return 'EXPIRED'
@@ -60,7 +60,7 @@ export default function PaymentStatus() {
     const navigate = useNavigate()
     const code = params.get('codigo')?.trim().toUpperCase() || ''
 
-    const [order, setOrder] = useState<Order>()
+    const [order, setOrder] = useState<TrackingOrder>()
     const [payment, setPayment] = useState<MercadoPagoPaymentResponse | null>(null)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(true)
@@ -76,7 +76,7 @@ export default function PaymentStatus() {
 
         try {
             const [orderResponse, paymentResponse] = await Promise.all([
-                api.orderByTracking(code),
+                api.trackOrder(code),
                 api.paymentStatus(code)
             ])
             setOrder(orderResponse)
@@ -101,7 +101,7 @@ export default function PaymentStatus() {
     )
 
     useEffect(() => {
-        if (!order || state !== 'PENDING') return
+        if (!order || !['PENDING', 'PROCESSING'].includes(state)) return
 
         const timer = window.setInterval(() => {
             setNow(Date.now())
