@@ -88,7 +88,7 @@ export default function TrackOrder() {
             <input
               value={code}
               onChange={(e) => setCode(e.target.value.toUpperCase())}
-              placeholder="Ex.: AC-7K4P2M"
+              placeholder="Ex.: AC7K4P2M"
               aria-label="Código do pedido"
               autoComplete="off"
             />

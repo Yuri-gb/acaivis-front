@@ -39,6 +39,7 @@ export const api = {
     calculateDelivery: (zipCode:string) => request<DeliveryCalculation>(`/delivery/calculate?zipCode=${encodeURIComponent(zipCode)}`),
     createOrder: (payload: { customerName:string; customerPhone:string; customerEmail?:string; street:string; number:string; complement:string; neighborhood:string; city:string; state:string; zipCode:string; deliveryZoneId:number; paymentMethod:PaymentMethod; notes?:string; items:{productId:number;quantity:number}[] }) => request<Order>('/orders', { method:'POST', body:JSON.stringify(payload) }),
     createMercadoPagoPayment: (orderId:number, payload: { paymentMethodId:string; paymentMethodType:string; token:string|null; installments:number|null; payerEmail:string; idempotencyKey?:string }) => request<import('../types/api').MercadoPagoPaymentResponse>(`/payments/orders/${orderId}`, { method:'POST', body:JSON.stringify(payload) }),
+    paymentStatus: (trackingCode:string) => request<import('../types/api').MercadoPagoPaymentResponse>(`/payments/orders/tracking/${encodeURIComponent(trackingCode)}`),
     login: (email:string, password:string) => request<{token:string;type:string;role:'ADMIN'|'DELIVERER'}>('/auth/login', {method:'POST', body:JSON.stringify({email,password})}),
     adminProducts: () => request<Product[]>('/products?available=false'),
     adminProductsPage: (params: {page:number; size:number; search?:string; categoryId?:number; available?:boolean}) => {

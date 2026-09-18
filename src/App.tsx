@@ -33,6 +33,7 @@ import OrdersAdmin from './pages/Admin/OrdersAdmin'
 import OrderDetailsAdmin from './pages/Admin/OrderDetailsAdmin'
 
 import TrackOrder from './pages/TrackOrder/TrackOrder'
+import PaymentStatus from './pages/PaymentStatus/PaymentStatus'
 import CatalogAdmin from './pages/Admin/CatalogAdmin'
 import ReportsAdmin from './pages/Admin/ReportsAdmin'
 import DeliveryAdmin from './pages/Delivery/DeliveryAdmin'
@@ -134,6 +135,11 @@ function App() {
                     <Route
                         path="/rastrear-pedido"
                         element={<TrackOrder />}
+                    />
+
+                    <Route
+                        path="/resultado-pagamento"
+                        element={<PaymentStatus />}
                     />
 
                     <Route
