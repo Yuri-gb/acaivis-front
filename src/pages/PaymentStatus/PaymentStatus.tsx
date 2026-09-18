@@ -1,6 +1,6 @@
 import './PaymentStatus.css'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import {
     FaArrowLeft,
@@ -29,13 +29,7 @@ const formatTime = (seconds: number) => {
     return `${String(minutes).padStart(2, '0')}:${String(remaining).padStart(2, '0')}`
 }
 
-type ResultState =
-    | 'APPROVED'
-    | 'PROMISED'
-    | 'PENDING'
-    | 'PROCESSING'
-    | 'REFUSED'
-    | 'EXPIRED'
+type ResultState = 'APPROVED' | 'PROMISED' | 'PENDING' | 'PROCESSING' | 'REFUSED' | 'EXPIRED'
 
 function resolveState(order: TrackingOrder, payment: MercadoPagoPaymentResponse | null): ResultState {
     if (order.status === 'PAYMENT_PROMISED') return 'PROMISED'
@@ -66,7 +60,7 @@ export default function PaymentStatus() {
     const [copied, setCopied] = useState(false)
     const [now, setNow] = useState(Date.now())
 
-    const refresh = async () => {
+    const refresh = useCallback(async () => {
         if (!code) {
             setError('Código do pedido não informado.')
             setLoading(false)
@@ -88,11 +82,11 @@ export default function PaymentStatus() {
         } finally {
             setLoading(false)
         }
-    }
+    }, [code])
 
     useEffect(() => {
         refresh()
-    }, [code])
+    }, [refresh])
 
     const state = useMemo(
         () => order ? resolveState(order, payment) : 'PENDING',
@@ -108,7 +102,7 @@ export default function PaymentStatus() {
         }, 5000)
 
         return () => window.clearInterval(timer)
-    }, [order, state, code])
+    }, [order, state, refresh])
 
     useEffect(() => {
         if (!payment?.expiresAt || state !== 'PENDING') return
@@ -125,7 +119,7 @@ export default function PaymentStatus() {
         if (state === 'PENDING' && payment?.expiresAt && remainingSeconds === 0) {
             refresh()
         }
-    }, [remainingSeconds, state, payment?.expiresAt])
+    }, [remainingSeconds, state, payment?.expiresAt, refresh])
 
     const copyPix = async () => {
         if (!payment?.qrCode) return
@@ -142,172 +136,50 @@ export default function PaymentStatus() {
     const tracking = () => navigate(`/rastrear-pedido?codigo=${encodeURIComponent(code)}`)
 
     const content = {
-        APPROVED: {
-            icon: <FaCheckCircle />,
-            title: 'Pedido realizado com sucesso!',
-            message: 'Seu pagamento foi confirmado.',
-            className: 'positive'
-        },
-        PROMISED: {
-            icon: <FaCheckCircle />,
-            title: 'Pedido confirmado!',
-            message: 'Seu pedido foi recebido e será preparado. O pagamento será realizado na entrega.',
-            className: 'positive'
-        },
-        PENDING: {
-            icon: <FaHourglassHalf />,
-            title: 'Aguardando pagamento',
-            message: 'Conclua o pagamento para confirmar seu pedido.',
-            className: 'pending'
-        },
-        PROCESSING: {
-            icon: <FaHourglassHalf />,
-            title: 'Pagamento em processamento',
-            message: 'Seu pagamento foi enviado e ainda não recebeu uma confirmação final.',
-            className: 'pending'
-        },
-        REFUSED: {
-            icon: <FaTimesCircle />,
-            title: 'Pagamento não aprovado',
-            message: 'Não foi possível confirmar este pagamento. Você pode tentar novamente.',
-            className: 'negative'
-        },
-        EXPIRED: {
-            icon: <FaExclamationCircle />,
-            title: 'Pagamento expirado',
-            message: 'Este pagamento não está mais disponível. Faça uma nova tentativa para realizar seu pedido.',
-            className: 'negative'
-        }
+        APPROVED: { icon: <FaCheckCircle />, title: 'Pedido realizado com sucesso!', message: 'Seu pagamento foi confirmado.', className: 'positive' },
+        PROMISED: { icon: <FaCheckCircle />, title: 'Pedido confirmado!', message: 'Seu pedido foi recebido e será preparado. O pagamento será realizado na entrega.', className: 'positive' },
+        PENDING: { icon: <FaHourglassHalf />, title: 'Aguardando pagamento', message: 'Conclua o pagamento para confirmar seu pedido.', className: 'pending' },
+        PROCESSING: { icon: <FaHourglassHalf />, title: 'Pagamento em processamento', message: 'Seu pagamento foi enviado e ainda não recebeu uma confirmação final.', className: 'pending' },
+        REFUSED: { icon: <FaTimesCircle />, title: 'Pagamento não aprovado', message: 'Não foi possível confirmar este pagamento. Você pode tentar novamente.', className: 'negative' },
+        EXPIRED: { icon: <FaExclamationCircle />, title: 'Pagamento expirado', message: 'Este pagamento não está mais disponível. Faça uma nova tentativa para realizar seu pedido.', className: 'negative' }
     }[state]
 
-    if (loading) {
-        return (
-            <>
-                <Navbar />
-                <main className="payment-status-page">
-                    <div className="payment-status-loading">
-                        <FaHourglassHalf />
-                        <h1>Consultando pagamento...</h1>
-                        <p>Estamos buscando o estado mais recente do seu pedido.</p>
-                    </div>
-                </main>
-                <Footer />
-            </>
-        )
-    }
+    if (loading) return <><Navbar /><main className="payment-status-page"><div className="payment-status-loading"><FaHourglassHalf /><h1>Consultando pagamento...</h1><p>Estamos buscando o estado mais recente do seu pedido.</p></div></main><Footer /></>
 
-    if (error || !order) {
-        return (
-            <>
-                <Navbar />
-                <main className="payment-status-page">
-                    <div className="payment-status-error">
-                        <FaExclamationCircle />
-                        <h1>Não foi possível consultar o pedido</h1>
-                        <p>{error || 'Pedido não encontrado.'}</p>
-                        <Link to="/produtos">Voltar para produtos</Link>
-                    </div>
-                </main>
-                <Footer />
-            </>
-        )
-    }
+    if (error || !order) return <><Navbar /><main className="payment-status-page"><div className="payment-status-error"><FaExclamationCircle /><h1>Não foi possível consultar o pedido</h1><p>{error || 'Pedido não encontrado.'}</p><Link to="/produtos">Voltar para produtos</Link></div></main><Footer /></>
 
     return (
         <>
             <Navbar />
             <main className="payment-status-page">
                 <div className="payment-status-container">
-                    <Link className="payment-status-back" to="/carrinho">
-                        <FaArrowLeft /> Voltar
-                    </Link>
-
+                    <Link className="payment-status-back" to="/carrinho"><FaArrowLeft /> Voltar</Link>
                     <section className={`payment-result-card ${content.className}`}>
                         <div className="payment-result-icon">{content.icon}</div>
                         <span className="payment-result-kicker">Pagamento</span>
                         <h1>{content.title}</h1>
                         <p>{content.message}</p>
-
                         <div className="payment-order-summary">
-                            <div>
-                                <span>Pedido</span>
-                                <strong>{order.trackingCode}</strong>
-                            </div>
-                            <div>
-                                <span>Total</span>
-                                <strong>{money(Number(order.total))}</strong>
-                            </div>
+                            <div><span>Pedido</span><strong>{order.trackingCode}</strong></div>
+                            <div><span>Total</span><strong>{money(Number(order.total))}</strong></div>
                         </div>
 
                         {state === 'PENDING' && order.paymentMethod === 'PIX' && (
                             <div className="pix-payment-box">
-                                <div className="pix-heading">
-                                    <FaQrcode />
-                                    <div>
-                                        <strong>Pagamento via Pix</strong>
-                                        <span>Escaneie o QR Code ou use o código copia e cola.</span>
-                                    </div>
-                                </div>
-
-                                {payment?.qrCodeBase64 && (
-                                    <div className="pix-qr">
-                                        <img
-                                            src={`data:image/png;base64,${payment.qrCodeBase64}`}
-                                            alt="QR Code Pix"
-                                        />
-                                    </div>
-                                )}
-
-                                {payment?.qrCode && (
-                                    <div className="pix-copy">
-                                        <span>Código Pix copia e cola</span>
-                                        <div>
-                                            <code>{payment.qrCode}</code>
-                                            <button type="button" onClick={copyPix}>
-                                                {copied ? <FaCheck /> : <FaCopy />}
-                                                {copied ? 'Copiado' : 'Copiar'}
-                                            </button>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {payment?.expiresAt && (
-                                    <div className={`pix-timer ${remainingSeconds <= 300 ? 'urgent' : ''}`}>
-                                        <span>Tempo restante</span>
-                                        <strong>{formatTime(remainingSeconds)}</strong>
-                                    </div>
-                                )}
+                                <div className="pix-heading"><FaQrcode /><div><strong>Pagamento via Pix</strong><span>Escaneie o QR Code ou use o código copia e cola.</span></div></div>
+                                {payment?.qrCodeBase64 && <div className="pix-qr"><img src={`data:image/png;base64,${payment.qrCodeBase64}`} alt="QR Code Pix" /></div>}
+                                {payment?.qrCode && <div className="pix-copy"><span>Código Pix copia e cola</span><div><code>{payment.qrCode}</code><button type="button" onClick={copyPix}>{copied ? <FaCheck /> : <FaCopy />}{copied ? 'Copiado' : 'Copiar'}</button></div></div>}
+                                {payment?.expiresAt && <div className={`pix-timer ${remainingSeconds <= 300 ? 'urgent' : ''}`}><span>Tempo restante</span><strong>{formatTime(remainingSeconds)}</strong></div>}
                             </div>
                         )}
 
-                        {state === 'PROCESSING' && (
-                            <div className="payment-info">
-                                <FaHourglassHalf />
-                                <span>Não feche esta página. O status será atualizado automaticamente.</span>
-                            </div>
-                        )}
-
-                        {state === 'REFUSED' && (
-                            <div className="payment-info">
-                                <FaRedo />
-                                <span>Escolha outra forma de pagamento ou tente novamente.</span>
-                            </div>
-                        )}
-
-                        {state === 'EXPIRED' && (
-                            <div className="payment-info">
-                                <FaExclamationCircle />
-                                <span>O pagamento anterior não pode mais ser utilizado.</span>
-                            </div>
-                        )}
+                        {state === 'PROCESSING' && <div className="payment-info"><FaHourglassHalf /><span>Não feche esta página. O status será atualizado automaticamente.</span></div>}
+                        {state === 'REFUSED' && <div className="payment-info"><FaRedo /><span>Escolha outra forma de pagamento ou tente novamente.</span></div>}
+                        {state === 'EXPIRED' && <div className="payment-info"><FaExclamationCircle /><span>O pagamento anterior não pode mais ser utilizado.</span></div>}
 
                         <div className="payment-result-actions">
-                            <button type="button" className="primary" onClick={tracking}>
-                                <FaShoppingBag /> Rastrear pedido
-                            </button>
-                            <button type="button" className="secondary" onClick={continueShopping}>
-                                Continuar comprando
-                            </button>
+                            <button type="button" className="primary" onClick={tracking}><FaShoppingBag /> Rastrear pedido</button>
+                            <button type="button" className="secondary" onClick={continueShopping}>Continuar comprando</button>
                         </div>
                     </section>
                 </div>
