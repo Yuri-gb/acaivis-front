@@ -27,7 +27,7 @@ import {
     FaWhatsapp
 } from 'react-icons/fa'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
@@ -211,6 +211,7 @@ function loadMercadoPago(): Promise<MercadoPagoConstructor> {
 
 
 function Checkout() {
+    const navigate = useNavigate()
     const [items, setItems] = useState<CartItem[]>(getCart())
     const [deliveryQuote, setDeliveryQuote] = useState<DeliveryCalculation | null>(null)
     const [form, setForm] = useState<FormState>({
@@ -411,12 +412,7 @@ function Checkout() {
                             })
                                 .then(response => {
                                     setPayment(response)
-                                    if (response.status === 'processed') {
-                                        setOrder(previous => previous
-                                            ? { ...previous, status: 'PAID', paymentConfirmed: true }
-                                            : previous)
-                                        clearCart()
-                                    }
+                                    navigate(`/resultado-pagamento?codigo=${encodeURIComponent(currentOrder.trackingCode)}`)
                                 })
                                 .catch(paymentError => {
                                     setError(paymentError instanceof ApiError
@@ -584,6 +580,7 @@ function Checkout() {
 
             if (form.paymentMethod === 'CASH') {
                 clearCart()
+                navigate(`/resultado-pagamento?codigo=${encodeURIComponent(createdOrder.trackingCode)}`)
                 setLoading(false)
                 return
             }
@@ -599,7 +596,7 @@ function Checkout() {
                 })
 
                 setPayment(response)
-                if (response.status === 'processed') clearCart()
+                navigate(`/resultado-pagamento?codigo=${encodeURIComponent(createdOrder.trackingCode)}`)
                 setLoading(false)
                 return
             }
