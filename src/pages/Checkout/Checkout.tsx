@@ -126,6 +126,98 @@ const statusLabel = (status?: string) => {
     }
 }
 
+const cardDeclineMessage = (statusDetail?: string) => {
+    const detail = String(statusDetail || '').toLowerCase()
+
+    if (
+        detail.includes('high_risk') ||
+        detail.includes('high-risk') ||
+        detail.includes('blacklist') ||
+        detail.includes('fraud')
+    ) {
+        return 'Por motivos de segurança, o pagamento não pôde ser aprovado. Isso não significa que houve fraude; tente outro meio de pagamento ou verifique a situação com seu banco.'
+    }
+
+    if (
+        detail.includes('call_for_authorize') ||
+        detail.includes('required_call_for_authorize') ||
+        detail.includes('rejected_by_issuer') ||
+        detail.includes('issuer')
+    ) {
+        return 'Seu banco recusou esta cobrança. Verifique com o banco se há alguma confirmação ou liberação necessária para a compra.'
+    }
+
+    if (
+        detail.includes('insufficient_amount') ||
+        detail.includes('card_insufficient_amount')
+    ) {
+        return 'Seu cartão não possui saldo ou limite suficiente para esta compra.'
+    }
+
+    if (
+        detail.includes('card_disabled') ||
+        detail.includes('card_disabled')
+    ) {
+        return 'Seu cartão não está habilitado para esta compra. Verifique a situação do cartão com seu banco.'
+    }
+
+    if (
+        detail.includes('bad_filled_date') ||
+        detail.includes('invalid_expiration')
+    ) {
+        return 'A data de validade do cartão não foi aceita. Confira a validade e tente novamente.'
+    }
+
+    if (
+        detail.includes('bad_filled_security_code') ||
+        detail.includes('security_code')
+    ) {
+        return 'O código de segurança (CVV) não foi aceito. Confira o código informado e tente novamente.'
+    }
+
+    if (
+        detail.includes('bad_filled_card_number') ||
+        detail.includes('bad_filled_other') ||
+        detail.includes('invalid_card_token')
+    ) {
+        return 'Alguns dados do cartão não foram aceitos. Confira as informações e tente novamente.'
+    }
+
+    if (
+        detail.includes('invalid_installments') ||
+        detail.includes('invalid_installment')
+    ) {
+        return 'A opção de parcelamento escolhida não foi aceita. Escolha outra quantidade de parcelas e tente novamente.'
+    }
+
+    if (
+        detail.includes('max_attempts') ||
+        detail.includes('max_attempts_exceeded')
+    ) {
+        return 'O pagamento não pôde ser aprovado após várias tentativas. Tente outro meio de pagamento.'
+    }
+
+    if (
+        detail.includes('duplicated_payment') ||
+        detail.includes('duplicate')
+    ) {
+        return 'Esta cobrança foi identificada como duplicada. Confira se já existe uma cobrança aprovada antes de tentar novamente.'
+    }
+
+    if (
+        detail.includes('amount_limit_exceeded') ||
+        detail.includes('amount_limit')
+    ) {
+        return 'O valor desta compra ultrapassa o limite permitido para o cartão. Tente outro meio de pagamento.'
+    }
+
+    if (detail.includes('processing_error')) {
+        return 'Não foi possível concluir o pagamento. Tente novamente ou escolha outro meio de pagamento.'
+    }
+
+    return 'O pagamento não foi aprovado pelo meio de pagamento. Confira os dados do cartão ou tente outra forma de pagamento.'
+}
+
 
 type FormState = {
     customerName: string
@@ -1236,8 +1328,12 @@ function Checkout() {
                         <span className="card-declined-kicker">Pagamento não aprovado</span>
                         <h2 id="card-declined-title">Não foi possível concluir o pagamento</h2>
                         <p>
-                            O cartão não foi aprovado. Confira os dados ou tente novamente com outro cartão.
+                            O pagamento não foi aprovado.
                         </p>
+                        <div className="card-declined-reason">
+                            <strong>Motivo</strong>
+                            <span>{cardDeclineMessage(cardDeclinedPayment.statusDetail)}</span>
+                        </div>
                         <button
                             type="button"
                             className="card-declined-retry"
