@@ -585,9 +585,15 @@ function Checkout() {
                                         paymentMethodType,
                                         token: cardData.token,
                                         installments: currentForm.paymentMethod === 'DEBIT_CARD'
-                                            ? null
+                                            ? 1
                                             : Number(cardData.installments || 1),
                                         payerEmail: cardholderEmail,
+                                        ...(currentForm.paymentMethod === 'DEBIT_CARD'
+                                            ? {
+                                                payerIdentificationType: cardData.identificationType || 'CPF',
+                                                payerIdentificationNumber: onlyDigits(currentForm.cpf)
+                                            }
+                                            : {}),
                                         idempotencyKey: uuid()
                                     }
                                 })
