@@ -24,6 +24,7 @@ import {
     FaTag,
     FaTrash,
     FaTruck,
+    FaTimes,
     FaWhatsapp
 } from 'react-icons/fa'
 
@@ -233,6 +234,7 @@ function Checkout() {
 
     const [order, setOrder] = useState<Order>()
     const [payment, setPayment] = useState<MercadoPagoPaymentResponse>()
+    const [cardDeclinedPayment, setCardDeclinedPayment] = useState<MercadoPagoPaymentResponse>()
     const [loading, setLoading] = useState(false)
     const [cardReady, setCardReady] = useState(false)
     const [cardError, setCardError] = useState('')
@@ -240,6 +242,7 @@ function Checkout() {
     const [cepLoading, setCepLoading] = useState(false)
     const [copied, setCopied] = useState(false)
     const [couponOpen, setCouponOpen] = useState(false)
+    const [cardFormVersion, setCardFormVersion] = useState(0)
 
     const cardFormRef = useRef<CardFormInstance | null>(null)
     const pendingCardOrderRef = useRef<Order | null>(null)
@@ -440,13 +443,15 @@ function Checkout() {
                                     }
                                 })
 
-                                setPayment(result.payment)
-
                                 if (!result.order) {
-                                    setError('Pagamento recusado pelo Mercado Pago. Tente outro cartão ou forma de pagamento.')
+                                    setPayment(undefined)
+                                    setCardDeclinedPayment(result.payment)
+                                    setError('')
                                     return
                                 }
 
+                                setPayment(result.payment)
+                                setCardDeclinedPayment(undefined)
                                 setOrder(result.order)
                                 clearCart()
                                 navigate(`/resultado-pagamento?codigo=${encodeURIComponent(result.order.trackingCode)}`)
@@ -486,7 +491,7 @@ function Checkout() {
                 cardFormRef.current = null
             }
         }
-    }, [form.paymentMethod, total])
+    }, [form.paymentMethod, total, cardFormVersion])
 
     const setField = <K extends keyof FormState>(field: K, value: FormState[K]) => {
         setForm(previous => ({ ...previous, [field]: value }))
@@ -1135,6 +1140,49 @@ function Checkout() {
                     </aside>
                 </div>
             </main>
+
+            {cardDeclinedPayment && (
+                <div className="card-declined-overlay" role="dialog" aria-modal="true" aria-labelledby="card-declined-title">
+                    <div className="card-declined-backdrop" onClick={() => {
+                        setCardDeclinedPayment(undefined)
+                        setError('')
+                        setCardFormVersion(value => value + 1)
+                    }} />
+                    <section className="card-declined-modal">
+                        <button
+                            type="button"
+                            className="card-declined-close"
+                            aria-label="Fechar"
+                            onClick={() => {
+                                setCardDeclinedPayment(undefined)
+                                setError('')
+                                setCardFormVersion(value => value + 1)
+                            }}
+                        >
+                            <FaTimes />
+                        </button>
+                        <div className="card-declined-icon"><FaCreditCard /></div>
+                        <span className="card-declined-kicker">Pagamento não aprovado</span>
+                        <h2 id="card-declined-title">Não foi possível concluir o pagamento</h2>
+                        <p>
+                            O cartão não foi aprovado. Confira os dados ou tente novamente com outro cartão.
+                        </p>
+                        <button
+                            type="button"
+                            className="card-declined-retry"
+                            onClick={() => {
+                                setCardDeclinedPayment(undefined)
+                                setError('')
+                                setCardError('')
+                                setCardFormVersion(value => value + 1)
+                            }}
+                        >
+                            Tentar novamente
+                        </button>
+                        <small>Seu pedido ainda não foi criado e você permanece no checkout.</small>
+                    </section>
+                </div>
+            )}
 
             <Footer />
         </>
