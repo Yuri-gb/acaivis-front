@@ -42,7 +42,7 @@ function resolveState(order: TrackingOrder, payment: MercadoPagoPaymentResponse 
     // Evaluate the provider status before the generic CANCELLED fallback so the
     // customer sees the dedicated refused-payment screen when Mercado Pago
     // reports a rejection.
-    if (status === 'rejected' || status === 'refused' || status === 'charged_back') return 'REFUSED'
+    if (status === 'rejected' || status === 'refused' || status === 'failed' || status === 'charged_back') return 'REFUSED'
     if (status === 'cancelled' || status === 'canceled' || status === 'expired') return 'EXPIRED'
     if (status === 'processing' || status === 'in_process' || status === 'in_mediation') return 'PROCESSING'
     if (detail.includes('rejected') || detail.includes('refused')) return 'REFUSED'
