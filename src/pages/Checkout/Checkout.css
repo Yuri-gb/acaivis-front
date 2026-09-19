@@ -723,3 +723,23 @@
         font-size: 18px;
     }
 }
+
+
+.card-processing-modal {
+    border-color: rgba(177, 0, 255, .25);
+}
+
+.card-processing-modal .card-declined-icon {
+    background: rgba(177, 0, 255, .09);
+    color: #b100ff;
+}
+
+.card-processing-status {
+    margin: 0 auto 4px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .04);
+    color: rgba(255, 255, 255, .68);
+    font-size: 10px;
+    font-weight: 600;
+}

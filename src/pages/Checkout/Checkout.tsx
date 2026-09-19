@@ -14,6 +14,7 @@ import {
     FaCopy,
     FaCreditCard,
     FaHeart,
+    FaHourglassHalf,
     FaLock,
     FaMinus,
     FaPlus,
@@ -235,6 +236,7 @@ function Checkout() {
     const [order, setOrder] = useState<Order>()
     const [payment, setPayment] = useState<MercadoPagoPaymentResponse>()
     const [cardDeclinedPayment, setCardDeclinedPayment] = useState<MercadoPagoPaymentResponse>()
+    const [cardProcessingPayment, setCardProcessingPayment] = useState<MercadoPagoPaymentResponse>()
     const [loading, setLoading] = useState(false)
     const [cardReady, setCardReady] = useState(false)
     const [cardError, setCardError] = useState('')
@@ -246,6 +248,46 @@ function Checkout() {
 
     const cardFormRef = useRef<CardFormInstance | null>(null)
     const pendingCardOrderRef = useRef<Order | null>(null)
+
+    useEffect(() => {
+        if (!cardProcessingPayment?.orderId) return
+
+        let cancelled = false
+
+        const checkStatus = async () => {
+            try {
+                const result = await api.cardCheckoutStatus(cardProcessingPayment.orderId)
+
+                if (cancelled) return
+
+                if (result.order) {
+                    setPayment(result.payment)
+                    setOrder(result.order)
+                    setCardProcessingPayment(undefined)
+                    clearCart()
+                    navigate(`/resultado-pagamento?codigo=${encodeURIComponent(result.order.trackingCode)}`)
+                    return
+                }
+
+                const status = result.payment.status?.toLowerCase()
+
+                if (['failed', 'rejected', 'refused', 'canceled', 'cancelled', 'expired', 'refunded'].includes(status)) {
+                    setCardProcessingPayment(undefined)
+                    setCardDeclinedPayment(result.payment)
+                }
+            } catch (statusError) {
+                console.error('Erro ao consultar processamento do cartão:', statusError)
+            }
+        }
+
+        checkStatus()
+        const timer = window.setInterval(checkStatus, 5000)
+
+        return () => {
+            cancelled = true
+            window.clearInterval(timer)
+        }
+    }, [cardProcessingPayment?.orderId, navigate])
 
     const subtotal = useMemo(
         () => items.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0),
@@ -446,7 +488,18 @@ function Checkout() {
                                 })
 
                                 if (!result.order) {
+                                    const providerStatus = result.payment.status?.toLowerCase()
+
+                                    if (['processing', 'in_process', 'created', 'pending', 'action_required'].includes(providerStatus)) {
+                                        setPayment(undefined)
+                                        setCardDeclinedPayment(undefined)
+                                        setCardProcessingPayment(result.payment)
+                                        setError('')
+                                        return
+                                    }
+
                                     setPayment(undefined)
+                                    setCardProcessingPayment(undefined)
                                     setCardDeclinedPayment(result.payment)
                                     setError('')
                                     return
@@ -1142,6 +1195,22 @@ function Checkout() {
                     </aside>
                 </div>
             </main>
+
+            {cardProcessingPayment && (
+                <div className="card-declined-overlay" role="dialog" aria-modal="true" aria-labelledby="card-processing-title">
+                    <div className="card-declined-backdrop" />
+                    <section className="card-declined-modal card-processing-modal">
+                        <div className="card-declined-icon"><FaHourglassHalf /></div>
+                        <span className="card-declined-kicker">Pagamento em processamento</span>
+                        <h2 id="card-processing-title">Estamos aguardando a confirmação</h2>
+                        <p>
+                            O Mercado Pago ainda está processando o pagamento. Não tente pagar novamente para evitar uma cobrança duplicada.
+                        </p>
+                        <div className="card-processing-status">Atualizando automaticamente...</div>
+                        <small>Seu pedido será criado somente quando o pagamento for confirmado.</small>
+                    </section>
+                </div>
+            )}
 
             {cardDeclinedPayment && (
                 <div className="card-declined-overlay" role="dialog" aria-modal="true" aria-labelledby="card-declined-title">
