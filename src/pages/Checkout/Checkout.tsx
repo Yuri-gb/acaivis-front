@@ -480,10 +480,14 @@ function Checkout() {
                             id: 'mp-issuer',
                             placeholder: 'Banco emissor'
                         },
-                        installments: {
-                            id: 'mp-installments',
-                            placeholder: 'Parcelas'
-                        },
+                        ...(form.paymentMethod === 'CREDIT_CARD'
+                            ? {
+                                installments: {
+                                    id: 'mp-installments',
+                                    placeholder: 'Parcelas'
+                                }
+                            }
+                            : {}),
                         identificationType: {
                             id: 'mp-identification-type',
                             placeholder: 'Tipo de documento'
