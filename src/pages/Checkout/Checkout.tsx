@@ -14,6 +14,7 @@ import {
     FaCopy,
     FaCreditCard,
     FaHeart,
+    FaHourglassHalf,
     FaLock,
     FaMinus,
     FaPlus,
