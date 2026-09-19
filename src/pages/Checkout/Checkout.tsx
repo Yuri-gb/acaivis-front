@@ -340,6 +340,16 @@ function Checkout() {
 
     const cardFormRef = useRef<CardFormInstance | null>(null)
     const pendingCardOrderRef = useRef<Order | null>(null)
+    const formRef = useRef(form)
+    const deliveryQuoteRef = useRef(deliveryQuote)
+    const itemsRef = useRef(items)
+
+    formRef.current = form
+    deliveryQuoteRef.current = deliveryQuote
+    itemsRef.current = items
+
+    // CardForm callbacks can outlive the React render that created them.
+    // Always read the latest checkout values when the payment is submitted.
 
     useEffect(() => {
         if (!cardProcessingPayment?.orderId) return
@@ -525,8 +535,11 @@ function Checkout() {
                         onSubmit: async (event: Event) => {
                             event.preventDefault()
 
+                            const currentForm = formRef.current
+                            const currentDeliveryQuote = deliveryQuoteRef.current
+                            const currentItems = itemsRef.current
                             const cardData = cardForm.getCardFormData()
-                            const cardholderEmail = String(cardData.cardholderEmail || form.customerEmail || '').trim()
+                            const cardholderEmail = String(cardData.cardholderEmail || currentForm.customerEmail || '').trim()
 
                             if (!cardData.token) {
                                 setError('Não foi possível gerar o token do cartão. Verifique os dados informados.')
@@ -541,7 +554,7 @@ function Checkout() {
                             }
 
                             try {
-                                const paymentMethodType = form.paymentMethod === 'CREDIT_CARD'
+                                const paymentMethodType = currentForm.paymentMethod === 'CREDIT_CARD'
                                     ? 'credit_card'
                                     : 'debit_card'
 
@@ -549,20 +562,20 @@ function Checkout() {
                                 // persists the local order.
                                 const result = await api.createMercadoPagoCardCheckout({
                                     order: {
-                                        customerName: form.customerName.trim(),
-                                        customerPhone: onlyDigits(form.customerPhone),
+                                        customerName: currentForm.customerName.trim(),
+                                        customerPhone: onlyDigits(currentForm.customerPhone),
                                         customerEmail: cardholderEmail,
-                                        street: form.street.trim(),
-                                        number: form.number.trim(),
-                                        complement: form.complement.trim(),
-                                        neighborhood: form.neighborhood.trim(),
-                                        city: form.city.trim(),
-                                        state: form.state.trim().toUpperCase(),
-                                        zipCode: onlyDigits(form.zipCode),
-                                        deliveryZoneId: deliveryQuote!.deliveryZoneId,
-                                        paymentMethod: form.paymentMethod,
-                                        notes: form.notes.trim(),
-                                        items: items.map(item => ({
+                                        street: currentForm.street.trim(),
+                                        number: currentForm.number.trim(),
+                                        complement: currentForm.complement.trim(),
+                                        neighborhood: currentForm.neighborhood.trim(),
+                                        city: currentForm.city.trim(),
+                                        state: currentForm.state.trim().toUpperCase(),
+                                        zipCode: onlyDigits(currentForm.zipCode),
+                                        deliveryZoneId: currentDeliveryQuote!.deliveryZoneId,
+                                        paymentMethod: currentForm.paymentMethod,
+                                        notes: currentForm.notes.trim(),
+                                        items: currentItems.map(item => ({
                                             productId: item.productId,
                                             quantity: item.quantity
                                         }))
@@ -571,7 +584,7 @@ function Checkout() {
                                         paymentMethodId: cardData.paymentMethodId,
                                         paymentMethodType,
                                         token: cardData.token,
-                                        installments: form.paymentMethod === 'DEBIT_CARD'
+                                        installments: currentForm.paymentMethod === 'DEBIT_CARD'
                                             ? null
                                             : Number(cardData.installments || 1),
                                         payerEmail: cardholderEmail,
