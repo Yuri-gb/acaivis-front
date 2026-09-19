@@ -385,6 +385,8 @@ function Checkout() {
                         onError: (cardFormError: unknown) => {
                             console.error('Mercado Pago CardForm error:', cardFormError)
                             setCardError('Verifique os dados do cartão e tente novamente.')
+                            setError('')
+                            setLoading(false)
                         },
                         onSubmit: async (event: Event) => {
                             event.preventDefault()
