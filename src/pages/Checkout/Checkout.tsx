@@ -588,6 +588,8 @@ function Checkout() {
                                             ? null
                                             : Number(cardData.installments || 1),
                                         payerEmail: cardholderEmail,
+                                        payerIdentificationType: cardData.identificationType,
+                                        payerIdentificationNumber: onlyDigits(cardData.identificationNumber),
                                         idempotencyKey: uuid()
                                     }
                                 })
