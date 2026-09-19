@@ -34,16 +34,19 @@ type ResultState = 'APPROVED' | 'PROMISED' | 'PENDING' | 'PROCESSING' | 'REFUSED
 function resolveState(order: TrackingOrder, payment: MercadoPagoPaymentResponse | null): ResultState {
     if (order.status === 'PAYMENT_PROMISED') return 'PROMISED'
     if (order.status === 'PAID' || order.paymentConfirmed) return 'APPROVED'
-    if (order.status === 'CANCELLED') return 'EXPIRED'
 
     const status = payment?.status?.toLowerCase()
     const detail = payment?.statusDetail?.toLowerCase() || ''
 
-    if (status === 'approved' || status === 'processed' || status === 'accredited') return 'APPROVED'
+    // A rejected payment is a payment result, not an expired Pix/order result.
+    // Evaluate the provider status before the generic CANCELLED fallback so the
+    // customer sees the dedicated refused-payment screen when Mercado Pago
+    // reports a rejection.
     if (status === 'rejected' || status === 'refused' || status === 'charged_back') return 'REFUSED'
     if (status === 'cancelled' || status === 'canceled' || status === 'expired') return 'EXPIRED'
     if (status === 'processing' || status === 'in_process' || status === 'in_mediation') return 'PROCESSING'
     if (detail.includes('rejected') || detail.includes('refused')) return 'REFUSED'
+    if (order.status === 'CANCELLED') return 'EXPIRED'
 
     return 'PENDING'
 }

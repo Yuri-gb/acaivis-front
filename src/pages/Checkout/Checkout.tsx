@@ -385,8 +385,13 @@ function Checkout() {
                             setCardReady(true)
                         },
                         onReady: () => setCardReady(true),
-                        onError: () => setCardError('Verifique os dados do cartão e tente novamente.'),
-                        onSubmit: () => {
+                        onError: (cardFormError: unknown) => {
+                            console.error('Mercado Pago CardForm error:', cardFormError)
+                            setCardError('Verifique os dados do cartão e tente novamente.')
+                        },
+                        onSubmit: (event: Event) => {
+                            event.preventDefault()
+
                             const cardData = cardForm.getCardFormData()
                             const currentOrder = pendingCardOrderRef.current
 
