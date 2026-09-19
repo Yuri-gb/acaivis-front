@@ -21,7 +21,12 @@ export interface MercadoPagoPaymentRequest {
     idempotencyKey?: string
 }
 
-export interface MercadoPagoCardCheckoutResponse {\n    payment: MercadoPagoPaymentResponse\n    order: Order | null\n}\n\nexport interface MercadoPagoPaymentResponse {
+export interface MercadoPagoCardCheckoutResponse {
+    payment: MercadoPagoPaymentResponse
+    order: Order | null
+}
+
+export interface MercadoPagoPaymentResponse {
     orderId: string
     paymentId: string
     status: string
