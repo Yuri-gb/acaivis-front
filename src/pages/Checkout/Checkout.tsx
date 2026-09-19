@@ -980,7 +980,14 @@ function Checkout() {
                                         </div>
                                         <div className="card-field">
                                             <span>CPF</span>
-                                            <input id="mp-identification-number" value={form.cpf} onChange={event => setField('cpf', maskCpf(event.target.value))} placeholder="000.000.000-00" />
+                                            <input
+                                                id="mp-identification-number"
+                                                value={onlyDigits(form.cpf)}
+                                                onChange={event => setField('cpf', onlyDigits(event.target.value).slice(0, 11))}
+                                                placeholder="00000000000"
+                                                inputMode="numeric"
+                                                autoComplete="off"
+                                            />
                                         </div>
                                         <div className="card-field full">
                                             <span>E-mail do comprador</span>
