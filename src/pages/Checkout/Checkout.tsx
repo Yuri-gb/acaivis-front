@@ -150,6 +150,7 @@ type CardFormInstance = {
         paymentMethodId: string
         identificationType: string
         identificationNumber: string
+        cardholderEmail: string
     }
 }
 
@@ -382,46 +383,62 @@ function Checkout() {
                             console.error('Mercado Pago CardForm error:', cardFormError)
                             setCardError('Verifique os dados do cartão e tente novamente.')
                         },
-                        onSubmit: (event: Event) => {
+                        onSubmit: async (event: Event) => {
                             event.preventDefault()
 
                             const cardData = cardForm.getCardFormData()
-                            const currentOrder = pendingCardOrderRef.current
+                            const cardholderEmail = String(cardData.cardholderEmail || form.customerEmail || '').trim()
 
-                            if (!currentOrder || !cardData.token) {
-                                setError('Não foi possível gerar o token do cartão.')
+                            if (!cardData.token) {
+                                setError('Não foi possível gerar o token do cartão. Verifique os dados informados.')
                                 setLoading(false)
                                 return
                             }
 
-                            const paymentMethodType = form.paymentMethod === 'CREDIT_CARD'
-                                ? 'credit_card'
-                                : 'debit_card'
+                            if (!cardholderEmail) {
+                                setError('Informe o e-mail do comprador antes de continuar.')
+                                setLoading(false)
+                                return
+                            }
 
-                            api.createMercadoPagoPayment(currentOrder.id, {
-                                paymentMethodId: cardData.paymentMethodId,
-                                paymentMethodType,
-                                token: cardData.token,
-                                installments: form.paymentMethod === 'DEBIT_CARD'
-                                    ? 1
-                                    : Number(cardData.installments || 1),
-                                payerEmail: form.customerEmail,
-                                idempotencyKey: uuid()
-                            })
-                                .then(response => {
-                                    setPayment(response)
-                                    clearCart()
-                                    navigate(`/resultado-pagamento?codigo=${encodeURIComponent(currentOrder.trackingCode)}`)
-                                })
-                                .catch(paymentError => {
-                                    setError(paymentError instanceof ApiError
-                                        ? paymentError.message
-                                        : 'Não foi possível processar o pagamento.')
-                                })
-                                .finally(() => {
-                                    pendingCardOrderRef.current = null
+                            try {
+                                // Card tokenization must succeed before creating the local
+                                // order. A rejected/invalid card must not create an order.
+                                const createdOrder = await createLocalOrder()
+                                if (!createdOrder) {
                                     setLoading(false)
+                                    return
+                                }
+
+                                pendingCardOrderRef.current = createdOrder
+                                setOrder(createdOrder)
+
+                                const paymentMethodType = form.paymentMethod === 'CREDIT_CARD'
+                                    ? 'credit_card'
+                                    : 'debit_card'
+
+                                const response = await api.createMercadoPagoPayment(createdOrder.id, {
+                                    paymentMethodId: cardData.paymentMethodId,
+                                    paymentMethodType,
+                                    token: cardData.token,
+                                    installments: form.paymentMethod === 'DEBIT_CARD'
+                                        ? 1
+                                        : Number(cardData.installments || 1),
+                                    payerEmail: cardholderEmail,
+                                    idempotencyKey: uuid()
                                 })
+
+                                setPayment(response)
+                                clearCart()
+                                navigate(`/resultado-pagamento?codigo=${encodeURIComponent(createdOrder.trackingCode)}`)
+                            } catch (paymentError) {
+                                setError(paymentError instanceof ApiError
+                                    ? paymentError.message
+                                    : 'Não foi possível processar o pagamento.')
+                            } finally {
+                                pendingCardOrderRef.current = null
+                                setLoading(false)
+                            }
                         }
                     }
                 })
@@ -569,6 +586,19 @@ function Checkout() {
         setLoading(true)
 
         try {
+            if (form.paymentMethod === 'CREDIT_CARD' || form.paymentMethod === 'DEBIT_CARD') {
+                // Do not create an order before Mercado Pago successfully tokenizes
+                // the card. The CardForm onSubmit callback creates it after tokenization.
+                if (!cardFormRef.current) {
+                    setError('O formulário do cartão ainda não está pronto.')
+                    setLoading(false)
+                    return
+                }
+
+                cardFormRef.current.submit()
+                return
+            }
+
             const createdOrder = await createLocalOrder()
             if (!createdOrder) {
                 setLoading(false)
@@ -601,15 +631,6 @@ function Checkout() {
                 return
             }
 
-            pendingCardOrderRef.current = createdOrder
-            if (!cardFormRef.current) {
-                setError('O formulário do cartão ainda não está pronto.')
-                pendingCardOrderRef.current = null
-                setLoading(false)
-                return
-            }
-
-            cardFormRef.current.submit()
         } catch (checkoutError) {
             setError(checkoutError instanceof ApiError
                 ? checkoutError.message
