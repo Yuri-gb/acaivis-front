@@ -480,14 +480,10 @@ function Checkout() {
                             id: 'mp-issuer',
                             placeholder: 'Banco emissor'
                         },
-                        ...(form.paymentMethod === 'CREDIT_CARD'
-                            ? {
-                                installments: {
-                                    id: 'mp-installments',
-                                    placeholder: 'Parcelas'
-                                }
-                            }
-                            : {}),
+                        installments: {
+                            id: 'mp-installments',
+                            placeholder: 'Parcelas'
+                        },
                         identificationType: {
                             id: 'mp-identification-type',
                             placeholder: 'Tipo de documento'
@@ -1159,12 +1155,13 @@ function Checkout() {
                                             style={{ display: 'none' }}
                                         />
 
-                                        {form.paymentMethod === 'CREDIT_CARD' && (
-                                            <div className="card-field">
-                                                <span>Parcelas</span>
-                                                <select id="mp-installments" />
-                                            </div>
-                                        )}
+                                        <div
+                                            className={'card-field ' + (form.paymentMethod === 'DEBIT_CARD' ? 'card-installments-hidden' : '')}
+                                            aria-hidden={form.paymentMethod === 'DEBIT_CARD'}
+                                        >
+                                            <span>Parcelas</span>
+                                            <select id="mp-installments" />
+                                        </div>
                                         <div className="card-field">
                                             <span>Documento</span>
                                             <select id="mp-identification-type" />

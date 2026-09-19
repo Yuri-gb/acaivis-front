@@ -769,3 +769,9 @@
     font-size: 10px;
     line-height: 1.55;
 }
+
+
+/* Keep Mercado Pago's required installments mount point available for debit, but hide it from customers. */
+.card-installments-hidden {
+    display: none !important;
+}
