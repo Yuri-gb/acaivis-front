@@ -572,7 +572,7 @@ function Checkout() {
                                         paymentMethodType,
                                         token: cardData.token,
                                         installments: form.paymentMethod === 'DEBIT_CARD'
-                                            ? 1
+                                            ? null
                                             : Number(cardData.installments || 1),
                                         payerEmail: cardholderEmail,
                                         idempotencyKey: uuid()
@@ -1155,10 +1155,12 @@ function Checkout() {
                                             style={{ display: 'none' }}
                                         />
 
-                                        <div className={`card-field ${form.paymentMethod === 'DEBIT_CARD' ? 'card-field-installments-hidden' : ''}`}>
-                                            <span>Parcelas</span>
-                                            <select id="mp-installments" />
-                                        </div>
+                                        {form.paymentMethod === 'CREDIT_CARD' && (
+                                            <div className="card-field">
+                                                <span>Parcelas</span>
+                                                <select id="mp-installments" />
+                                            </div>
+                                        )}
                                         <div className="card-field">
                                             <span>Documento</span>
                                             <select id="mp-identification-type" />
