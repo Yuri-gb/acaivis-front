@@ -273,13 +273,6 @@ function Checkout() {
     }, [])
 
     useEffect(() => {
-        return () => {
-            cardFormRef.current?.unmount()
-            cardFormRef.current = null
-        }
-    }, [])
-
-    useEffect(() => {
         if (!['CREDIT_CARD', 'DEBIT_CARD'].includes(form.paymentMethod)) {
             cardFormRef.current?.unmount()
             cardFormRef.current = null
