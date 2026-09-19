@@ -402,35 +402,54 @@ function Checkout() {
                             }
 
                             try {
-                                // Card tokenization must succeed before creating the local
-                                // order. A rejected/invalid card must not create an order.
-                                const createdOrder = await createLocalOrder()
-                                if (!createdOrder) {
-                                    setLoading(false)
-                                    return
-                                }
-
-                                pendingCardOrderRef.current = createdOrder
-                                setOrder(createdOrder)
-
                                 const paymentMethodType = form.paymentMethod === 'CREDIT_CARD'
                                     ? 'credit_card'
                                     : 'debit_card'
 
-                                const response = await api.createMercadoPagoPayment(createdOrder.id, {
-                                    paymentMethodId: cardData.paymentMethodId,
-                                    paymentMethodType,
-                                    token: cardData.token,
-                                    installments: form.paymentMethod === 'DEBIT_CARD'
-                                        ? 1
-                                        : Number(cardData.installments || 1),
-                                    payerEmail: cardholderEmail,
-                                    idempotencyKey: uuid()
+                                // Mercado Pago processes the card before Açaívis
+                                // persists the local order.
+                                const result = await api.createMercadoPagoCardCheckout({
+                                    order: {
+                                        customerName: form.customerName.trim(),
+                                        customerPhone: onlyDigits(form.customerPhone),
+                                        customerEmail: cardholderEmail,
+                                        street: form.street.trim(),
+                                        number: form.number.trim(),
+                                        complement: form.complement.trim(),
+                                        neighborhood: form.neighborhood.trim(),
+                                        city: form.city.trim(),
+                                        state: form.state.trim().toUpperCase(),
+                                        zipCode: onlyDigits(form.zipCode),
+                                        deliveryZoneId: deliveryQuote!.deliveryZoneId,
+                                        paymentMethod: form.paymentMethod,
+                                        notes: form.notes.trim(),
+                                        items: items.map(item => ({
+                                            productId: item.productId,
+                                            quantity: item.quantity
+                                        }))
+                                    },
+                                    payment: {
+                                        paymentMethodId: cardData.paymentMethodId,
+                                        paymentMethodType,
+                                        token: cardData.token,
+                                        installments: form.paymentMethod === 'DEBIT_CARD'
+                                            ? 1
+                                            : Number(cardData.installments || 1),
+                                        payerEmail: cardholderEmail,
+                                        idempotencyKey: uuid()
+                                    }
                                 })
 
-                                setPayment(response)
+                                setPayment(result.payment)
+
+                                if (!result.order) {
+                                    setError('Pagamento recusado pelo Mercado Pago. Tente outro cartão ou forma de pagamento.')
+                                    return
+                                }
+
+                                setOrder(result.order)
                                 clearCart()
-                                navigate(`/resultado-pagamento?codigo=${encodeURIComponent(createdOrder.trackingCode)}`)
+                                navigate(`/resultado-pagamento?codigo=${encodeURIComponent(result.order.trackingCode)}`)
                             } catch (paymentError) {
                                 setError(paymentError instanceof ApiError
                                     ? paymentError.message
