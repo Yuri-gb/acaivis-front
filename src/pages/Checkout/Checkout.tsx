@@ -150,6 +150,7 @@ type CardFormInstance = {
         paymentMethodId: string
         identificationType: string
         identificationNumber: string
+        cardholderEmail: string
     }
 }
 
