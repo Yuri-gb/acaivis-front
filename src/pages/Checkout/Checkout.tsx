@@ -348,6 +348,9 @@ function Checkout() {
     deliveryQuoteRef.current = deliveryQuote
     itemsRef.current = items
 
+    // CardForm callbacks can outlive the React render that created them.
+    // Always read the latest checkout values when the payment is submitted.
+
     useEffect(() => {
         if (!cardProcessingPayment?.orderId) return
 
